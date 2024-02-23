@@ -1,68 +1,83 @@
-import {
-  Button,
-  Card,
-  Flex,
-  Heading,
-  Image,
-  SimpleGrid,
-} from "@chakra-ui/react";
-
-import peachImg from "../assets/10-peach-trans.png";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { PageHeader } from "../components/PageHeader";
+import { Box, Button, Flex, Heading, Image, Text } from "@chakra-ui/react";
 
-const HowCard = styled(Card)`
-  border-radius: 8px;
-  padding: 1rem;
-  height: 160px;
-`;
+import HomePeach from "../assets/Home-Peach.png";
+import HomeTree from "../assets/Home-Tree.png";
+import HeaderLogo from "../assets/Header-Logo.png";
+import { HomeSectionOne } from "../components/HomeSectionOne";
+import { HomeSectionTwo } from "../components/HomeSectionTwo";
+import { HomeSectionThree } from "../components/HomeSectionThree";
+import { HomeSectionFour } from "../components/HomeSectionFour";
 
 function Home() {
   return (
     <>
-      <PageHeader title="PΞACH TYCOON" superTitle="PΞACHES SEASON 2">
-        <Flex>
-          <Image src={peachImg} w={{ base: "300px" }} />
-        </Flex>
-        <Button
-          as={Link}
-          to="/play"
-          variant="outline"
-          colorScheme="orange"
-          fontFamily="heading"
-          fontSize="2xl"
-          fontStyle="italic"
-          fontWeight="900"
-          border="2px"
-          borderColor="orange.500"
-          size="lg"
-          height="64px"
-          width="300px"
-          my="3rem"
-          _hover={{ bg: "transparent", color: "orange.300" }}
+      <Box mb="5rem">
+        <Flex
+          direction={{ base: "column", md: "row" }}
+          justify="space-between"
+          gap={{ base: "1.5rem", md: "0.5rem" }}
         >
-          Get Started
-        </Button>
-      </PageHeader>
+          <Box>
+            <Heading size="4xl">YOU BUY TREE.</Heading>
+          </Box>
+          <Box>
+            <Heading size="4xl">TREE GROWS PEACH.</Heading>
+          </Box>
+          <Box>
+            <Heading size="4xl">YOU EAT* PEACH.</Heading>
+            <Text style={{ fontSize: "14px" }}>
+              *or sell to the marketplace for others to enjoy.
+            </Text>
+          </Box>
+        </Flex>
+        <Flex
+          direction={{ base: "column", md: "row" }}
+          justify="space-between"
+          align="center"
+          gap={{ base: "1.5rem", md: "0.5rem" }}
+        >
+          <Image src={HomeTree} w={{ base: "250px" }} />
+          <Flex direction="column" align="center">
+            <Image src={HeaderLogo} />
+            <Text color="brand.orange">Buy now, munch later.</Text>
 
-      <SimpleGrid
-        spacing={4}
-        templateColumns="repeat(auto-fit, minmax(320px, 1fr))"
-      >
-        <HowCard backgroundColor="#000">
-          <Heading size="lg">1. Buy Trees</Heading>
-        </HowCard>
-        <HowCard backgroundColor="#000">
-          <Heading size="lg">2. Grow Peaches</Heading>
-        </HowCard>
-        <HowCard backgroundColor="#000">
-          <Heading size="lg">3. Sell Peaches</Heading>
-        </HowCard>
-        <HowCard backgroundColor="#000">
-          <Heading size="lg">4. Eat Peaches</Heading>
-        </HowCard>
-      </SimpleGrid>
+            <Button
+              as={Link}
+              to="/buy-trees"
+              variant="outline"
+              fontFamily="heading"
+              fontSize="2xl"
+              fontStyle="italic"
+              fontWeight="700"
+              border="1px"
+              borderColor="brand.orange"
+              borderRadius="200px;"
+              color="brand.red"
+              size="lg"
+              height="72px"
+              width="398px"
+              my="3rem"
+              _hover={{ bg: "transparent", color: "brand.white" }}
+            >
+              GET STARTED
+            </Button>
+          </Flex>
+          <Image src={HomePeach} w={{ base: "250px" }} />
+        </Flex>
+      </Box>
+      <Box mb="5rem">
+        <HomeSectionOne />
+      </Box>
+      <Box mb="5rem">
+        <HomeSectionTwo />
+      </Box>
+      <Box mb="5rem">
+        <HomeSectionThree />
+      </Box>
+      <Box mb="5rem">
+        <HomeSectionFour />
+      </Box>
     </>
   );
 }
