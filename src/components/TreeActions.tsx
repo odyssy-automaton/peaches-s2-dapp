@@ -15,15 +15,9 @@ export const TreeActions = ({
   tokenId: string;
   account: string;
 }) => {
-  // const { prune, fert, canSpray, watererdToday, isFetched } = useTreePoints({
-  //   tokenId: tokenId,
-  // });
-
-  const { prune, watererdToday, fert, isFetched } = useTreePoints({
+  const { prune, fert, canSpray, watererdToday, isFetched } = useTreePoints({
     tokenId: tokenId,
   });
-
-  const canSpray = false;
 
   if (!isFetched) return <Spinner color="brand.green" />;
 
@@ -71,40 +65,6 @@ export const TreeActions = ({
       )}
 
       <SprayTreeButton tokenId={tokenId} canSpray={canSpray} />
-      {/* {!canSpray && (
-        <>
-          <Button
-            opacity="30%"
-            variant="outline"
-            fontFamily="heading"
-            fontSize="xl"
-            fontStyle="italic"
-            fontWeight="700"
-            border="1px"
-            borderColor="brand.green"
-            borderRadius="200px;"
-            color="brand.green"
-            size="lg"
-            height="60px"
-            width="220px"
-            my=".5rem"
-            disabled={true}
-            _hover={{
-              bg: "transparent",
-              color: "brand.green",
-              cursor: "not-allowed",
-            }}
-          >
-            <Image src={sprayIcon} w="44px" mr=".5rem" />
-            SPRAY
-            {!canSpray && (
-              <Text ml=".25rem">
-                <PiCheckFatFill />
-              </Text>
-            )}
-          </Button>
-        </>
-      )} */}
 
       {!prune && <PruneTreeButton tokenId={tokenId} />}
       {prune && (
@@ -143,7 +103,7 @@ export const TreeActions = ({
       )}
 
       <Text fontSize="xs" color="brand.green" opacity="30%" mt="-0.5rem">
-        (Ended)
+        (Pruning Season Over)
       </Text>
     </Flex>
   );
