@@ -1,31 +1,61 @@
 import { Box, Heading, Image, Text, Flex } from "@chakra-ui/react";
+import { PiCheckFatFill } from "react-icons/pi";
+
+import { useTreePoints } from "../hooks/useTreePoints";
+import { TreeNft } from "../utils/types";
 
 import waterIcon from "../assets/icon_water.png";
 import pruneIcon from "../assets/icon_prune.png";
 import sprayIcon from "../assets/icon_spray.png";
 import fertIcon from "../assets/icon_fert.png";
+import { SPRAYS_PER_TOKEN } from "../utils/constants";
 
-export const TreeStats = () => {
+export const TreeStats = ({ tree }: { tree: TreeNft }) => {
+  const { totalPoints, prune, sprays, waterings, fert, isFetched } =
+    useTreePoints({
+      tokenId: tree.tokenID,
+    });
+
   return (
-    <Flex direction="column" align="center" opacity="30%">
+    <Flex direction="column" align="center" gap=".75rem">
       <Heading size="lg" mb=".5rem">
-        0
+        {totalPoints}
       </Heading>
-      <Box textAlign="center" mb=".5rem">
+      <Box textAlign="center">
         <Image src={waterIcon} />
-        <Text fontSize="xs">0</Text>
+        <Text fontSize="xs">{waterings}</Text>
       </Box>
-      <Box textAlign="center" mb=".5rem">
+      <Flex
+        direction="column"
+        alignItems="center"
+        textAlign="center"
+        gap=".15rem"
+        mb=".25rem"
+      >
         <Image src={fertIcon} />
-        <Text fontSize="xs">0</Text>
-      </Box>
-      <Box textAlign="center" mb=".5rem">
+        <Text color={fert ? "brand.orange" : "black"}>
+          <PiCheckFatFill />
+        </Text>
+      </Flex>
+      <Flex
+        direction="column"
+        alignItems="center"
+        textAlign="center"
+        gap=".15rem"
+        mb=".25rem"
+      >
         <Image src={pruneIcon} />
-        <Text fontSize="xs">0</Text>
-      </Box>
-      <Box textAlign="center" mb=".5rem">
+        <Text color={prune ? "brand.green" : "black"}>
+          <PiCheckFatFill />
+        </Text>
+      </Flex>
+      <Box textAlign="center">
         <Image src={sprayIcon} />
-        <Text fontSize="xs">0</Text>
+        {isFetched && (
+          <Text fontSize="xs">
+            {sprays}/{SPRAYS_PER_TOKEN}
+          </Text>
+        )}
       </Box>
     </Flex>
   );

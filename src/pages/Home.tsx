@@ -28,7 +28,7 @@ function Home() {
         <Flex direction="row">
           <Flex
             direction={{ base: "column", md: "row" }}
-            alignItems="center"
+            alignItems={{ base: "start", lg: "center" }}
             justifyContent="center"
             pt={{ base: "0px", md: "27px", lg: "36px", xl: "67px" }}
             pl={{ base: 6, md: 16, xl: 32 }}
@@ -146,23 +146,44 @@ function Home() {
               <Text color="brand.orange" mb={{ base: 8, md: 8, xl: 12 }}>
                 Buy now, munch later.
               </Text>
-              <Button
-                as={Link}
-                to="/buy-trees"
-                variant="outline"
-                fontFamily="Helsinki"
-                fontSize="2xl"
-                border="1px"
-                borderColor="brand.orange"
-                borderRadius="200px;"
-                color="brand.red"
-                size="lg"
-                height="72px"
-                w="full"
-                _hover={{ bg: "transparent", color: "brand.white" }}
-              >
-                GET STARTED
-              </Button>
+              <Box w="full" position="relative" mt="12px">
+                <Button
+                  as={Link}
+                  to="/buy-trees"
+                  variant="outline"
+                  fontFamily="Helsinki"
+                  fontSize="2xl"
+                  border="2px"
+                  borderColor="brand.orange"
+                  borderRadius="200px;"
+                  color="brand.red"
+                  size="lg"
+                  height="72px"
+                  w="full"
+                  _hover={{
+                    transform: "translate(0px, -10px)",
+                    color: "brand.white",
+                  }}
+                  _focus={{
+                    transform: "translate(0px, 0px)",
+                    bg: "brand.black",
+                  }}
+                  position="absolute"
+                  bg="brand.black"
+                  zIndex="2"
+                  transform="translate(0px, -12px)"
+                >
+                  GET STARTED
+                </Button>
+                <Box
+                  w="full"
+                  height="72px"
+                  position="absolute"
+                  border="2px"
+                  borderColor="brand.orange"
+                  borderRadius="200px;"
+                ></Box>
+              </Box>
             </Flex>
             <Image
               display={{ base: "none", md: "block" }}
@@ -173,7 +194,7 @@ function Home() {
           </Flex>
           <Divider
             zIndex={"1"}
-            mt={{ base: 16, md: "-30px", xl: "-60px" }}
+            mt={{ base: 10, md: "-30px", xl: "-60px" }}
             borderTop="dotted 1px"
             borderColor={"white"}
             borderBottom="none"

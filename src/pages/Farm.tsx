@@ -4,30 +4,85 @@ import { Button, Divider, Flex, Text } from "@chakra-ui/react";
 import { LogIn } from "../components/LogIn";
 import { TreeList } from "../components/TreeList";
 import { Link } from "react-router-dom";
+import { BoostContent } from "../components/BoostContent";
 
 function Farm() {
   const { ready, authenticated, user } = usePrivy();
 
   return (
     <>
-      <Flex w="full" border="none" direction="row" alignItems="center" justifyContent="start" mt={10} mb={20}>
-        <Divider mt={4} mr={4} width='10vw' borderTop="dotted 1px" borderColor={'brand.white'} borderBottom="none" background="none" />
-        <Text fontFamily="auster" color="brand.white" fontSize="20px" fontWeight="bold">
+      <Flex
+        w="full"
+        border="none"
+        direction="row"
+        alignItems="center"
+        justifyContent="start"
+        mt={10}
+        mb={20}
+      >
+        <Divider
+          mt={4}
+          mr={4}
+          width="10vw"
+          borderTop="dotted 1px"
+          borderColor={"brand.white"}
+          borderBottom="none"
+          background="none"
+        />
+        <Text
+          fontFamily="auster"
+          color="brand.white"
+          fontSize="20px"
+          fontWeight="bold"
+        >
           My trees
         </Text>
-        <Divider mt={4} ml={4} flex="1" borderTop="dotted 1px" borderColor={'brand.white'} borderBottom="none" background="none" />
+        <Divider
+          mt={4}
+          ml={4}
+          flex="1"
+          borderTop="dotted 1px"
+          borderColor={"brand.white"}
+          borderBottom="none"
+          background="none"
+        />
       </Flex>
-      {/* <Box borderBottom="1px dotted white" width="100%" /> */}
       <Flex w="100%" gap="1rem" direction="column" align="center" mb="3rem">
         {!ready && null}
 
         {ready && !authenticated && <LogIn />}
 
         {ready && authenticated && user?.wallet?.address && (
-          <TreeList address={user.wallet.address} />
+          <TreeList account={user.wallet.address} />
         )}
       </Flex>
-      <Divider ml={4} flex="1" borderTop="dotted 1px" borderColor={'brand.white'} borderBottom="none" background="none" />
+      <Divider
+        flex="1"
+        borderTop="dotted 1px"
+        borderColor={"brand.white"}
+        borderBottom="none"
+        background="none"
+      />
+
+      <Flex
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        w="full"
+        my="3rem"
+      >
+        <BoostContent />
+      </Flex>
+
+      <Divider
+        ml={4}
+        flex="1"
+        borderTop="dotted 1px"
+        borderColor={"brand.white"}
+        borderBottom="none"
+        background="none"
+      />
+
       <Flex w="100%" pt={8} pb={20} px={20} justify="flex-end">
         <Button
           as={Link}

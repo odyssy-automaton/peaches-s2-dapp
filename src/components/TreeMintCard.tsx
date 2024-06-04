@@ -1,13 +1,16 @@
-import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
-import { NFT_MINT_PRICE, NftTreeMeta } from "../utils/constants";
+import { Box, Button, Flex, Heading, Image, Text } from "@chakra-ui/react";
+import {
+  NFT_MINT_PRICE,
+  NftTreeMeta,
+  TARGET_NETWORK,
+} from "../utils/constants";
 import { useAccountNfts } from "../hooks/useAccountNfts";
-import { BuyTreeButton } from "./BuyTreeButton";
 import { fromWei } from "../utils/formatting";
 import { LogIn } from "./LogIn";
-import { BalanceCheck } from "./BalanceCheck";
-import { TokenBalance } from "0xsequence/dist/declarations/src/indexer";
+// import { MintTreeButton } from "./MintTreeButton";
 
-const holdingCount = (name: string, nfts?: TokenBalance[]) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const holdingCount = (name: string, nfts?: any[]) => {
   if (!nfts) return 0;
   return nfts.filter((nft) => nft.tokenMetadata?.description === name).length;
 };
@@ -21,7 +24,6 @@ const AccountNftCount = ({
 }) => {
   const { accountNfts } = useAccountNfts({ accountAddress: account });
 
-  console.log("accountNfts", accountNfts);
   return (
     <Text color="brand.white" fontSize="xs">
       You own {`${holdingCount(name, accountNfts?.balances)} ${name}`}
@@ -55,13 +57,38 @@ export const TreeMintCard = ({
         >
           <p>{tree.name}</p>
           <Heading size="md" color="brand.blue">
-            {`${fromWei(NFT_MINT_PRICE.toString())} BASE ETH`}
+            {`${fromWei(NFT_MINT_PRICE[TARGET_NETWORK].toString())} BASE ETH`}
           </Heading>
         </Box>
         {account && (
-          <BalanceCheck address={account} targetBalance={NFT_MINT_PRICE}>
-            <BuyTreeButton trunkId={tree.value} account={account} />
-          </BalanceCheck>
+          // <MintTreeButton
+          //   trunkId={tree.value}
+          //   name={tree.name}
+          //   img={tree.img}
+          // />
+
+          <Button
+            variant="outline"
+            fontFamily="heading"
+            fontSize="xl"
+            fontStyle="italic"
+            fontWeight="700"
+            border="1px"
+            borderColor="brand.green"
+            borderRadius="200px;"
+            color="brand.orange"
+            size="lg"
+            height="60px"
+            width="220px"
+            my="1rem"
+            isDisabled={true}
+            _hover={{
+              bg: "transparent",
+              color: "brand.orange",
+            }}
+          >
+            MINT
+          </Button>
         )}
         {!account && (
           <>

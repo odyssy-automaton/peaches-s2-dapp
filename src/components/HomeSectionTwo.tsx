@@ -22,18 +22,19 @@ export const HomeSectionTwo = () => {
         justifyContent="end"
         flex="1"
         mb="2rem"
+        ml={{ base: "0px", md: "50px" }}
       >
         <Flex gap="1rem" align="center" mb="1rem">
           <Heading color="brand.orange">2.</Heading>
           <LabelBadge
-            bg="brand.darkOrange"
-            color="brand.orange"
+            bg="brand.green"
+            color="brand.black"
             size="md"
             style={{
               lineHeight: "1.75",
             }}
           >
-            Available Soon
+            • Available now •
           </LabelBadge>
         </Flex>
         <Text
@@ -43,6 +44,7 @@ export const HomeSectionTwo = () => {
           fontSize={{ base: "56px", xl: "80px" }}
           lineHeight={{ base: "60px", xl: "96px" }}
           mb={4}
+          textAlign="right"
         >
           Get Growing!
         </Text>
@@ -54,9 +56,8 @@ export const HomeSectionTwo = () => {
           <br />
           <br />
           In addition, a portion of all transactions will be added to the
-          ‘Farmer’s Pot’ to be split amongst all farmers (tree owners). The
-          better you farm, the more points you earn and a larger percentage of
-          the pot you can win!
+          ‘Farmer’s Pot’. The better you farm, the more points you earn and a
+          larger percentage of the pot you can win!
         </Text>
       </Flex>
       <SimpleGrid columns={2} spacing="1rem" mb="1rem">

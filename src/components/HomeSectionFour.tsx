@@ -1,7 +1,6 @@
-import { Box, Divider, Flex, Image, Text } from "@chakra-ui/react";
+import { Divider, Flex, Image, Text } from "@chakra-ui/react";
 
 import peachOne from "../assets/peach-box-11.png";
-import peachThree from "../assets/peach-box-13.png";
 import peachFour from "../assets/freeze-dried.jpg";
 import peachFive from "../assets/box-1.jpg";
 import peachSix from "../assets/box-2.jpg";
@@ -45,18 +44,27 @@ export const HomeSectionFour = () => {
         />
       </Flex>
       <Flex wrap="wrap" gap="1rem" align="center" justify="center">
-        <Image src={peachOne} w="420px" />
-        <Image src={peachThree} w="420px" />
-        <Image src={peachFour} w="420px" />
-        <Image src={peachFive} w="420px" />
-        <Image src={peachSix} w="420px" />
+        <Image src={peachOne} w={{ base: "300px", md: "420px" }} />
+        <Image src={peachSix} w={{ base: "300px", md: "420px" }} />
+        <Image src={peachFive} w={{ base: "300px", md: "420px" }} />
+        <Image src={peachFour} w={{ base: "300px", md: "420px" }} />
       </Flex>
-      <Box textAlign="center" my={20}>
-        {/* <Text fontSize="sm">Something something how nice it was in 2023!</Text> */}
+      <Flex
+        direction="column"
+        align="center"
+        textAlign="center"
+        my={20}
+        gap="1rem"
+      >
+        <Text fontSize="sm" w={{ base: "100%", md: "70%" }}>
+          A special thanks to all the peach enjoyers that supported us last year
+          for our genesis season. We shipped out 100+ fresh peach boxes
+          domestically and 20+ freeze-dried bags to our international friends.
+        </Text>
         <Text fontSize="sm" fontWeight="700">
           Get ready for season 2!
         </Text>
-      </Box>
+      </Flex>
     </Flex>
   );
 };

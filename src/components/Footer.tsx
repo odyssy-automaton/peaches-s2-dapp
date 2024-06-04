@@ -4,7 +4,11 @@ import { BsTwitterX } from "react-icons/bs";
 import { BsTelegram } from "react-icons/bs";
 
 import FooterLogo from "../assets/Footer-Logo.png";
-import { BLOCK_EXPLORER_URL, NFT_CONTRACT_ADDRESS } from "../utils/constants";
+import {
+  BLOCK_EXPLORER_URL,
+  NFT_CONTRACT_ADDRESS,
+  TARGET_NETWORK,
+} from "../utils/constants";
 
 export const Footer = () => {
   return (
@@ -28,20 +32,29 @@ export const Footer = () => {
               </Link>
             </Flex>
             <Link
-              href={`${BLOCK_EXPLORER_URL}address/${NFT_CONTRACT_ADDRESS}`}
+              href={`${BLOCK_EXPLORER_URL[TARGET_NETWORK]}address/${NFT_CONTRACT_ADDRESS[TARGET_NETWORK]}`}
               isExternal
             >
               <Heading color="brand.black" size="md">
                 {" "}
-                Etherscan
+                BaseScan
               </Heading>
             </Link>
-            <Link href="https://opensea.io/collection/peach-drop" isExternal>
+            <Link
+              href="https://rarible.com/collection/base/0xa9d3c833df8415233e1626f29e33ccba37d2a187/items"
+              isExternal
+            >
               <Heading color="brand.black" size="md">
-                Opensea
+                Rarible
               </Heading>
             </Link>
-            <Text fontSize="xs">Copyright 2024 PΞACH TYCOON</Text>
+            {/* <Text fontSize="xs">Copyright 2024 PΞACH TYCOON</Text> */}
+            <Text fontSize="sm">
+              Made with ❤️ by{" "}
+              <Link isExternal href="https://www.metacartel.org/">
+                🌶️
+              </Link>
+            </Text>
           </Flex>
         </Flex>
         <Flex direction="column" gap=".5rem">
@@ -60,7 +73,7 @@ export const Footer = () => {
               My Farm
             </Heading>
           </RouterLink>
-          <RouterLink to="/my-account">
+          <RouterLink to="/account">
             <Heading color="brand.black" size="md">
               My Account
             </Heading>
