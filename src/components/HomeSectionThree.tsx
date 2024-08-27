@@ -1,11 +1,12 @@
+import { Link as RouterLink } from "react-router-dom";
 import {
   Box,
   Flex,
   Heading,
   Text,
-  Link,
   Button,
   Image,
+  Link,
 } from "@chakra-ui/react";
 
 import { LabelBadge } from "./SharedLayout";
@@ -25,14 +26,14 @@ export const HomeSectionThree = () => {
         <Flex gap="1rem" align="center" mb="1rem">
           <Heading color="brand.orange">3.</Heading>
           <LabelBadge
-            bg="brand.darkOrange"
-            color="brand.orange"
+            bg="brand.green"
+            color="brand.black"
             size="md"
             style={{
               lineHeight: "1.75",
             }}
           >
-            Available soon
+            • Available Now •
           </LabelBadge>
         </Flex>
         <Text
@@ -48,10 +49,13 @@ export const HomeSectionThree = () => {
         </Text>
         <Text maxW="460px" mb="2rem">
           Upon harvest, you will be able to redeem your peach boxes to enjoy
-          yourself, send to a friend or sell them at the Farmers Marketplace at
-          a price you set. Peach lovers will be invited to purchase peach boxes
-          from the marketplace. Every peach box includes a unique, generative
-          PΞACH NFT.
+          yourself, send to a friend or sell them at the{" "}
+          <Link as={RouterLink} color="brand.orange" to="/market">
+            Peach Market
+          </Link>{" "}
+          at a price you set. Peach lovers will be invited to purchase peach
+          boxes from the marketplace. Every peach box includes a unique,
+          generative PΞACH NFT.
           <br />
           <br />
           Upon redemption, your PΞACH will evolve to reveal a juicy bite and
@@ -62,9 +66,8 @@ export const HomeSectionThree = () => {
           delicious!
         </Text>
         <Button
-          as={Link}
-          isExternal={true}
-          href="https://opensea.io/collection/peach-drop"
+          as={RouterLink}
+          to="/market"
           variant="outline"
           fontFamily="heading"
           fontSize="xl"
@@ -79,7 +82,7 @@ export const HomeSectionThree = () => {
           width="250px"
           _hover={{ bg: "transparent", color: "brand.white" }}
         >
-          2023 PΞACH DROP
+          BUY PEACHES
         </Button>
       </Box>
       <Image width={{ base: "full", md: "40vw" }} src={PeachCards} />

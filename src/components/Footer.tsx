@@ -2,11 +2,13 @@ import { Link as RouterLink } from "react-router-dom";
 import { Box, Flex, Heading, Image, Link, Text } from "@chakra-ui/react";
 import { BsTwitterX } from "react-icons/bs";
 import { BsTelegram } from "react-icons/bs";
+import { SiFarcaster } from "react-icons/si";
 
 import FooterLogo from "../assets/Footer-Logo.png";
 import {
   BLOCK_EXPLORER_URL,
   NFT_CONTRACT_ADDRESS,
+  PEACH_NFT_CONTRACT_ADDRESS,
   TARGET_NETWORK,
 } from "../utils/constants";
 
@@ -27,17 +29,29 @@ export const Footer = () => {
               <Link href="https://twitter.com/PeachDropNFT" isExternal>
                 <BsTwitterX />
               </Link>
+              <Link href="https://warpcast.com/peachtycoon" isExternal>
+                <SiFarcaster />
+              </Link>
               <Link href="https://t.me/PeachDropNFT" isExternal>
                 <BsTelegram />
               </Link>
             </Flex>
+            <Link
+              href={`${BLOCK_EXPLORER_URL[TARGET_NETWORK]}address/${PEACH_NFT_CONTRACT_ADDRESS[TARGET_NETWORK]}`}
+              isExternal
+            >
+              <Heading color="brand.black" size="md">
+                {" "}
+                BaseScan Peaches
+              </Heading>
+            </Link>
             <Link
               href={`${BLOCK_EXPLORER_URL[TARGET_NETWORK]}address/${NFT_CONTRACT_ADDRESS[TARGET_NETWORK]}`}
               isExternal
             >
               <Heading color="brand.black" size="md">
                 {" "}
-                BaseScan
+                BaseScan Trees
               </Heading>
             </Link>
             <Link
@@ -45,7 +59,7 @@ export const Footer = () => {
               isExternal
             >
               <Heading color="brand.black" size="md">
-                Rarible
+                Rarible Trees
               </Heading>
             </Link>
             {/* <Text fontSize="xs">Copyright 2024 PΞACH TYCOON</Text> */}
@@ -63,9 +77,9 @@ export const Footer = () => {
               Home
             </Heading>
           </RouterLink>
-          <RouterLink to="/buy-trees">
+          <RouterLink to="/market">
             <Heading color="brand.black" size="md">
-              Buy Trees
+              Buy Peaches
             </Heading>
           </RouterLink>
           <RouterLink to="/farm">
