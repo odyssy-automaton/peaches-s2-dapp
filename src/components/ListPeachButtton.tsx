@@ -35,8 +35,8 @@ import { createRaribleSdk } from "@rarible/sdk";
 // import { toCurrencyId, toItemId } from "@rarible/types";
 
 export const ListPeachButton = ({ tokenId }: { tokenId: string }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  // const { isOpen, onClose } = useDisclosure();
+  // const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onClose } = useDisclosure();
 
   const { wallets } = useWallets();
 
@@ -67,9 +67,9 @@ export const ListPeachButton = ({ tokenId }: { tokenId: string }) => {
   // @ts-expect-error react types
   const handleCurrencyChange = (event) => setCurrency(event.target.value);
 
-  const handleConfirm = () => {
-    onOpen();
-  };
+  // const handleConfirm = () => {
+  //   onOpen();
+  // };
 
   const isDisabled =
     // @ts-expect-error react types
@@ -126,7 +126,7 @@ export const ListPeachButton = ({ tokenId }: { tokenId: string }) => {
 
   return (
     <>
-      <Button
+      {/* <Button
         variant="outline"
         fontFamily="heading"
         fontSize="xl"
@@ -149,7 +149,7 @@ export const ListPeachButton = ({ tokenId }: { tokenId: string }) => {
         // opacity="30%"
       >
         LIST FOR SALE
-      </Button>
+      </Button> */}
       {/* <Text
         fontSize="xs"
         color="brand.green"

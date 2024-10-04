@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import {
   Box,
   Divider,
   Flex,
   Heading,
-  Select,
+  // Select,
   Text,
   Image,
 } from "@chakra-ui/react";
 import styled from "styled-components";
-import { usePeachCollection } from "../hooks/usePeachCollection";
-import type { Item } from "@rarible/api-client";
-import { ListingList } from "../components/ListingList";
+// import { usePeachCollection } from "../hooks/usePeachCollection";
+// import type { Item } from "@rarible/api-client";
+// import { ListingList } from "../components/ListingList";
 
 import PeachCrate from "../assets/Crate.png";
 import PeachUnredeemed from "../assets/10-peach-trans.png";
@@ -19,6 +19,7 @@ import PeachRedeemed from "../assets/10-bite-trans.png";
 
 import Arrow1 from "../assets/Arrow1.png";
 import { brandColors } from "../theme";
+import { SEASON_OVER_TEXT } from "../utils/constants";
 
 const BoxCard = styled(Box)`
   width: 300px;
@@ -34,39 +35,38 @@ const BoxCard = styled(Box)`
 `;
 
 function Marketplace() {
-  const { items } = usePeachCollection();
+  // const { items } = usePeachCollection();
 
-  const [sort, setSort] = useState("new");
-  const [itemList, setItemList] = useState<Item[] | undefined>();
+  // const [sort, setSort] = useState("new");
+  // const [itemList, setItemList] = useState<Item[] | undefined>();
 
-  useEffect(() => {
-    if (items) {
-      if (sort === "low") {
-        setItemList(
-          items.sort((a, b) => {
-            return (
-              Number(a.bestSellOrder?.makePriceUsd || 0) -
-              Number(b.bestSellOrder?.makePriceUsd || 0)
-            );
-          })
-        );
-      } else if (sort === "high") {
-        setItemList(
-          items.sort((a, b) => {
-            return (
-              Number(b.bestSellOrder?.makePriceUsd || 0) -
-              Number(a.bestSellOrder?.makePriceUsd || 0)
-            );
-          })
-        );
-      } else {
-        setItemList(items);
-      }
-    }
-  }, [sort, items]);
+  // useEffect(() => {
+  //   if (items) {
+  //     if (sort === "low") {
+  //       setItemList(
+  //         items.sort((a, b) => {
+  //           return (
+  //             Number(a.bestSellOrder?.makePriceUsd || 0) -
+  //             Number(b.bestSellOrder?.makePriceUsd || 0)
+  //           );
+  //         })
+  //       );
+  //     } else if (sort === "high") {
+  //       setItemList(
+  //         items.sort((a, b) => {
+  //           return (
+  //             Number(b.bestSellOrder?.makePriceUsd || 0) -
+  //             Number(a.bestSellOrder?.makePriceUsd || 0)
+  //           );
+  //         })
+  //       );
+  //     } else {
+  //       setItemList(items);
+  //     }
+  //   }
+  // }, [sort, items]);
 
-  // @ts-expect-error react types
-  const handleSortChange = (event) => setSort(event.target.value);
+  // const handleSortChange = (event) => setSort(event.target.value);
 
   return (
     <>
@@ -180,7 +180,7 @@ function Marketplace() {
           background="none"
         />
       </Flex>
-      <Flex mt={5} ml={3} mb={8}>
+      {/* <Flex mt={5} ml={3} mb={8}>
         <Box width="10vw" />
         <Box width="17vw">
           <Select
@@ -195,14 +195,7 @@ function Marketplace() {
             <option value="high">Price (High to Low)</option>
           </Select>
         </Box>
-        {/* <Box ml={4} mr={4} width={{ base: "80%", lg: "20vw" }}>
-          <InputGroup>
-            <InputLeftElement pointerEvents="none">
-              <MdOutlineSearch color="gray.300" />
-            </InputLeftElement>
-            <Input />
-          </InputGroup>
-        </Box> */}
+    
       </Flex>
 
       <Flex
@@ -214,6 +207,20 @@ function Marketplace() {
         mb="3rem"
       >
         {itemList && <ListingList listings={itemList} />}
+      </Flex> */}
+      <Flex
+        as="nav"
+        align="center"
+        justify="center"
+        w="100%"
+        textAlign="center"
+        // backgroundColor="brand.green"
+        px={8}
+        my={8}
+      >
+        <Text fontSize="2xl" py="1rem" fontWeight="700">
+          {SEASON_OVER_TEXT}
+        </Text>
       </Flex>
     </>
   );
