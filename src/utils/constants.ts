@@ -100,6 +100,14 @@ export const SPRAY_PRICE_ERC20: Record<string, bigint> = {
 
 export const SPRAYS_PER_TOKEN = 2;
 
+export const PEACH_NFT_CONTRACT_ADDRESS_SEASON_TWO: Record<
+  string,
+  `0x${string}`
+> = {
+  "0xaa36a7": "0xC0552Fd7131D8cC74b77dDaF8E43C006A31adCdA",
+  "0x2105": "0x5eAE1344f40f25b827782AfF0B3651b2DCD2259E",
+};
+
 export const PEACH_NFT_CONTRACT_ADDRESS: Record<string, `0x${string}`> = {
   "0xaa36a7": "0xC0552Fd7131D8cC74b77dDaF8E43C006A31adCdA",
   "0x2105": "0x5eAE1344f40f25b827782AfF0B3651b2DCD2259E",

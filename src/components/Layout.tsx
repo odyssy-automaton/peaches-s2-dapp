@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { NavBar } from "./NavBar";
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { Footer } from "./Footer";
@@ -41,7 +41,10 @@ export const Layout = () => {
         )}
         {hasDiscount && (
           <Text fontSize={{ base: "sm", sm: "md" }} py="1rem" fontWeight="700">
-            As a season 2 tree holder you get a discount on season 3 trees!
+            As a season 2 tree holder you get a discount on{" "}
+            <Link to="buy-trees" style={{ color: "#F5253D" }}>
+              season 3 trees!
+            </Link>
           </Text>
         )}
       </Flex>

@@ -2,6 +2,7 @@ import { SequenceIndexer } from "@0xsequence/indexer";
 import { useQuery } from "@tanstack/react-query";
 import {
   PEACH_NFT_CONTRACT_ADDRESS,
+  PEACH_NFT_CONTRACT_ADDRESS_SEASON_TWO,
   SEQUENCE_ENDPOINT,
   TARGET_NETWORK,
 } from "../utils/constants";
@@ -39,17 +40,23 @@ const fetchNftsForAccount = async ({
 
 export const useAccountPeaches = ({
   accountAddress,
+  season,
 }: {
   accountAddress: string;
+  season?: string;
 }) => {
+  const seasonContractAddress =
+    season === "two"
+      ? PEACH_NFT_CONTRACT_ADDRESS_SEASON_TWO[TARGET_NETWORK]
+      : PEACH_NFT_CONTRACT_ADDRESS[TARGET_NETWORK];
   const { data, error, ...rest } = useQuery({
     queryKey: [`accountPeaches-${accountAddress}`],
     queryFn: () =>
       fetchNftsForAccount({
         accountAddress,
-        contractAddress: PEACH_NFT_CONTRACT_ADDRESS[TARGET_NETWORK],
+        contractAddress: seasonContractAddress,
       }),
-    enabled: !!PEACH_NFT_CONTRACT_ADDRESS[TARGET_NETWORK],
+    enabled: !!seasonContractAddress,
   });
 
   return { accountNfts: data?.balances, page: data?.page, error, ...rest };

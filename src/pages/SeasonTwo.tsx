@@ -1,12 +1,10 @@
 import { usePrivy } from "@privy-io/react-auth";
-import { Box, Button, Divider, Flex, Text } from "@chakra-ui/react";
+import { Box, Divider, Flex, Text } from "@chakra-ui/react";
 
 import { LogIn } from "../components/LogIn";
-import { TreeList } from "../components/TreeList";
-import { Link } from "react-router-dom";
-import { BoostContent } from "../components/BoostContent";
-import { PeachList } from "../components/PeachList";
 import { RewardsButton } from "../components/RewardsButton";
+import { PeachListSeasonTwo } from "../components/PeachListSeasonTwo";
+import { TreeListSeasonTwo } from "../components/TreeListSeasonTwo";
 
 function SeasonTwo() {
   const { ready, authenticated, user } = usePrivy();
@@ -39,7 +37,7 @@ function SeasonTwo() {
           fontSize="20px"
           fontWeight="bold"
         >
-          My peaches
+          My season 2 peaches
         </Text>
         <Divider
           mt={4}
@@ -67,7 +65,7 @@ function SeasonTwo() {
         {ready && !authenticated && <LogIn />}
 
         {loggedIn && user?.wallet?.address && (
-          <PeachList account={user.wallet.address} />
+          <PeachListSeasonTwo account={user.wallet.address} />
         )}
       </Flex>
       <Flex
@@ -94,7 +92,7 @@ function SeasonTwo() {
           fontSize="20px"
           fontWeight="bold"
         >
-          My trees
+          My season 2 trees
         </Text>
         <Divider
           mt={4}
@@ -115,7 +113,7 @@ function SeasonTwo() {
         mb="3rem"
       >
         {ready && authenticated && user?.wallet?.address && (
-          <TreeList account={user.wallet.address} />
+          <TreeListSeasonTwo account={user.wallet.address} />
         )}
       </Flex>
       <Divider
@@ -126,16 +124,6 @@ function SeasonTwo() {
         background="none"
       />
 
-      <Flex
-        direction="column"
-        alignItems="center"
-        justifyContent="center"
-        w="full"
-        my="3rem"
-      >
-        <BoostContent />
-      </Flex>
-
       <Divider
         ml={4}
         flex="1"
@@ -144,29 +132,6 @@ function SeasonTwo() {
         borderBottom="none"
         background="none"
       />
-
-      <Flex w="100%" pt={8} pb={20} px={20} justify="flex-end">
-        <Button
-          as={Link}
-          to="/market"
-          variant="outline"
-          fontFamily="heading"
-          fontSize="xl"
-          fontStyle="italic"
-          fontWeight="700"
-          border="1px"
-          borderColor="brand.green"
-          borderRadius="200px;"
-          color="brand.orange"
-          size="lg"
-          height="60px"
-          width="220px"
-          my="1rem"
-          _hover={{ bg: "transparent", color: "brand.white" }}
-        >
-          BUY PEACHES
-        </Button>
-      </Flex>
     </>
   );
 }
