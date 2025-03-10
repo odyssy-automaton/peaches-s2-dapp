@@ -26,14 +26,12 @@ export const HomeSectionThree = () => {
         <Flex gap="1rem" align="center" mb="1rem">
           <Heading color="brand.orange">3.</Heading>
           <LabelBadge
-            bg="brand.red"
+            bg="brand.orange"
             color="brand.black"
-            size="md"
-            style={{
-              lineHeight: "1.75",
-            }}
+            size={{ base: "xs", md: "md" }}
+            lineHeight={{ sm: "2", md: "1.75" }}
           >
-            • PEACH SEASON CLOSED •
+            • PEACH SEASON OPENS IN AUGUST •
           </LabelBadge>
         </Flex>
         <Text
@@ -65,7 +63,7 @@ export const HomeSectionThree = () => {
           equivalent to a peach box, but don’t worry, they are just as
           delicious!
         </Text>
-        <Button
+        {/* <Button
           as={RouterLink}
           to="/market"
           variant="outline"
@@ -83,7 +81,7 @@ export const HomeSectionThree = () => {
           _hover={{ bg: "transparent", color: "brand.white" }}
         >
           BUY PEACHES
-        </Button>
+        </Button> */}
       </Box>
       <Image width={{ base: "full", md: "40vw" }} src={PeachCards} />
     </Flex>

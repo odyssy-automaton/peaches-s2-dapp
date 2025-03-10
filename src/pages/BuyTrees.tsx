@@ -1,20 +1,37 @@
 import { usePrivy } from "@privy-io/react-auth";
-import { NftTreeMeta, TREE_NFT_DATA } from "../utils/constants";
+import {
+  NFT_CONTRACT_ADDRESS,
+  NftTreeMeta,
+  TARGET_NETWORK,
+  TREE_NFT_DATA,
+} from "../utils/constants";
 import { TreeMintCard } from "../components/TreeMintCard";
-import { Box, Divider, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Divider, Flex, Text } from "@chakra-ui/react";
 // import { RemainingTreeSupply } from "../components/RemainingTreeSupply";
 import { BoostContent } from "../components/BoostContent";
+import { RemainingTreeSupply } from "../components/RemainingTreeSupply";
+import { useReadContract } from "wagmi";
+
+import erc721Abi from "../abis/ERC721.json";
 
 function BuyTrees() {
   const { ready, user } = usePrivy();
 
+  const { data: discountBalance } = useReadContract({
+    address: NFT_CONTRACT_ADDRESS[TARGET_NETWORK] as `0x${string}`,
+    abi: erc721Abi,
+    functionName: "balanceOf",
+    args: [user?.wallet?.address as `0x${string}`],
+  }) as { data: bigint };
+  const hasDiscount = discountBalance > 0;
+
   return (
     <>
       {!ready && null}
-      {/* <RemainingTreeSupply /> */}
+      <RemainingTreeSupply />
 
       <Box mb="2rem" textAlign="center">
-        <Heading size="xl">Tree Sales Have Ended</Heading>
+        {/* <Heading size="xl">Tree Sales Have Ended</Heading> */}
       </Box>
 
       <Flex
@@ -30,6 +47,7 @@ function BuyTrees() {
               tree={tree}
               key={tree.name}
               account={user?.wallet?.address}
+              hasDiscount={hasDiscount}
             />
           );
         })}

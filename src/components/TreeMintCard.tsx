@@ -1,6 +1,7 @@
 import { Box, Button, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import {
   NFT_MINT_PRICE,
+  NFT_MINT_PRICE_DISCOUNT,
   NftTreeMeta,
   TARGET_NETWORK,
 } from "../utils/constants";
@@ -34,9 +35,11 @@ const AccountNftCount = ({
 export const TreeMintCard = ({
   tree,
   account,
+  hasDiscount,
 }: {
   tree: NftTreeMeta;
   account?: string;
+  hasDiscount?: boolean;
 }) => {
   return (
     <Flex direction="column" align="center" gap="1rem">
@@ -56,9 +59,33 @@ export const TreeMintCard = ({
           paddingBottom="2rem"
         >
           <p>{tree.name}</p>
-          <Heading size="md" color="brand.blue">
-            {`${fromWei(NFT_MINT_PRICE[TARGET_NETWORK].toString())} BASE ETH`}
-          </Heading>
+          {hasDiscount && (
+            <Text fontSize="sm" color="brand.red" fontWeight="700" mb="0rem">
+              You Got the Season 2 Farmer Discount!
+            </Text>
+          )}
+          {!hasDiscount && (
+            <Heading size="md" color="brand.blue">
+              {`${fromWei(NFT_MINT_PRICE[TARGET_NETWORK].toString())} BASE ETH`}
+            </Heading>
+          )}
+
+          {hasDiscount && (
+            <>
+              <Heading size="md" color="brand.blue">
+                {`${fromWei(
+                  NFT_MINT_PRICE_DISCOUNT[TARGET_NETWORK].toString()
+                )} BASE ETH`}
+              </Heading>
+              <Heading size="md" color="brand.blue">
+                <s>
+                  {`${fromWei(
+                    NFT_MINT_PRICE[TARGET_NETWORK].toString()
+                  )} BASE ETH`}
+                </s>
+              </Heading>
+            </>
+          )}
         </Box>
         {account && (
           // <MintTreeButton

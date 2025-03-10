@@ -4,6 +4,7 @@ import { AccountAvatar } from "../components/AccountAvatar";
 import { LogIn } from "../components/LogIn";
 import { LuClipboardCopy } from "react-icons/lu";
 import { truncateAddress } from "../utils/formatting";
+import { Link } from "react-router-dom";
 
 function Account() {
   const toast = useToast();
@@ -26,7 +27,12 @@ function Account() {
 
   return (
     <>
-      <Box w="100%" textAlign="center" mb="3rem">
+      <Box
+        w="100%"
+        textAlign="center"
+        mb="3rem"
+        mt={{ base: "5rem", md: "0rem" }}
+      >
         <Heading size="4xl">ACCOUNT</Heading>
       </Box>
       <Flex w="100%" justify="center">
@@ -36,14 +42,27 @@ function Account() {
             alignItems="flex-start"
             w={["100%", "50%"]}
             mb="15rem"
+            px="1rem"
           >
+            <Flex
+              mb="1rem"
+              fontSize="lg"
+              fontWeight="700"
+              textDecoration="underline"
+              color="brand.orange"
+              direction="column"
+              alignItems="flex-start"
+            >
+              <Link to="/season-two">Season 2 NFTs</Link>
+              <Link to="/farm">Season 3 NFTs</Link>
+            </Flex>
             <AccountAvatar
               address={user?.wallet.address}
               email={user?.email?.address}
               handleCopy={handleCopy}
             />
 
-            <Text mb="1rem">
+            <Text mb="1rem" style={{ wordBreak: "break-all" }}>
               To fund your wallet send Base Eth to this address:{" "}
               {user?.wallet.address}
             </Text>
@@ -53,6 +72,7 @@ function Account() {
                 style={{ fontSize: "18px", marginLeft: ".5rem" }}
               />
             </Button>
+
             <Box w="272px" position="relative" mt="3rem">
               <Button
                 onClick={logout}
@@ -72,7 +92,10 @@ function Account() {
                   transform: "translate(0px, -10px)",
                   color: "brand.white",
                 }}
-                _focus={{ transform: "translate(0px, 0px)", bg: "brand.black" }}
+                _focus={{
+                  transform: "translate(0px, 0px)",
+                  bg: "brand.black",
+                }}
                 position="absolute"
                 bg="brand.black"
                 zIndex="2"

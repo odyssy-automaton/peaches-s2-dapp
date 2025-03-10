@@ -27,14 +27,12 @@ export const HomeSectionTwo = () => {
         <Flex gap="1rem" align="center" mb="1rem">
           <Heading color="brand.orange">2.</Heading>
           <LabelBadge
-            bg="brand.red"
+            bg="brand.orange"
             color="brand.black"
-            size="md"
-            style={{
-              lineHeight: "1.75",
-            }}
+            size={{ base: "xs", md: "md" }}
+            lineHeight={{ base: "2", md: "1.75" }}
           >
-            • Boost Sales Closed •
+            • Boost Sales Coming Soon •
           </LabelBadge>
         </Flex>
         <Text
@@ -66,7 +64,7 @@ export const HomeSectionTwo = () => {
           h={{ base: "148ppx", md: "192px" }}
         >
           <Image src={waterIcon} />
-          <Text textAlign="center" fontSize="sm">
+          <Text textAlign="center" fontSize="xs">
             water
           </Text>
         </PeachCard>
@@ -75,7 +73,7 @@ export const HomeSectionTwo = () => {
           h={{ base: "148ppx", md: "192px" }}
         >
           <Image src={pruneIcon} />
-          <Text textAlign="center" fontSize="sm">
+          <Text textAlign="center" fontSize="xs">
             prune
           </Text>
         </PeachCard>
@@ -84,7 +82,7 @@ export const HomeSectionTwo = () => {
           h={{ base: "148ppx", md: "192px" }}
         >
           <Image src={fertIcon} />
-          <Text textAlign="center" fontSize="sm">
+          <Text textAlign="center" fontSize="xs">
             fertilize
           </Text>
         </PeachCard>
@@ -93,7 +91,7 @@ export const HomeSectionTwo = () => {
           h={{ base: "148ppx", md: "192px" }}
         >
           <Image src={sprayIcon} />
-          <Text textAlign="center" fontSize="sm">
+          <Text textAlign="center" fontSize="xs">
             spray
           </Text>
         </PeachCard>

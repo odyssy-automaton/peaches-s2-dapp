@@ -28,6 +28,11 @@ export const NFT_MINT_PRICE: Record<string, bigint> = {
   "0x2105": BigInt(88800000000000000),
 };
 
+export const NFT_MINT_PRICE_DISCOUNT: Record<string, bigint> = {
+  "0xaa36a7": BigInt(100000000000000),
+  "0x2105": BigInt(8880000000000000),
+};
+
 export const ERC20_PAYMENT_TOKEN: Record<string, string> = {
   "0xaa36a7": "0x53c8156592A64E949A4736c6D3309002fa0b2Aba",
   "0x2105": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
@@ -174,3 +179,6 @@ export const PRUNE_ENDED = true;
 
 export const SEASON_OVER_TEXT =
   " The 2024 Peach Season has come to an end. See you next Spring!";
+
+export const SEASON_OPEN_TEXT =
+  " The 2025 Peach Season is kicking off! Tree sales are live now!";
