@@ -1,13 +1,26 @@
-import { Box, Button, Flex, Heading, Image, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Image,
+  Radio,
+  RadioGroup,
+  Text,
+} from "@chakra-ui/react";
 import {
   NFT_MINT_PRICE,
-  NFT_MINT_PRICE_DISCOUNT,
   NftTreeMeta,
   TARGET_NETWORK,
+  TREE_NFT_MINT_DISCOUNT_PERC,
+  TREE_NFT_MINT_PRICE_ERC20,
 } from "../utils/constants";
 import { useAccountNfts } from "../hooks/useAccountNfts";
-import { fromWei } from "../utils/formatting";
+import { fromUSDC, fromWei } from "../utils/formatting";
 import { LogIn } from "./LogIn";
+import { discountPrice } from "../utils/price";
+import { useState } from "react";
+import { MintTreeButton } from "./MintTreeButton";
 // import { MintTreeButton } from "./MintTreeButton";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -41,6 +54,7 @@ export const TreeMintCard = ({
   account?: string;
   hasDiscount?: boolean;
 }) => {
+  const [currency, setCurrency] = useState<string>("eth");
   return (
     <Flex direction="column" align="center" gap="1rem">
       <Flex
@@ -64,58 +78,103 @@ export const TreeMintCard = ({
               You Got the Season 2 Farmer Discount!
             </Text>
           )}
+
+          <RadioGroup onChange={setCurrency} value={currency}>
+            <Flex
+              direction="row"
+              gap="1rem"
+              w="full"
+              align="center"
+              justify="center"
+            >
+              <Radio value="eth" colorScheme="green">
+                <Text fontSize="xs" color="brand.green">
+                  ETH
+                </Text>
+              </Radio>
+              <Radio value="usdc" colorScheme="green">
+                <Text fontSize="xs" color="brand.green">
+                  USDC
+                </Text>
+              </Radio>
+            </Flex>
+          </RadioGroup>
+
           {!hasDiscount && (
             <Heading size="md" color="brand.blue">
-              {`${fromWei(NFT_MINT_PRICE[TARGET_NETWORK].toString())} BASE ETH`}
+              {currency === "eth" &&
+                `${fromWei(NFT_MINT_PRICE[TARGET_NETWORK].toString())} ETH`}
+              {currency === "usdc" &&
+                `${fromUSDC(
+                  TREE_NFT_MINT_PRICE_ERC20[TARGET_NETWORK].toString()
+                )} USDC`}
             </Heading>
           )}
 
           {hasDiscount && (
             <>
               <Heading size="md" color="brand.blue">
-                {`${fromWei(
-                  NFT_MINT_PRICE_DISCOUNT[TARGET_NETWORK].toString()
-                )} BASE ETH`}
+                {currency === "eth" &&
+                  `${fromWei(
+                    discountPrice(
+                      NFT_MINT_PRICE[TARGET_NETWORK],
+                      TREE_NFT_MINT_DISCOUNT_PERC[TARGET_NETWORK]
+                    ).toString()
+                  )} ETH`}
+
+                {currency === "usdc" &&
+                  `${fromUSDC(
+                    discountPrice(
+                      TREE_NFT_MINT_PRICE_ERC20[TARGET_NETWORK],
+                      TREE_NFT_MINT_DISCOUNT_PERC[TARGET_NETWORK]
+                    ).toString()
+                  )} USDC`}
               </Heading>
               <Heading size="md" color="brand.blue">
                 <s>
-                  {`${fromWei(
-                    NFT_MINT_PRICE[TARGET_NETWORK].toString()
-                  )} BASE ETH`}
+                  {currency === "eth" &&
+                    `${fromWei(NFT_MINT_PRICE[TARGET_NETWORK].toString())} ETH`}
+
+                  {currency === "usdc" &&
+                    `${fromUSDC(
+                      TREE_NFT_MINT_PRICE_ERC20[TARGET_NETWORK].toString()
+                    )} USDC`}
                 </s>
               </Heading>
             </>
           )}
         </Box>
         {account && (
-          // <MintTreeButton
-          //   trunkId={tree.value}
-          //   name={tree.name}
-          //   img={tree.img}
-          // />
+          <MintTreeButton
+            trunkId={tree.value}
+            name={tree.name}
+            img={tree.img}
+            currency={currency}
+            hasDiscount={hasDiscount}
+          />
 
-          <Button
-            variant="outline"
-            fontFamily="heading"
-            fontSize="xl"
-            fontStyle="italic"
-            fontWeight="700"
-            border="1px"
-            borderColor="brand.green"
-            borderRadius="200px;"
-            color="brand.orange"
-            size="lg"
-            height="60px"
-            width="220px"
-            my="1rem"
-            isDisabled={true}
-            _hover={{
-              bg: "transparent",
-              color: "brand.orange",
-            }}
-          >
-            MINT
-          </Button>
+          // <Button
+          //   variant="outline"
+          //   fontFamily="heading"
+          //   fontSize="xl"
+          //   fontStyle="italic"
+          //   fontWeight="700"
+          //   border="1px"
+          //   borderColor="brand.green"
+          //   borderRadius="200px;"
+          //   color="brand.orange"
+          //   size="lg"
+          //   height="60px"
+          //   width="220px"
+          //   my="1rem"
+          //   isDisabled={true}
+          //   _hover={{
+          //     bg: "transparent",
+          //     color: "brand.orange",
+          //   }}
+          // >
+          //   MINT
+          // </Button>
         )}
         {!account && (
           <>

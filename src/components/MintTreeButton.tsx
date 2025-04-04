@@ -28,7 +28,10 @@ import {
   NFT_MINT_PRICE,
   CRITTER_COUNT_PLUS_ONE,
   TARGET_NETWORK,
+  TREE_NFT_MINT_PRICE_ERC20,
+  TREE_NFT_MINT_DISCOUNT_PERC,
 } from "../utils/constants";
+import { discountPrice } from "../utils/price";
 
 const getCritterId = () => {
   return Math.floor(Math.random() * CRITTER_COUNT_PLUS_ONE);
@@ -38,10 +41,14 @@ export const MintTreeButton = ({
   trunkId,
   name,
   img,
+  currency,
+  hasDiscount,
 }: {
   trunkId: number;
   name: string;
   img: string;
+  currency: string;
+  hasDiscount?: boolean;
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { chain } = useAccount();
@@ -55,12 +62,36 @@ export const MintTreeButton = ({
 
   const handleMint = async () => {
     onOpen();
+
+    const value = hasDiscount
+      ? discountPrice(
+          NFT_MINT_PRICE[TARGET_NETWORK],
+          TREE_NFT_MINT_DISCOUNT_PERC[TARGET_NETWORK]
+        )
+      : NFT_MINT_PRICE[TARGET_NETWORK];
     writeContract({
       address: NFT_CONTRACT_ADDRESS[TARGET_NETWORK],
       abi: erc721Abi,
       functionName: "mint",
-      value: NFT_MINT_PRICE[TARGET_NETWORK],
+      value,
       args: [trunkId, getCritterId()],
+    });
+  };
+
+  const handleMintErc20 = async () => {
+    onOpen();
+
+    const amount = hasDiscount
+      ? discountPrice(
+          TREE_NFT_MINT_PRICE_ERC20[TARGET_NETWORK],
+          TREE_NFT_MINT_DISCOUNT_PERC[TARGET_NETWORK]
+        )
+      : TREE_NFT_MINT_PRICE_ERC20[TARGET_NETWORK];
+    writeContract({
+      address: NFT_CONTRACT_ADDRESS[TARGET_NETWORK],
+      abi: erc721Abi,
+      functionName: "mintERC20",
+      args: [trunkId, getCritterId(), amount],
     });
   };
 
@@ -87,7 +118,7 @@ export const MintTreeButton = ({
           bg: "transparent",
           color: "brand.orange",
         }}
-        onClick={handleMint}
+        onClick={currency === "eth" ? handleMint : handleMintErc20}
       >
         MINT
       </Button>

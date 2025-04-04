@@ -23,14 +23,24 @@ export const NFT_CONTRACT_ADDRESS: Record<string, `0x${string}`> = {
   "0x2105": "0xA9d3c833df8415233e1626F29E33ccBA37d2A187",
 };
 
-export const NFT_MINT_PRICE: Record<string, bigint> = {
-  "0xaa36a7": BigInt(1000000000000000),
-  "0x2105": BigInt(88800000000000000),
+export const TREE_NFT_CONTRACT_ADDRESS_S3: Record<string, `0x${string}`> = {
+  "0xaa36a7": "0xB49a877D82c1f0133B0293dfd20eB54BEd07a290",
+  "0x2105": "0xA9d3c833df8415233e1626F29E33ccBA37d2A187",
 };
 
-export const NFT_MINT_PRICE_DISCOUNT: Record<string, bigint> = {
-  "0xaa36a7": BigInt(100000000000000),
-  "0x2105": BigInt(8880000000000000),
+export const NFT_MINT_PRICE: Record<string, bigint> = {
+  "0xaa36a7": BigInt(170000000000000000),
+  "0x2105": BigInt(170000000000000000),
+};
+
+export const TREE_NFT_MINT_PRICE_ERC20: Record<string, bigint> = {
+  "0xaa36a7": BigInt(300000000),
+  "0x2105": BigInt(300000000),
+};
+
+export const TREE_NFT_MINT_DISCOUNT_PERC: Record<string, number> = {
+  "0xaa36a7": 10,
+  "0x2105": 10,
 };
 
 export const ERC20_PAYMENT_TOKEN: Record<string, string> = {
@@ -100,10 +110,7 @@ export const SPRAY_PRICE_ERC20: Record<string, bigint> = {
 
 export const SPRAYS_PER_TOKEN = 2;
 
-export const PEACH_NFT_CONTRACT_ADDRESS_SEASON_TWO: Record<
-  string,
-  `0x${string}`
-> = {
+export const PEACH_NFT_CONTRACT_ADDRESS_S3: Record<string, `0x${string}`> = {
   "0xaa36a7": "0xC0552Fd7131D8cC74b77dDaF8E43C006A31adCdA",
   "0x2105": "0x5eAE1344f40f25b827782AfF0B3651b2DCD2259E",
 };
@@ -151,17 +158,17 @@ export const CRITTER_COUNT_PLUS_ONE = 7;
 
 export const TREE_NFT_DATA: NftTreeMeta[] = [
   {
-    name: "The Proud Peacher",
+    name: "MF Bloom",
     img: treeOne,
     value: 0,
   },
   {
-    name: "Peachicus Magnificus",
+    name: "Warren Tree",
     img: treeTwo,
     value: 1,
   },
   {
-    name: "Big ol` Peachy",
+    name: "Notorious P.E.A.C.H.",
     img: treeThree,
     value: 2,
   },

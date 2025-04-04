@@ -5,6 +5,7 @@ import { LogIn } from "../components/LogIn";
 import { LuClipboardCopy } from "react-icons/lu";
 import { truncateAddress } from "../utils/formatting";
 import { Link } from "react-router-dom";
+import { FundWallet } from "../components/FundWallet";
 
 function Account() {
   const toast = useToast();
@@ -61,17 +62,7 @@ function Account() {
               email={user?.email?.address}
               handleCopy={handleCopy}
             />
-
-            <Text mb="1rem" style={{ wordBreak: "break-all" }}>
-              To fund your wallet send Base Eth to this address:{" "}
-              {user?.wallet.address}
-            </Text>
-            <Button _hover={{ cursor: "pointer" }} onClick={handleCopy}>
-              Copy to your clipboard
-              <LuClipboardCopy
-                style={{ fontSize: "18px", marginLeft: ".5rem" }}
-              />
-            </Button>
+            <FundWallet />
 
             <Box w="272px" position="relative" mt="3rem">
               <Button
