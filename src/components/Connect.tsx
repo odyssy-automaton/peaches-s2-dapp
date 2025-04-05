@@ -12,6 +12,7 @@ export const Connect = () => {
   const { switchChain } = useSwitchChain();
 
   const handleSwitch = () => {
+    console.log("CHAIN_OBJ", CHAIN_OBJ);
     switchChain({ chainId: CHAIN_OBJ.id });
   };
 

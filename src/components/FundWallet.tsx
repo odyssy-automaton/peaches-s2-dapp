@@ -63,14 +63,8 @@ export const FundWallet = () => {
         px="20px"
         onClick={handleFunding}
       >
-        {/* <img src={Fund} width="24" /> */}
         Fund Wallet on {activeChain?.name}
       </Button>
-      {chainId === 100 && (
-        <p className="text-xs text-accent">
-          *Credit card funding not available on Gnosis Chain
-        </p>
-      )}
     </div>
   );
 };
