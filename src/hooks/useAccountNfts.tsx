@@ -4,6 +4,7 @@ import {
   NFT_CONTRACT_ADDRESS,
   SEQUENCE_ENDPOINT,
   TARGET_NETWORK,
+  TREE_NFT_CONTRACT_ADDRESS_S3,
 } from "../utils/constants";
 
 const fetchNftsForAccount = async ({
@@ -39,17 +40,23 @@ const fetchNftsForAccount = async ({
 
 export const useAccountNfts = ({
   accountAddress,
+  season,
 }: {
   accountAddress: string;
+  season?: string;
 }) => {
+  const seasonContractAddress =
+    season === "two"
+      ? TREE_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK]
+      : NFT_CONTRACT_ADDRESS[TARGET_NETWORK];
   const { data, error, ...rest } = useQuery({
-    queryKey: [`accountNfts-${accountAddress}`],
+    queryKey: [`accountNfts-${accountAddress}-${seasonContractAddress}`],
     queryFn: () =>
       fetchNftsForAccount({
         accountAddress,
-        contractAddress: NFT_CONTRACT_ADDRESS[TARGET_NETWORK],
+        contractAddress: seasonContractAddress,
       }),
-    enabled: !!NFT_CONTRACT_ADDRESS[TARGET_NETWORK],
+    enabled: !!seasonContractAddress,
   });
 
   return { accountNfts: data?.balances, page: data?.page, error, ...rest };

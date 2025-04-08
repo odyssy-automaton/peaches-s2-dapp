@@ -18,15 +18,39 @@ export const ALCHEMY_RPC =
         import.meta.env.VITE_ALCHEMY_KEY
       }`;
 
+// season 2
 export const NFT_CONTRACT_ADDRESS: Record<string, `0x${string}`> = {
   "0xaa36a7": "0xB49a877D82c1f0133B0293dfd20eB54BEd07a290",
   "0x2105": "0xA9d3c833df8415233e1626F29E33ccBA37d2A187",
 };
 
-export const NFT_MINT_PRICE: Record<string, bigint> = {
-  "0xaa36a7": BigInt(1000000000000000),
-  "0x2105": BigInt(88800000000000000),
+// season 3
+export const TREE_NFT_CONTRACT_ADDRESS_S3: Record<string, `0x${string}`> = {
+  "0xaa36a7": "0x77Bb60A289cA50b5A90729ED727c2dAf0db97Ca0",
+  "0x2105": "0x9693C1f083ECF8D5d39af19d38E0e2377919564A",
 };
+
+export const NFT_MINT_PRICE: Record<string, bigint> = {
+  "0xaa36a7": BigInt(6900000000000000),
+  "0x2105": BigInt(200000000000000000),
+};
+
+export const TREE_NFT_MINT_PRICE_ERC20: Record<string, bigint> = {
+  "0xaa36a7": BigInt(300000000),
+  "0x2105": BigInt(300000000),
+};
+
+export const TREE_NFT_MINT_DISCOUNT_PERC: Record<string, number> = {
+  "0xaa36a7": 10,
+  "0x2105": 10,
+};
+
+export const TREE_ERC20_PAYMENT_TOKEN: Record<string, string> = {
+  "0xaa36a7": "0x53c8156592A64E949A4736c6D3309002fa0b2Aba",
+  "0x2105": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+};
+
+// boosts;
 
 export const ERC20_PAYMENT_TOKEN: Record<string, string> = {
   "0xaa36a7": "0x53c8156592A64E949A4736c6D3309002fa0b2Aba",
@@ -95,6 +119,13 @@ export const SPRAY_PRICE_ERC20: Record<string, bigint> = {
 
 export const SPRAYS_PER_TOKEN = 2;
 
+// peaches;
+
+export const PEACH_NFT_CONTRACT_ADDRESS_S3: Record<string, `0x${string}`> = {
+  "0xaa36a7": "0xC0552Fd7131D8cC74b77dDaF8E43C006A31adCdA",
+  "0x2105": "0x5eAE1344f40f25b827782AfF0B3651b2DCD2259E",
+};
+
 export const PEACH_NFT_CONTRACT_ADDRESS: Record<string, `0x${string}`> = {
   "0xaa36a7": "0xC0552Fd7131D8cC74b77dDaF8E43C006A31adCdA",
   "0x2105": "0x5eAE1344f40f25b827782AfF0B3651b2DCD2259E",
@@ -134,21 +165,21 @@ export const CHECKOUT_URL =
 
 export type NftTreeMeta = { name: string; img: string; value: number };
 
-export const CRITTER_COUNT_PLUS_ONE = 7;
+export const CRITTER_COUNT_PLUS_ONE = 9;
 
 export const TREE_NFT_DATA: NftTreeMeta[] = [
   {
-    name: "The Proud Peacher",
+    name: "MF Bloom",
     img: treeOne,
     value: 0,
   },
   {
-    name: "Peachicus Magnificus",
+    name: "Warren Tree",
     img: treeTwo,
     value: 1,
   },
   {
-    name: "Big ol` Peachy",
+    name: "Notorious P.E.A.C.H.",
     img: treeThree,
     value: 2,
   },
@@ -174,3 +205,6 @@ export const PRUNE_ENDED = true;
 
 export const SEASON_OVER_TEXT =
   " The 2024 Peach Season has come to an end. See you next Spring!";
+
+export const SEASON_OPEN_TEXT =
+  " The 2025 Peach Season is kicking off! Tree sales are live now!";

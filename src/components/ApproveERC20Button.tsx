@@ -4,7 +4,6 @@ import {
   useWaitForTransactionReceipt,
   type BaseError,
 } from "wagmi";
-import { ERC20_PAYMENT_TOKEN, TARGET_NETWORK } from "../utils/constants";
 
 import erc20Abi from "../abis/ERC20.json";
 import { useEffect } from "react";
@@ -14,10 +13,12 @@ export const ApproveERC20 = ({
   refetch,
   spender,
   amount,
+  tokenAddress,
 }: {
-  refetch: () => void;
+  refetch?: () => void;
   spender: string;
   amount: bigint;
+  tokenAddress: string;
 }) => {
   const { data: hash, error, isPending, writeContract } = useWriteContract();
 
@@ -28,7 +29,7 @@ export const ApproveERC20 = ({
 
   const handleApprove = async () => {
     writeContract({
-      address: ERC20_PAYMENT_TOKEN[TARGET_NETWORK] as `0x${string}`,
+      address: tokenAddress as `0x${string}`,
       abi: erc20Abi,
       functionName: "approve",
       args: [spender, amount],
@@ -36,7 +37,7 @@ export const ApproveERC20 = ({
   };
 
   useEffect(() => {
-    refetch();
+    refetch && refetch();
   }, [isConfirmed, refetch]);
 
   return (
@@ -72,7 +73,7 @@ export const ApproveERC20 = ({
           }}
           onClick={handleApprove}
         >
-          APPROVE $DEGEN
+          APPROVE
         </Button>
       )}
     </>

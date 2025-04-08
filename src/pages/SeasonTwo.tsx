@@ -2,20 +2,19 @@ import { usePrivy } from "@privy-io/react-auth";
 import { Box, Button, Divider, Flex, Text } from "@chakra-ui/react";
 
 import { LogIn } from "../components/LogIn";
-import { TreeList } from "../components/TreeList";
-import { Link } from "react-router-dom";
-import { BoostContent } from "../components/BoostContent";
-import { PeachList } from "../components/PeachList";
 import { RewardsButton } from "../components/RewardsButton";
+import { PeachListSeasonTwo } from "../components/PeachListSeasonTwo";
+import { TreeListSeasonTwo } from "../components/TreeListSeasonTwo";
+import { Link } from "react-router-dom";
 
-function Farm() {
+function SeasonTwo() {
   const { ready, authenticated, user } = usePrivy();
 
   const loggedIn = ready && authenticated && user?.wallet?.address;
 
   return (
     <>
-      {/* <Flex
+      <Flex
         w="full"
         border="none"
         direction="row"
@@ -39,7 +38,7 @@ function Farm() {
           fontSize="20px"
           fontWeight="bold"
         >
-          My peaches
+          My season 2 peaches
         </Text>
         <Divider
           mt={4}
@@ -50,7 +49,7 @@ function Farm() {
           borderBottom="none"
           background="none"
         />
-      </Flex> */}
+      </Flex>
       {loggedIn && (
         <Box w="full" textAlign="center" px="3rem" mb="2rem">
           <RewardsButton />
@@ -66,9 +65,9 @@ function Farm() {
       >
         {ready && !authenticated && <LogIn />}
 
-        {/* {loggedIn && user?.wallet?.address && (
-          <PeachList account={user.wallet.address} />
-        )} */}
+        {loggedIn && user?.wallet?.address && (
+          <PeachListSeasonTwo account={user.wallet.address} />
+        )}
       </Flex>
       <Flex
         w="full"
@@ -94,7 +93,7 @@ function Farm() {
           fontSize="20px"
           fontWeight="bold"
         >
-          My trees
+          My season 2 trees
         </Text>
         <Divider
           mt={4}
@@ -115,7 +114,7 @@ function Farm() {
         mb="3rem"
       >
         {ready && authenticated && user?.wallet?.address && (
-          <TreeList account={user.wallet.address} />
+          <TreeListSeasonTwo account={user.wallet.address} />
         )}
       </Flex>
       <Divider
@@ -125,16 +124,6 @@ function Farm() {
         borderBottom="none"
         background="none"
       />
-
-      <Flex
-        direction="column"
-        alignItems="center"
-        justifyContent="center"
-        w="full"
-        my="3rem"
-      >
-        <BoostContent />
-      </Flex>
 
       <Divider
         ml={4}
@@ -156,26 +145,6 @@ function Farm() {
       >
         <Button
           as={Link}
-          to="/market"
-          variant="outline"
-          fontFamily="heading"
-          fontSize="xl"
-          fontStyle="italic"
-          fontWeight="700"
-          border="1px"
-          borderColor="brand.green"
-          borderRadius="200px;"
-          color="brand.orange"
-          size="lg"
-          height="60px"
-          width="220px"
-          my="1rem"
-          _hover={{ bg: "transparent", color: "brand.white" }}
-        >
-          BUY PEACHES
-        </Button>
-        <Button
-          as={Link}
           to="/season-two"
           variant="outline"
           fontFamily="heading"
@@ -192,11 +161,11 @@ function Farm() {
           my="1rem"
           _hover={{ bg: "transparent", color: "brand.white" }}
         >
-          SEASON 2 FARM
+          CURRENT SEASON
         </Button>
       </Flex>
     </>
   );
 }
 
-export default Farm;
+export default SeasonTwo;

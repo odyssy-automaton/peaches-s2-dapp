@@ -41,11 +41,12 @@ const boosts: BoostData[] = [
     name: "Prune",
     description: PRUNE_DESCRIPTION,
     frequency: "Once",
-    cost: `${fromWei(
-      PRUNE_PRICE[TARGET_NETWORK].toString()
-    )} BASE ETH or ${fromWei(
-      PRUNE_PRICE_ERC20[TARGET_NETWORK].toString()
-    )} $DEGEN`,
+    // cost: `${fromWei(
+    //   PRUNE_PRICE[TARGET_NETWORK].toString()
+    // )} BASE ETH or ${fromWei(
+    //   PRUNE_PRICE_ERC20[TARGET_NETWORK].toString()
+    // )} $DEGEN`,
+    cost: `Coming soon`,
     isActive: false,
   },
   {
@@ -55,7 +56,7 @@ const boosts: BoostData[] = [
     description: WATERING_DESCRIPTION,
     frequency: "Daily",
     cost: "Free",
-    isActive: true,
+    isActive: false,
   },
   {
     img: fertIcon,
@@ -63,12 +64,13 @@ const boosts: BoostData[] = [
     color: "brand.orange",
     description: FERT_DESCRIPTION,
     frequency: "Once",
-    cost: `${fromWei(
-      FERT_PRICE[TARGET_NETWORK].toString()
-    )} BASE ETH or ${fromWei(
-      FERT_PRICE_ERC20[TARGET_NETWORK].toString()
-    )} $DEGEN. (25% Discount to season 1 Peach Holders!)`,
-    isActive: true,
+    cost: `Coming soon`,
+    // cost: `${fromWei(
+    //   FERT_PRICE[TARGET_NETWORK].toString()
+    // )} BASE ETH or ${fromWei(
+    //   FERT_PRICE_ERC20[TARGET_NETWORK].toString()
+    // )} $DEGEN. (25% Discount to season 1 Peach Holders!)`,
+    isActive: false,
   },
   {
     img: sprayIcon,
@@ -76,11 +78,12 @@ const boosts: BoostData[] = [
     color: "brand.green",
     description: SPRAY_DESCRIPTION,
     frequency: "2 Chances",
-    cost: `${fromWei(
-      SPRAY_PRICE[TARGET_NETWORK].toString()
-    )} BASE ETH or ${fromWei(
-      SPRAY_PRICE_ERC20[TARGET_NETWORK].toString()
-    )} $DEGEN per chance roll.`,
+    // cost: `${fromWei(
+    //   SPRAY_PRICE[TARGET_NETWORK].toString()
+    // )} BASE ETH or ${fromWei(
+    //   SPRAY_PRICE_ERC20[TARGET_NETWORK].toString()
+    // )} $DEGEN per chance roll.`,
+    cost: `Coming soon`,
     isActive: false,
   },
 ];

@@ -146,10 +146,11 @@ function Home() {
               <Text color="brand.orange" mb={{ base: 8, md: 8, xl: 12 }}>
                 Buy now, munch later.
               </Text>
+
               <Box w="full" position="relative" mt="12px">
                 <Button
                   as={Link}
-                  to="/market"
+                  to="/buy-trees"
                   variant="outline"
                   fontFamily="Helsinki"
                   fontSize="2xl"
@@ -173,7 +174,7 @@ function Home() {
                   zIndex="2"
                   transform="translate(0px, -12px)"
                 >
-                  GET PEACHES
+                  GET TREES
                 </Button>
                 <Box
                   w="full"
@@ -192,6 +193,7 @@ function Home() {
               w={{ base: "270px", xl: "460px" }}
             />
           </Flex>
+
           <Divider
             zIndex={"1"}
             mt={{ base: 10, md: "-30px", xl: "-60px" }}

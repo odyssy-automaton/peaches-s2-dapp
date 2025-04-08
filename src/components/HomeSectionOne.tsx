@@ -16,14 +16,14 @@ export const HomeSectionOne = () => {
         <Flex gap="1rem" align="center">
           <Heading color="brand.orange">1.</Heading>
           <LabelBadge
-            bg="brand.red"
+            bg="brand.green"
             color="brand.black"
             size="md"
             style={{
               lineHeight: "1.75",
             }}
           >
-            • Tree Sales Closed •
+            • Tree Sales Open •
           </LabelBadge>
         </Flex>
         <Text
@@ -37,8 +37,9 @@ export const HomeSectionOne = () => {
           Get Trees!
         </Text>
         <Text maxW="460px" mb="2rem">
-          Welcome to PΞACHES Season Two - PΞACH Tycoon! For this season, we are
-          inviting all humble farmers to try their hand at growing peaches.
+          Welcome to PΞACH Tycoon Season Tree! For this season, we are once
+          again inviting all humble farmers to try their hand at growing
+          peaches.
         </Text>
         <Text maxW="460px" mb="2rem" fontWeight="700">
           Every tree NFT purchased is guaranteed to produce two (2) peach boxes

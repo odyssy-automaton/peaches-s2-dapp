@@ -20,7 +20,7 @@ export const RewardsButton = () => {
 
   return (
     <>
-      <Button
+      {/* <Button
         variant="outline"
         fontFamily="heading"
         fontSize="2xl"
@@ -42,7 +42,7 @@ export const RewardsButton = () => {
         onClick={onOpen}
       >
         FARMER REWARDS
-      </Button>
+      </Button> */}
 
       <Modal
         isOpen={isOpen}
