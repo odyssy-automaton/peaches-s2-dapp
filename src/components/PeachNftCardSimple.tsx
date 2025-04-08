@@ -5,13 +5,13 @@ import {
 } from "../utils/formatting";
 
 import { usePeachStatus } from "../hooks/usePeachStatus";
-import { TokenBalance } from "@0xsequence/indexer";
+import { PeachNft } from "../utils/types";
 
 export const PeachNftCardSimple = ({
   peach,
   season,
 }: {
-  peach: TokenBalance;
+  peach: PeachNft;
   season: number;
 }) => {
   const { peachStatus, img } = usePeachStatus({
