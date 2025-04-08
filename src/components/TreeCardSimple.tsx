@@ -4,13 +4,13 @@ import {
   dhImagePath,
   truncateAddress,
 } from "../utils/formatting";
-import { TokenBalance } from "@0xsequence/indexer";
+import { TreeNft } from "../utils/types";
 
 export const TreeCardSimple = ({
   tree,
   season,
 }: {
-  tree: TokenBalance;
+  tree: TreeNft;
   season: number;
 }) => {
   return (

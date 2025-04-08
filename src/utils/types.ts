@@ -6,6 +6,8 @@ export type TreeNft = {
     name: string;
     description?: string;
     status?: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    attributes?: { [key: string]: any }[];
   };
 };
 
@@ -18,6 +20,7 @@ export type PeachNft = {
     description?: string;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     attributes?: { [key: string]: any }[];
+    status?: string;
   };
 };
 

@@ -8,14 +8,14 @@ import {
 
 import { usePeachStatus } from "../hooks/usePeachStatus";
 import { PeachActions } from "./PeachActions";
-import { TokenBalance } from "@0xsequence/indexer";
+import { PeachNft } from "../utils/types";
 // import { CastLink } from "./CastLink";
 
 export const PeachNftCard = ({
   peach,
   account,
 }: {
-  peach: TokenBalance;
+  peach: PeachNft;
   account: string;
 }) => {
   // const { peachStatus, tokenState, img, orders } = usePeachStatus({

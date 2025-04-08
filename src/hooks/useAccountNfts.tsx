@@ -7,6 +7,22 @@ import {
   TREE_NFT_CONTRACT_ADDRESS_S3,
 } from "../utils/constants";
 
+interface TokenBalance {
+  contractAddress: string;
+  tokenID: string;
+  tokenMetadata?: TokenMetadata;
+}
+
+export interface TokenMetadata {
+  name: string;
+  description?: string;
+  image?: string;
+  attributes: Array<{
+    [key: string]: any;
+  }>;
+  status?: string;
+}
+
 const fetchNftsForAccount = async ({
   accountAddress,
   contractAddress,
@@ -35,7 +51,10 @@ const fetchNftsForAccount = async ({
     includeMetadata: true,
   });
 
-  return { balances: nftBalances, page: nftBalances.page };
+  return {
+    balances: nftBalances.balances as unknown as TokenBalance[],
+    page: nftBalances.page,
+  };
 };
 
 export const useAccountNfts = ({

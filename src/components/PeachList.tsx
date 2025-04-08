@@ -2,7 +2,7 @@ import { Flex, Spinner, Box, Button, Heading } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useAccountPeaches } from "../hooks/useAccountPeaches";
 import { PeachNftCard } from "./PeachNftCard";
-import { TokenBalance } from "@0xsequence/indexer";
+import { PeachNft } from "../utils/types";
 
 export const PeachList = ({ account }: { account: string }) => {
   const { accountNfts, isLoading } = useAccountPeaches({
@@ -14,7 +14,7 @@ export const PeachList = ({ account }: { account: string }) => {
     <Box mb="5rem">
       {isLoading && <Spinner />}
 
-      {accountNfts?.balances && accountNfts?.balances.length > 0 && (
+      {accountNfts && accountNfts.length > 0 && (
         <Flex
           gap="1rem"
           wrap="wrap"
@@ -22,7 +22,7 @@ export const PeachList = ({ account }: { account: string }) => {
           align="center"
           justify="center"
         >
-          {accountNfts.balances.map((token: TokenBalance) => {
+          {accountNfts.map((token: PeachNft) => {
             return (
               <PeachNftCard
                 peach={token}
@@ -34,8 +34,8 @@ export const PeachList = ({ account }: { account: string }) => {
         </Flex>
       )}
 
-      {!accountNfts?.balances ||
-        (!accountNfts?.balances.length && (
+      {!accountNfts ||
+        (!accountNfts.length && (
           <Flex gap="1rem" direction="column" align="center" justify="center">
             <Heading color="brand.orange" mb="2rem">
               You don’t own any peaches yet!

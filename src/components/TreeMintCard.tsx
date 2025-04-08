@@ -42,7 +42,7 @@ const AccountNftCount = ({
 
   return (
     <Text color="brand.white" fontSize="xs">
-      You own {`${holdingCount(name, accountNfts?.balances)} ${name}`}
+      You own {`${holdingCount(name, accountNfts)} ${name}`}
     </Text>
   );
 };
