@@ -1,64 +1,64 @@
 import { useQuery } from "@tanstack/react-query";
-import { createPublicClient, http } from "viem";
+// import { createPublicClient, http } from "viem";
 
 import {
-  BOOST_BONUS,
-  BOOST_POINTS,
-  CHAIN_OBJ,
+  // BOOST_BONUS,
+  // BOOST_POINTS,
+  // CHAIN_OBJ,
   FERT_CONTRACT_ADDRESS,
   PRUNE_CONTRACT_ADDRESS,
-  SPRAYS_PER_TOKEN,
+  // SPRAYS_PER_TOKEN,
   SPRAY_CONTRACT_ADDRESS,
   TARGET_NETWORK,
-  WATERING_ENDPOINT,
+  // WATERING_ENDPOINT,
 } from "../utils/constants";
-import prunAbi from "../abis/Prune.json";
-import fertAbi from "../abis/Fert.json";
-import sprayAbi from "../abis/Spray.json";
+// import prunAbi from "../abis/Prune.json";
+// import fertAbi from "../abis/Fert.json";
+// import sprayAbi from "../abis/Spray.json";
 
-import { get } from "../utils/fetch";
-import { WateringRes } from "../utils/types";
+// import { get } from "../utils/fetch";
+// import { WateringRes } from "../utils/types";
 
-const addPoints = ({
-  prune,
-  fert,
-  waterings,
-  sprays,
-}: {
-  prune: boolean;
-  fert: boolean;
-  waterings: number;
-  sprays: number;
-}): number => {
-  let totalPoints = 0;
-  if (prune) totalPoints += BOOST_POINTS.PRUNE;
-  if (fert) totalPoints += BOOST_POINTS.FERT;
-  const sprayPoints = sprays * BOOST_POINTS.SPRAY;
+// const addPoints = ({
+//   prune,
+//   fert,
+//   waterings,
+//   sprays,
+// }: {
+//   prune: boolean;
+//   fert: boolean;
+//   waterings: number;
+//   sprays: number;
+// }): number => {
+//   let totalPoints = 0;
+//   if (prune) totalPoints += BOOST_POINTS.PRUNE;
+//   if (fert) totalPoints += BOOST_POINTS.FERT;
+//   const sprayPoints = sprays * BOOST_POINTS.SPRAY;
 
-  totalPoints += sprayPoints;
-  totalPoints += waterings;
+//   totalPoints += sprayPoints;
+//   totalPoints += waterings;
 
-  return totalPoints;
-};
+//   return totalPoints;
+// };
 
-const addPeachBoxes = ({
-  prune,
-  fert,
-  sprayWins,
-}: {
-  prune: boolean;
-  fert: boolean;
-  sprayWins: number;
-}): number => {
-  let peachBoxes = 2;
-  if (prune) peachBoxes += BOOST_BONUS.PRUNE;
-  if (fert) peachBoxes += BOOST_BONUS.FERT;
-  const sprayBoxes = sprayWins * BOOST_BONUS.SPRAY;
+// const addPeachBoxes = ({
+//   prune,
+//   fert,
+//   sprayWins,
+// }: {
+//   prune: boolean;
+//   fert: boolean;
+//   sprayWins: number;
+// }): number => {
+//   let peachBoxes = 2;
+//   if (prune) peachBoxes += BOOST_BONUS.PRUNE;
+//   if (fert) peachBoxes += BOOST_BONUS.FERT;
+//   const sprayBoxes = sprayWins * BOOST_BONUS.SPRAY;
 
-  peachBoxes += sprayBoxes;
+//   peachBoxes += sprayBoxes;
 
-  return peachBoxes;
-};
+//   return peachBoxes;
+// };
 
 const fetchPointsForTree = async ({
   tokenId,
@@ -75,68 +75,77 @@ const fetchPointsForTree = async ({
     throw new Error("Missing Args");
   }
 
-  const publicClient = createPublicClient({
-    chain: CHAIN_OBJ,
-    transport: http(),
-  });
+  // const publicClient = createPublicClient({
+  //   chain: CHAIN_OBJ,
+  //   transport: http(ALCHEMY_RPC),
+  // });
 
-  const pruneData = await publicClient.readContract({
-    address: pruneAddress as `0x${string}`,
-    abi: prunAbi,
-    functionName: "prunings",
-    args: [tokenId],
-  });
+  // const pruneData = await publicClient.readContract({
+  //   address: pruneAddress as `0x${string}`,
+  //   abi: prunAbi,
+  //   functionName: "prunings",
+  //   args: [tokenId],
+  // });
 
-  const prune = pruneData == 1;
+  // const prune = pruneData == 1;
 
-  const fertData = await publicClient.readContract({
-    address: fertAddress as `0x${string}`,
-    abi: fertAbi,
-    functionName: "fertilizations",
-    args: [tokenId],
-  });
+  // const fertData = await publicClient.readContract({
+  //   address: fertAddress as `0x${string}`,
+  //   abi: fertAbi,
+  //   functionName: "fertilizations",
+  //   args: [tokenId],
+  // });
 
-  const fert = fertData == 1;
+  // const fert = fertData == 1;
 
-  const sprays = (await publicClient.readContract({
-    address: sprayAddress as `0x${string}`,
-    abi: sprayAbi,
-    functionName: "sprayAttempts",
-    args: [tokenId],
-  })) as number;
+  // const sprays = (await publicClient.readContract({
+  //   address: sprayAddress as `0x${string}`,
+  //   abi: sprayAbi,
+  //   functionName: "sprayAttempts",
+  //   args: [tokenId],
+  // })) as number;
 
-  const canSpray = sprays < SPRAYS_PER_TOKEN;
+  // const canSpray = sprays < SPRAYS_PER_TOKEN;
 
-  const sprayWins = (await publicClient.readContract({
-    address: sprayAddress as `0x${string}`,
-    abi: sprayAbi,
-    functionName: "sprayWins",
-    args: [tokenId],
-  })) as number;
+  // const sprayWins = (await publicClient.readContract({
+  //   address: sprayAddress as `0x${string}`,
+  //   abi: sprayAbi,
+  //   functionName: "sprayWins",
+  //   args: [tokenId],
+  // })) as number;
 
-  const waterings = (await get(
-    `${WATERING_ENDPOINT[TARGET_NETWORK]}?tokenId=${tokenId}`
-  )) as WateringRes;
+  // const waterings = (await get(
+  //   `${WATERING_ENDPOINT[TARGET_NETWORK]}?tokenId=${tokenId}`
+  // )) as WateringRes;
 
-  const totalPoints = addPoints({
-    prune,
-    fert,
-    waterings: waterings.count,
-    sprays,
-  });
+  // const totalPoints = addPoints({
+  //   prune,
+  //   fert,
+  //   waterings: waterings.count,
+  //   sprays,
+  // });
 
-  const peachBoxes = addPeachBoxes({ prune, fert, sprayWins });
+  // const peachBoxes = addPeachBoxes({ prune, fert, sprayWins });
 
   return {
-    waterings: waterings.count,
-    watererdToday: waterings.today,
-    totalPoints,
-    prune,
-    fert,
-    sprays,
-    sprayWins,
-    canSpray,
-    peachBoxes,
+    waterings: 0,
+    // waterings: waterings.count,
+    watererdToday: false,
+    // watererdToday: waterings.today,
+    // totalPoints,
+    totalPoints: 0,
+    // prune,
+    prune: false,
+    // fert,
+    fert: false,
+    // sprays,
+    sprays: 0,
+    // sprayWins,
+    sprayWins: 0,
+    // canSpray,
+    canSpray: false,
+    peachBoxes: 2,
+    // peachBoxes,
   };
 };
 

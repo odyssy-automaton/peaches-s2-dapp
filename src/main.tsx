@@ -7,13 +7,11 @@ import { PrivyProvider } from "@privy-io/react-auth";
 import { WagmiProvider, createConfig } from "@privy-io/wagmi";
 import { ChakraProvider } from "@chakra-ui/react";
 
-import { Buffer } from "buffer/";
-// @ts-expect-error buffer
-window.Buffer = Buffer;
+// import { Buffer } from "buffer";
 
 import { Routes } from "./Routes.tsx";
-// import { ALCHEMY_RPC, CHAIN_OBJ } from "./utils/constants.ts";
-import { CHAIN_OBJ } from "./utils/constants.ts";
+import { ALCHEMY_RPC, CHAIN_OBJ } from "./utils/constants.ts";
+// import { CHAIN_OBJ } from "./utils/constants.ts";
 
 import theme from "./theme.ts";
 import { Fonts } from "./Fonts.tsx";
@@ -26,8 +24,8 @@ const config = createConfig({
   chains: [CHAIN_OBJ],
   // @ts-expect-error ts wants single
   transports: {
-    // [CHAIN_OBJ.id]: http(ALCHEMY_RPC),
-    [CHAIN_OBJ.id]: http(),
+    [CHAIN_OBJ.id]: http(ALCHEMY_RPC),
+    // [CHAIN_OBJ.id]: http(),
   },
 });
 
@@ -56,6 +54,12 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             },
             embeddedWallets: {
               createOnLogin: "users-without-wallets", // or 'all-users'
+            },
+            externalWallets: {
+              coinbaseWallet: {
+                // Valid connection options include 'eoaOnly' (default), 'smartWalletOnly', or 'all'
+                connectionOptions: "eoaOnly",
+              },
             },
           }}
         >

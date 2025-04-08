@@ -1,16 +1,15 @@
 import { Box, Flex, Heading, Image, Link, Text } from "@chakra-ui/react";
 import { TreeNft } from "../utils/types";
-import { blockExplorerNftLink, truncateAddress } from "../utils/formatting";
+import {
+  blockExplorerNftLink,
+  dhImagePath,
+  truncateAddress,
+} from "../utils/formatting";
 import { TreeStats } from "./TreeStats";
 
 import peachAvatar from "../assets/peach-avatar-trans.png";
 import { TreeActions } from "./TreeActions";
 import { useTreePoints } from "../hooks/useTreePoints";
-
-const dhImagePath = (path?: string) => {
-  if (!path) return;
-  return `https://daohaus.mypinata.cloud/ipfs/${path.split("/ipfs/")[1]}`;
-};
 
 export const TreeCard = ({
   tree,
@@ -22,6 +21,9 @@ export const TreeCard = ({
   const { peachBoxes } = useTreePoints({
     tokenId: tree.tokenID,
   });
+
+  console.log("tree", tree);
+  console.log("peachBoxes", peachBoxes);
   return (
     <Flex direction="column" align="center" gap="1rem">
       <Box
@@ -39,9 +41,15 @@ export const TreeCard = ({
                 fontSize="xs"
                 color="brand.orange"
               >
-                {truncateAddress(tree.contractAddress)}
+                {`${truncateAddress(tree.contractAddress)}/${tree.tokenID}`}
               </Link>
             </Flex>
+
+            {tree.tokenMetadata?.status === "REFRESHING" && (
+              <Text fontSize="xl" textAlign="center" color="brand.blue">
+                Tree Data is Refreshing, check back soon
+              </Text>
+            )}
             <Image mb=".5rem" src={dhImagePath(tree.tokenMetadata?.image)} />
             <Text fontSize="xs">{tree.tokenMetadata?.name}</Text>
             <Text fontSize="sm" mb="1rem" fontWeight="700">

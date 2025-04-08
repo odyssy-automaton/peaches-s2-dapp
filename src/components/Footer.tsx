@@ -2,12 +2,15 @@ import { Link as RouterLink } from "react-router-dom";
 import { Box, Flex, Heading, Image, Link, Text } from "@chakra-ui/react";
 import { BsTwitterX } from "react-icons/bs";
 import { BsTelegram } from "react-icons/bs";
+import { SiFarcaster } from "react-icons/si";
 
 import FooterLogo from "../assets/Footer-Logo.png";
 import {
   BLOCK_EXPLORER_URL,
   NFT_CONTRACT_ADDRESS,
+  PEACH_NFT_CONTRACT_ADDRESS,
   TARGET_NETWORK,
+  TREE_NFT_CONTRACT_ADDRESS_S3,
 } from "../utils/constants";
 
 export const Footer = () => {
@@ -27,25 +30,37 @@ export const Footer = () => {
               <Link href="https://twitter.com/PeachDropNFT" isExternal>
                 <BsTwitterX />
               </Link>
+              <Link href="https://warpcast.com/peachtycoon" isExternal>
+                <SiFarcaster />
+              </Link>
               <Link href="https://t.me/PeachDropNFT" isExternal>
                 <BsTelegram />
               </Link>
             </Flex>
-            <Link
-              href={`${BLOCK_EXPLORER_URL[TARGET_NETWORK]}address/${NFT_CONTRACT_ADDRESS[TARGET_NETWORK]}`}
+            {/* <Link
+              href={`${BLOCK_EXPLORER_URL[TARGET_NETWORK]}address/${PEACH_NFT_CONTRACT_ADDRESS[TARGET_NETWORK]}`}
               isExternal
             >
               <Heading color="brand.black" size="md">
                 {" "}
-                BaseScan
+                BaseScan Peaches
               </Heading>
-            </Link>
+            </Link> */}
             <Link
-              href="https://rarible.com/collection/base/0xa9d3c833df8415233e1626f29e33ccba37d2a187/items"
+              href={`${BLOCK_EXPLORER_URL[TARGET_NETWORK]}address/${TREE_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK]}`}
               isExternal
             >
               <Heading color="brand.black" size="md">
-                Rarible
+                {" "}
+                Trees Contract
+              </Heading>
+            </Link>
+            <Link
+              href={`https://rarible.com/collection/base/${TREE_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK]}/items`}
+              isExternal
+            >
+              <Heading color="brand.black" size="md">
+                Trees on Rarible
               </Heading>
             </Link>
             {/* <Text fontSize="xs">Copyright 2024 PΞACH TYCOON</Text> */}
@@ -63,9 +78,9 @@ export const Footer = () => {
               Home
             </Heading>
           </RouterLink>
-          <RouterLink to="/buy-trees">
+          <RouterLink to="/market">
             <Heading color="brand.black" size="md">
-              Buy Trees
+              Buy Peaches
             </Heading>
           </RouterLink>
           <RouterLink to="/farm">

@@ -21,14 +21,21 @@ import {
   useAccount,
 } from "wagmi";
 
-import erc721Abi from "../abis/ERC721.json";
+import erc721Abi from "../abis/TreeERC721.json";
 import {
   BLOCK_EXPLORER_URL,
-  NFT_CONTRACT_ADDRESS,
   NFT_MINT_PRICE,
   CRITTER_COUNT_PLUS_ONE,
   TARGET_NETWORK,
+  TREE_NFT_MINT_PRICE_ERC20,
+  TREE_NFT_MINT_DISCOUNT_PERC,
+  TREE_ERC20_PAYMENT_TOKEN,
+  TREE_NFT_CONTRACT_ADDRESS_S3,
 } from "../utils/constants";
+import { discountPrice } from "../utils/price";
+import { BalanceCheck } from "./BalanceCheck";
+import { useMemo } from "react";
+import { ApprovalCheck } from "./ApprovalCheck";
 
 const getCritterId = () => {
   return Math.floor(Math.random() * CRITTER_COUNT_PLUS_ONE);
@@ -38,13 +45,17 @@ export const MintTreeButton = ({
   trunkId,
   name,
   img,
+  currency,
+  hasDiscount,
 }: {
   trunkId: number;
   name: string;
   img: string;
+  currency: string;
+  hasDiscount?: boolean;
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { chain } = useAccount();
+  const { chain, address } = useAccount();
 
   const { data: hash, error, isPending, writeContract } = useWriteContract();
 
@@ -55,42 +66,114 @@ export const MintTreeButton = ({
 
   const handleMint = async () => {
     onOpen();
+
+    const value = hasDiscount
+      ? discountPrice(
+          NFT_MINT_PRICE[TARGET_NETWORK],
+          TREE_NFT_MINT_DISCOUNT_PERC[TARGET_NETWORK]
+        )
+      : NFT_MINT_PRICE[TARGET_NETWORK];
+
+    console.log(
+      "NFT_MINT_PRICE[TARGET_NETWORK]",
+      NFT_MINT_PRICE[TARGET_NETWORK]
+    );
+    console.log("value", value);
+    console.log("getCritterId()", getCritterId());
+    console.log("trunkId", trunkId);
     writeContract({
-      address: NFT_CONTRACT_ADDRESS[TARGET_NETWORK],
+      address: TREE_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK],
       abi: erc721Abi,
       functionName: "mint",
-      value: NFT_MINT_PRICE[TARGET_NETWORK],
+      value,
       args: [trunkId, getCritterId()],
     });
   };
+
+  const handleMintErc20 = async () => {
+    onOpen();
+
+    const amount = hasDiscount
+      ? discountPrice(
+          TREE_NFT_MINT_PRICE_ERC20[TARGET_NETWORK],
+          TREE_NFT_MINT_DISCOUNT_PERC[TARGET_NETWORK]
+        )
+      : TREE_NFT_MINT_PRICE_ERC20[TARGET_NETWORK];
+    writeContract({
+      address: TREE_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK],
+      abi: erc721Abi,
+      functionName: "mintERC20",
+      args: [trunkId, getCritterId(), amount],
+    });
+  };
+
+  const price = useMemo(() => {
+    if (currency === "usdc") {
+      return hasDiscount
+        ? discountPrice(
+            TREE_NFT_MINT_PRICE_ERC20[TARGET_NETWORK],
+            TREE_NFT_MINT_DISCOUNT_PERC[TARGET_NETWORK]
+          )
+        : TREE_NFT_MINT_PRICE_ERC20[TARGET_NETWORK];
+    } else {
+      return hasDiscount
+        ? discountPrice(
+            NFT_MINT_PRICE[TARGET_NETWORK],
+            TREE_NFT_MINT_DISCOUNT_PERC[TARGET_NETWORK]
+          )
+        : NFT_MINT_PRICE[TARGET_NETWORK];
+    }
+  }, [currency, hasDiscount]);
 
   const isDisabled = isPending || !chain;
 
   return (
     <>
-      <Button
-        variant="outline"
-        fontFamily="heading"
-        fontSize="xl"
-        fontStyle="italic"
-        fontWeight="700"
-        border="1px"
-        borderColor="brand.green"
-        borderRadius="200px;"
-        color="brand.orange"
-        size="lg"
-        height="60px"
-        width="220px"
-        my="1rem"
-        isDisabled={isDisabled}
-        _hover={{
-          bg: "transparent",
-          color: "brand.orange",
-        }}
-        onClick={handleMint}
+      <BalanceCheck
+        address={address}
+        targetBalance={price}
+        // targetBalance={99999480020000000000000000n}
+        tokenAddress={
+          currency === "usdc"
+            ? TREE_ERC20_PAYMENT_TOKEN[TARGET_NETWORK]
+            : undefined
+        }
       >
-        MINT
-      </Button>
+        <ApprovalCheck
+          address={address}
+          amount={price}
+          tokenAddress={
+            currency === "usdc"
+              ? TREE_ERC20_PAYMENT_TOKEN[TARGET_NETWORK]
+              : undefined
+          }
+          spender={TREE_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK]}
+        >
+          <Button
+            variant="outline"
+            fontFamily="heading"
+            fontSize="xl"
+            fontStyle="italic"
+            fontWeight="700"
+            border="1px"
+            borderColor="brand.green"
+            borderRadius="200px;"
+            color="brand.orange"
+            size="lg"
+            height="60px"
+            width="220px"
+            my="1rem"
+            isDisabled={isDisabled}
+            _hover={{
+              bg: "transparent",
+              color: "brand.orange",
+            }}
+            onClick={currency === "eth" ? handleMint : handleMintErc20}
+          >
+            MINT
+          </Button>
+        </ApprovalCheck>
+      </BalanceCheck>
 
       <Modal
         isOpen={isOpen}

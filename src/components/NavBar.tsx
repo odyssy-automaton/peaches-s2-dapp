@@ -33,12 +33,13 @@ export const NavBar = () => {
         wrap="wrap"
         w="100%"
         mb={8}
+        mt={{ base: "4rem", sm: "2rem", md: "3rem" }}
         py={8}
         px={{ base: 3, md: 10 }}
         color="brand.orange"
         position="fixed"
-        background="brand.black"
         zIndex={9}
+        background="brand.black"
       >
         <Link to="/">
           <>
