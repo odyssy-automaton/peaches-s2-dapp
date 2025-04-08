@@ -24,7 +24,6 @@ import {
 import erc721Abi from "../abis/TreeERC721.json";
 import {
   BLOCK_EXPLORER_URL,
-  NFT_CONTRACT_ADDRESS,
   NFT_MINT_PRICE,
   CRITTER_COUNT_PLUS_ONE,
   TARGET_NETWORK,

@@ -53,11 +53,13 @@ export const BalanceCheck = ({
   const handleFunding = async () => {
     if (user?.wallet?.address) {
       const amount = tokenAddress
-        ? fromWei(NFT_MINT_PRICE[TARGET_NETWORK].toString())
-        : fromUSDC(TREE_NFT_MINT_PRICE_ERC20[TARGET_NETWORK].toString());
+        ? fromUSDC(TREE_NFT_MINT_PRICE_ERC20[TARGET_NETWORK].toString())
+        : fromWei(NFT_MINT_PRICE[TARGET_NETWORK].toString());
+
+      console.log("amount", amount);
       await fundWallet(user.wallet.address, {
         chain: activeChain,
-        asset: tokenAddress ? "native-currency" : "USDC",
+        asset: tokenAddress ? "USDC" : "native-currency",
         amount: amount,
       });
     } else {
