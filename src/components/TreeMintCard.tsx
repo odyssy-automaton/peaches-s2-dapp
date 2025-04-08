@@ -56,7 +56,7 @@ export const TreeMintCard = ({
   account?: string;
   hasDiscount?: boolean;
 }) => {
-  const [currency, setCurrency] = useState<string>("usdc");
+  const [currency, setCurrency] = useState<string>("eth");
   return (
     <Flex direction="column" align="center" gap="1rem">
       <Flex
@@ -89,14 +89,14 @@ export const TreeMintCard = ({
               align="center"
               justify="center"
             >
-              <Radio value="usdc" colorScheme="green">
-                <Text fontSize="xs" color="brand.green">
-                  USDC
-                </Text>
-              </Radio>
               <Radio value="eth" colorScheme="green">
                 <Text fontSize="xs" color="brand.green">
                   ETH
+                </Text>
+              </Radio>
+              <Radio value="usdc" colorScheme="green">
+                <Text fontSize="xs" color="brand.green">
+                  USDC
                 </Text>
               </Radio>
             </Flex>
