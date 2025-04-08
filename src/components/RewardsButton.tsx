@@ -15,7 +15,9 @@ import { usePrivy } from "@privy-io/react-auth";
 import { Link as RouterLink } from "react-router-dom";
 
 export const RewardsButton = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  // const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onClose } = useDisclosure();
+
   const { user } = usePrivy();
 
   return (

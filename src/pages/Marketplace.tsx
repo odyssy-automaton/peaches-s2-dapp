@@ -20,7 +20,6 @@ import PeachRedeemed from "../assets/10-bite-trans.png";
 
 import Arrow1 from "../assets/Arrow1.png";
 import { brandColors } from "../theme";
-import { SEASON_OVER_TEXT } from "../utils/constants";
 import { Link } from "react-router-dom";
 
 const BoxCard = styled(Box)`

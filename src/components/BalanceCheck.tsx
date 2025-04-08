@@ -36,7 +36,7 @@ export const BalanceCheck = ({
     abi: erc20Abi,
     functionName: "balanceOf",
     args: [address],
-  }) as { data: bigint };
+  }) as { data: bigint; isLoading: boolean };
 
   const hasNativeBalance = useMemo(() => {
     if (!result || !result.data) return false;

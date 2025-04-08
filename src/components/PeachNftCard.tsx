@@ -21,6 +21,7 @@ export const PeachNftCard = ({
   // const { peachStatus, tokenState, img, orders } = usePeachStatus({
   const { peachStatus, tokenState, img } = usePeachStatus({
     tokenId: peach.tokenID,
+    season: 2,
   });
 
   // const isListed = orders && orders.length > 0;

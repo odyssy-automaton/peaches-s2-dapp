@@ -7,8 +7,6 @@ import { SiFarcaster } from "react-icons/si";
 import FooterLogo from "../assets/Footer-Logo.png";
 import {
   BLOCK_EXPLORER_URL,
-  NFT_CONTRACT_ADDRESS,
-  PEACH_NFT_CONTRACT_ADDRESS,
   TARGET_NETWORK,
   TREE_NFT_CONTRACT_ADDRESS_S3,
 } from "../utils/constants";
