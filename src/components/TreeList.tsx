@@ -1,7 +1,7 @@
 import { Flex, Spinner, Box } from "@chakra-ui/react";
 import { useAccountNfts } from "../hooks/useAccountNfts";
-import { TreeNft } from "../utils/types";
 import { TreeCard } from "./TreeCard";
+import { TokenBalance } from "@0xsequence/indexer";
 
 export const TreeList = ({ account }: { account: string }) => {
   const { accountNfts, isLoading } = useAccountNfts({
@@ -21,7 +21,7 @@ export const TreeList = ({ account }: { account: string }) => {
           align="center"
           justify="center"
         >
-          {accountNfts.balances.map((token: TreeNft) => {
+          {accountNfts.balances.map((token: TokenBalance) => {
             return (
               <TreeCard tree={token} key={token.tokenID} account={account} />
             );
