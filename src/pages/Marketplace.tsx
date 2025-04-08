@@ -7,6 +7,7 @@ import {
   // Select,
   Text,
   Image,
+  Button,
 } from "@chakra-ui/react";
 import styled from "styled-components";
 // import { usePeachCollection } from "../hooks/usePeachCollection";
@@ -20,6 +21,7 @@ import PeachRedeemed from "../assets/10-bite-trans.png";
 import Arrow1 from "../assets/Arrow1.png";
 import { brandColors } from "../theme";
 import { SEASON_OVER_TEXT } from "../utils/constants";
+import { Link } from "react-router-dom";
 
 const BoxCard = styled(Box)`
   width: 300px;
@@ -209,7 +211,8 @@ function Marketplace() {
         {itemList && <ListingList listings={itemList} />}
       </Flex> */}
       <Flex
-        as="nav"
+        direction="column"
+        gap="1rem"
         align="center"
         justify="center"
         w="100%"
@@ -218,9 +221,38 @@ function Marketplace() {
         px={8}
         my={8}
       >
-        <Text fontSize="2xl" py="1rem" fontWeight="700">
-          {SEASON_OVER_TEXT}
+        <Text fontSize="2xl" pt="1rem" fontWeight="700">
+          The 2025 Peach Market will Open in August!
         </Text>
+        <Text fontSize="2xl" fontWeight="700">
+          Buy a tree to become a farmer and earn peach boxes.
+        </Text>
+        <Button
+          as={Link}
+          to="/buy-trees"
+          variant="outline"
+          fontFamily="heading"
+          fontSize="2xl"
+          fontStyle="italic"
+          fontWeight="700"
+          border="2px"
+          borderColor="brand.green"
+          borderRadius="200px;"
+          color="brand.orange"
+          size="lg"
+          height="72px"
+          mt="1rem"
+          w={{ base: "223px", md: "320px" }}
+          _hover={{
+            transform: "translate(0px, -10px)",
+            color: "brand.white",
+          }}
+          _focus={{ transform: "translate(0px, 0px)", bg: "brand.black" }}
+          bg="#1f1f1f"
+          transform="translate(0px, -12px)"
+        >
+          BUY TREE
+        </Button>
       </Flex>
     </>
   );

@@ -10,6 +10,7 @@ import {
   NFT_CONTRACT_ADDRESS,
   PEACH_NFT_CONTRACT_ADDRESS,
   TARGET_NETWORK,
+  TREE_NFT_CONTRACT_ADDRESS_S3,
 } from "../utils/constants";
 
 export const Footer = () => {
@@ -36,7 +37,7 @@ export const Footer = () => {
                 <BsTelegram />
               </Link>
             </Flex>
-            <Link
+            {/* <Link
               href={`${BLOCK_EXPLORER_URL[TARGET_NETWORK]}address/${PEACH_NFT_CONTRACT_ADDRESS[TARGET_NETWORK]}`}
               isExternal
             >
@@ -44,22 +45,22 @@ export const Footer = () => {
                 {" "}
                 BaseScan Peaches
               </Heading>
-            </Link>
+            </Link> */}
             <Link
-              href={`${BLOCK_EXPLORER_URL[TARGET_NETWORK]}address/${NFT_CONTRACT_ADDRESS[TARGET_NETWORK]}`}
+              href={`${BLOCK_EXPLORER_URL[TARGET_NETWORK]}address/${TREE_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK]}`}
               isExternal
             >
               <Heading color="brand.black" size="md">
                 {" "}
-                BaseScan Trees
+                Trees Contract
               </Heading>
             </Link>
             <Link
-              href="https://rarible.com/collection/base/0xa9d3c833df8415233e1626f29e33ccba37d2a187/items"
+              href={`https://rarible.com/collection/base/${TREE_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK]}/items`}
               isExternal
             >
               <Heading color="brand.black" size="md">
-                Rarible Trees
+                Trees on Rarible
               </Heading>
             </Link>
             {/* <Text fontSize="xs">Copyright 2024 PΞACH TYCOON</Text> */}

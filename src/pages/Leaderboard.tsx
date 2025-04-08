@@ -10,11 +10,11 @@ function Leaderboard() {
     <>
       <Box w="100%" textAlign="center" my="3rem">
         <Heading size="3xl">Leaderboard - Top 10</Heading>
-        <Text fontSize="20px" mt="1.5rem" color="brand.orange">
+        {/* <Text fontSize="20px" mt="1.5rem" color="brand.orange">
           <Link to="/farm">
             Visit your farm for info about rewards for the leaders
           </Link>
-        </Text>
+        </Text> */}
       </Box>
 
       <Box px={{ base: "1rem", sm: "8rem" }} mb="3rem">
@@ -29,6 +29,12 @@ function Leaderboard() {
             <LeaderTable leaders={leaders} />
           )}
         </>
+
+        <Text fontSize="20px" mt="1.5rem" color="brand.orange">
+          <Link to="/farm">
+            Visit your farm for info about rewards for the leaders
+          </Link>
+        </Text>
       </Box>
     </>
   );

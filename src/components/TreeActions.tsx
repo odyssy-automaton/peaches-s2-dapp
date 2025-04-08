@@ -1,12 +1,12 @@
-import { Image, Text, Flex, Button, Spinner } from "@chakra-ui/react";
+import { Image, Text, Flex, Button } from "@chakra-ui/react";
 
 import pruneIcon from "../assets/icon_prune.png";
 import fertIcon from "../assets/icon_fert.png";
 import sprayIcon from "../assets/icon_spray.png";
 
-import { useTreePoints } from "../hooks/useTreePoints";
-import { PiCheckFatFill } from "react-icons/pi";
-import { PruneTreeButton } from "./PruneTreeButton";
+// import { useTreePoints } from "../hooks/useTreePoints";
+// import { PiCheckFatFill } from "react-icons/pi";
+// import { PruneTreeButton } from "./PruneTreeButton";
 import { DisabledWaterTreeButton } from "./DisabledWateringButton";
 // import { FertTreeButton } from "./FertTreeButton";
 // import { SprayTreeButton } from "./SprayTreeButton";
@@ -18,11 +18,13 @@ export const TreeActions = ({
   tokenId: string;
   account: string;
 }) => {
-  const { prune, fert, canSpray, isFetched } = useTreePoints({
-    tokenId: tokenId,
-  });
+  // const { prune, fert, canSpray, isFetched } = useTreePoints({
+  //   tokenId: tokenId,
+  // });
 
-  if (!isFetched) return <Spinner color="brand.green" />;
+  // if (!isFetched) return <Spinner color="brand.green" />;
+
+  console.log("tokenId", tokenId);
 
   return (
     <Flex direction="column" align="center">
@@ -33,7 +35,7 @@ export const TreeActions = ({
         mt="-0.5rem"
         textAlign="center"
       >
-        It's harvest time! Boost season has ended.
+        Boost season is coming soon!
       </Text>
 
       {/* <WaterTreeButton
@@ -70,11 +72,11 @@ export const TreeActions = ({
         >
           <Image src={fertIcon} w="44px" mr=".5rem" />
           FERTILIZE
-          {fert && (
+          {/* {fert && (
             <Text ml=".25rem">
               <PiCheckFatFill />
             </Text>
-          )}
+          )} */}
         </Button>
       </>
 
@@ -105,49 +107,49 @@ export const TreeActions = ({
         >
           <Image src={sprayIcon} w="44px" mr=".5rem" />
           SPRAY
-          {!canSpray && (
+          {/* {!canSpray && (
             <Text ml=".25rem">
               <PiCheckFatFill />
             </Text>
-          )}
+          )} */}
         </Button>
       </>
 
-      {!prune && <PruneTreeButton tokenId={tokenId} />}
-      {prune && (
-        <>
-          <Button
-            opacity="30%"
-            variant="outline"
-            fontFamily="heading"
-            fontSize="xl"
-            fontStyle="italic"
-            fontWeight="700"
-            border="1px"
-            borderColor="brand.green"
-            borderRadius="200px;"
-            color="brand.green"
-            size="lg"
-            height="60px"
-            width="220px"
-            my=".5rem"
-            disabled={true}
-            _hover={{
-              bg: "transparent",
-              color: "brand.green",
-              cursor: "not-allowed",
-            }}
-          >
-            <Image src={pruneIcon} w="44px" mr=".5rem" />
-            PRUNE
-            {prune && (
+      {/* {!prune && <PruneTreeButton tokenId={tokenId} />} */}
+      {/* {prune && ( */}
+      <>
+        <Button
+          opacity="30%"
+          variant="outline"
+          fontFamily="heading"
+          fontSize="xl"
+          fontStyle="italic"
+          fontWeight="700"
+          border="1px"
+          borderColor="brand.green"
+          borderRadius="200px;"
+          color="brand.green"
+          size="lg"
+          height="60px"
+          width="220px"
+          my=".5rem"
+          disabled={true}
+          _hover={{
+            bg: "transparent",
+            color: "brand.green",
+            cursor: "not-allowed",
+          }}
+        >
+          <Image src={pruneIcon} w="44px" mr=".5rem" />
+          PRUNE
+          {/* {prune && (
               <Text ml=".25rem">
                 <PiCheckFatFill />
               </Text>
-            )}
-          </Button>
-        </>
-      )}
+            )} */}
+        </Button>
+      </>
+      {/* )} */}
     </Flex>
   );
 };

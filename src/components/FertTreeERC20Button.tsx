@@ -60,6 +60,7 @@ export const FertTreeERC20Button = ({
         refetch={refetch}
         spender={FERT_CONTRACT_ADDRESS[TARGET_NETWORK]}
         amount={FERT_PRICE_ERC20[TARGET_NETWORK]}
+        tokenAddress={ERC20_PAYMENT_TOKEN[TARGET_NETWORK]}
       />
     );
   }
