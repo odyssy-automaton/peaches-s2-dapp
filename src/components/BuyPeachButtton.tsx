@@ -17,11 +17,11 @@ import {
 } from "@chakra-ui/react";
 import { useQueryClient } from "@tanstack/react-query";
 
-import { RARIBLE_STAGE } from "../utils/constants";
+// import { RARIBLE_STAGE } from "../utils/constants";
 import peachAvatar from "../assets/peach-avatar-trans.png";
 
-import { useWallets } from "@privy-io/react-auth";
-import { createRaribleSdk } from "@rarible/sdk";
+// import { useWallets } from "@privy-io/react-auth";
+// import { createRaribleSdk } from "@rarible/sdk";
 // import { toOrderId } from "@rarible/types";
 import { useWaitForTransactionReceipt } from "wagmi";
 
@@ -35,12 +35,12 @@ export const BuyPeachButton = ({
   price: string;
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { wallets } = useWallets();
+  // const { wallets } = useWallets();
 
   const [isListing, setIsListing] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  const [hash, setHash] = useState();
+  const [hash, setHash] = useState<`0x${string}` | undefined>();
 
   const queryClient = useQueryClient();
 
@@ -69,24 +69,25 @@ export const BuyPeachButton = ({
     console.log("orderId", orderId);
     try {
       setIsListing(true);
-      const wallet = wallets[0];
-      const provider = await wallet.getEthersProvider();
-      const signer = provider.getSigner();
+      // const wallet = wallets[0];
+      // const provider = await wallet.getEthereumProvider();
+      // const signer = provider.getSigner();
 
-      const sdk = createRaribleSdk(signer, RARIBLE_STAGE, {
-        apiKey: import.meta.env.VITE_RARIBLE_KEY,
-      });
+      // const sdk = createRaribleSdk(signer, RARIBLE_STAGE, {
+      //   apiKey: import.meta.env.VITE_RARIBLE_KEY,
+      // });
 
-      const tx = await sdk.order.buy({
-        // orderId: toOrderId(orderId),
-        // @ts-expect-error react types
-        orderId: orderId,
-        amount: 1,
-      });
+      // const tx = await sdk.order.buy({
+      //   // orderId: toOrderId(orderId),
+      //   // @ts-expect-error react types
+      //   orderId: orderId,
+      //   amount: 1,
+      // });
 
-      console.log("tx", tx);
+      // console.log("tx", tx);
 
-      setHash(tx.transaction.tx.hash);
+      // setHash(tx.transaction.tx.hash);
+      setHash("0x0");
       setIsListing(false);
     } catch (err) {
       console.log("err", err);

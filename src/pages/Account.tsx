@@ -1,8 +1,7 @@
-import { Box, Button, Flex, Heading, useToast, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, useToast } from "@chakra-ui/react";
 import { usePrivy } from "@privy-io/react-auth";
 import { AccountAvatar } from "../components/AccountAvatar";
 import { LogIn } from "../components/LogIn";
-import { LuClipboardCopy } from "react-icons/lu";
 import { truncateAddress } from "../utils/formatting";
 import { Link } from "react-router-dom";
 import { FundWallet } from "../components/FundWallet";
