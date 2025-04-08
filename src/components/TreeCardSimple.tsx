@@ -1,16 +1,16 @@
 import { Box, Flex, Image, Link, Text } from "@chakra-ui/react";
-import { TreeNft } from "../utils/types";
 import {
   blockExplorerNftLink,
   dhImagePath,
   truncateAddress,
 } from "../utils/formatting";
+import { TokenBalance } from "@0xsequence/indexer";
 
 export const TreeCardSimple = ({
   tree,
   season,
 }: {
-  tree: TreeNft;
+  tree: TokenBalance;
   season: number;
 }) => {
   return (

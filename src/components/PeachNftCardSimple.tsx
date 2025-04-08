@@ -1,17 +1,17 @@
 import { Box, Flex, Image, Link, Text } from "@chakra-ui/react";
-import { PeachNft } from "../utils/types";
 import {
   blockExplorerPeachNftLink,
   truncateAddress,
 } from "../utils/formatting";
 
 import { usePeachStatus } from "../hooks/usePeachStatus";
+import { TokenBalance } from "@0xsequence/indexer";
 
 export const PeachNftCardSimple = ({
   peach,
   season,
 }: {
-  peach: PeachNft;
+  peach: TokenBalance;
   season: number;
 }) => {
   const { peachStatus, img } = usePeachStatus({
