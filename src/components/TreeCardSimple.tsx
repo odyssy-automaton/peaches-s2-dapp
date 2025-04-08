@@ -11,7 +11,7 @@ export const TreeCardSimple = ({
   season,
 }: {
   tree: TreeNft;
-  season: string;
+  season: number;
 }) => {
   return (
     <Flex direction="column" align="center" gap="1rem">

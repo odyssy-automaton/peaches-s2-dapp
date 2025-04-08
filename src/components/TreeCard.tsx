@@ -21,6 +21,9 @@ export const TreeCard = ({
   const { peachBoxes } = useTreePoints({
     tokenId: tree.tokenID,
   });
+
+  console.log("tree", tree);
+  console.log("peachBoxes", peachBoxes);
   return (
     <Flex direction="column" align="center" gap="1rem">
       <Box
@@ -41,6 +44,12 @@ export const TreeCard = ({
                 {`${truncateAddress(tree.contractAddress)}/${tree.tokenID}`}
               </Link>
             </Flex>
+
+            {tree.tokenMetadata?.status === "REFRESHING" && (
+              <Text fontSize="xl" textAlign="center" color="brand.blue">
+                Tree Data is Refreshing, check back soon
+              </Text>
+            )}
             <Image mb=".5rem" src={dhImagePath(tree.tokenMetadata?.image)} />
             <Text fontSize="xs">{tree.tokenMetadata?.name}</Text>
             <Text fontSize="sm" mb="1rem" fontWeight="700">

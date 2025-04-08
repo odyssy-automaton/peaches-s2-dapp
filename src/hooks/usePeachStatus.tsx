@@ -2,9 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { createPublicClient, http } from "viem";
 
 import {
+  ALCHEMY_RPC,
   CHAIN_OBJ,
   PEACH_IMG_IPFS_HASH,
   PEACH_NFT_CONTRACT_ADDRESS,
+  PEACH_NFT_CONTRACT_ADDRESS_S3,
   // RARIBLE_PREFIX,
   // RARIBLE_STAGE,
   TARGET_NETWORK,
@@ -27,7 +29,7 @@ const fetchPeachStatus = async ({
 
   const publicClient = createPublicClient({
     chain: CHAIN_OBJ,
-    transport: http(),
+    transport: http(ALCHEMY_RPC),
   });
 
   const tokenState = (await publicClient.readContract({
@@ -61,13 +63,22 @@ const fetchPeachStatus = async ({
   };
 };
 
-export const usePeachStatus = ({ tokenId }: { tokenId: string }) => {
+export const usePeachStatus = ({
+  tokenId,
+  season,
+}: {
+  tokenId: string;
+  season: number;
+}) => {
   const { data, error, ...rest } = useQuery({
-    queryKey: [`peachStatus-${tokenId}`],
+    queryKey: [`peachStatus-${tokenId}=${season}`],
     queryFn: () =>
       fetchPeachStatus({
         tokenId,
-        peachAddress: PEACH_NFT_CONTRACT_ADDRESS[TARGET_NETWORK],
+        peachAddress:
+          season === 3
+            ? PEACH_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK]
+            : PEACH_NFT_CONTRACT_ADDRESS[TARGET_NETWORK],
       }),
   });
 

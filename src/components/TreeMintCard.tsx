@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Flex,
   Heading,
   Image,
@@ -36,7 +35,10 @@ const AccountNftCount = ({
   account: string;
   name: string;
 }) => {
-  const { accountNfts } = useAccountNfts({ accountAddress: account });
+  const { accountNfts } = useAccountNfts({
+    accountAddress: account,
+    season: "two",
+  });
 
   return (
     <Text color="brand.white" fontSize="xs">
@@ -54,7 +56,7 @@ export const TreeMintCard = ({
   account?: string;
   hasDiscount?: boolean;
 }) => {
-  const [currency, setCurrency] = useState<string>("eth");
+  const [currency, setCurrency] = useState<string>("usdc");
   return (
     <Flex direction="column" align="center" gap="1rem">
       <Flex
@@ -87,14 +89,14 @@ export const TreeMintCard = ({
               align="center"
               justify="center"
             >
-              <Radio value="eth" colorScheme="green">
-                <Text fontSize="xs" color="brand.green">
-                  ETH
-                </Text>
-              </Radio>
               <Radio value="usdc" colorScheme="green">
                 <Text fontSize="xs" color="brand.green">
                   USDC
+                </Text>
+              </Radio>
+              <Radio value="eth" colorScheme="green">
+                <Text fontSize="xs" color="brand.green">
+                  ETH
                 </Text>
               </Radio>
             </Flex>

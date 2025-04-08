@@ -15,7 +15,7 @@ function Farm() {
 
   return (
     <>
-      <Flex
+      {/* <Flex
         w="full"
         border="none"
         direction="row"
@@ -50,7 +50,7 @@ function Farm() {
           borderBottom="none"
           background="none"
         />
-      </Flex>
+      </Flex> */}
       {loggedIn && (
         <Box w="full" textAlign="center" px="3rem" mb="2rem">
           <RewardsButton />
@@ -66,9 +66,9 @@ function Farm() {
       >
         {ready && !authenticated && <LogIn />}
 
-        {loggedIn && user?.wallet?.address && (
+        {/* {loggedIn && user?.wallet?.address && (
           <PeachList account={user.wallet.address} />
-        )}
+        )} */}
       </Flex>
       <Flex
         w="full"
@@ -145,7 +145,15 @@ function Farm() {
         background="none"
       />
 
-      <Flex w="100%" pt={8} pb={20} px={20} justify="flex-end">
+      <Flex
+        w="100%"
+        pt={8}
+        pb={20}
+        px={20}
+        justify="flex-end"
+        gap="1rem"
+        wrap="wrap"
+      >
         <Button
           as={Link}
           to="/market"
@@ -165,6 +173,26 @@ function Farm() {
           _hover={{ bg: "transparent", color: "brand.white" }}
         >
           BUY PEACHES
+        </Button>
+        <Button
+          as={Link}
+          to="/season-two"
+          variant="outline"
+          fontFamily="heading"
+          fontSize="xl"
+          fontStyle="italic"
+          fontWeight="700"
+          border="1px"
+          borderColor="brand.green"
+          borderRadius="200px;"
+          color="brand.orange"
+          size="lg"
+          height="60px"
+          width="220px"
+          my="1rem"
+          _hover={{ bg: "transparent", color: "brand.white" }}
+        >
+          SEASON 2 FARM
         </Button>
       </Flex>
     </>

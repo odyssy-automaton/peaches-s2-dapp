@@ -7,7 +7,6 @@ import { PeachNftCardSimple } from "./PeachNftCardSimple";
 export const PeachListSeasonTwo = ({ account }: { account: string }) => {
   const { accountNfts, isLoading } = useAccountPeaches({
     accountAddress: account,
-    season: "two",
   });
 
   return (
@@ -27,7 +26,7 @@ export const PeachListSeasonTwo = ({ account }: { account: string }) => {
               <PeachNftCardSimple
                 peach={token}
                 key={token.tokenID}
-                season="2"
+                season={2}
               />
             );
           })}

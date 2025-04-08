@@ -54,8 +54,8 @@ function Account() {
               direction="column"
               alignItems="flex-start"
             >
-              <Link to="/season-two">Season 2 NFTs</Link>
-              <Link to="/farm">Season 3 NFTs</Link>
+              <Link to="/farm">Season 3 Farm</Link>
+              <Link to="/season-two">Season 2 Farm</Link>
             </Flex>
             <AccountAvatar
               address={user?.wallet.address}

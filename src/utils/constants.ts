@@ -26,17 +26,17 @@ export const NFT_CONTRACT_ADDRESS: Record<string, `0x${string}`> = {
 
 // season 3
 export const TREE_NFT_CONTRACT_ADDRESS_S3: Record<string, `0x${string}`> = {
-  "0xaa36a7": "0xB49a877D82c1f0133B0293dfd20eB54BEd07a290",
+  "0xaa36a7": "0x77Bb60A289cA50b5A90729ED727c2dAf0db97Ca0",
   "0x2105": "0xA9d3c833df8415233e1626F29E33ccBA37d2A187",
 };
 
 export const NFT_MINT_PRICE: Record<string, bigint> = {
-  "0xaa36a7": BigInt(170000000000000000),
+  "0xaa36a7": BigInt(6900000000000000),
   "0x2105": BigInt(170000000000000000),
 };
 
 export const TREE_NFT_MINT_PRICE_ERC20: Record<string, bigint> = {
-  "0xaa36a7": BigInt(95000000000000000000),
+  "0xaa36a7": BigInt(300000000),
   "0x2105": BigInt(300000000),
 };
 
@@ -165,7 +165,7 @@ export const CHECKOUT_URL =
 
 export type NftTreeMeta = { name: string; img: string; value: number };
 
-export const CRITTER_COUNT_PLUS_ONE = 7;
+export const CRITTER_COUNT_PLUS_ONE = 10;
 
 export const TREE_NFT_DATA: NftTreeMeta[] = [
   {

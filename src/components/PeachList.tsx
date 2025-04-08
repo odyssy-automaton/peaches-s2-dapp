@@ -7,6 +7,7 @@ import { PeachNftCard } from "./PeachNftCard";
 export const PeachList = ({ account }: { account: string }) => {
   const { accountNfts, isLoading } = useAccountPeaches({
     accountAddress: account,
+    season: "two",
   });
 
   return (

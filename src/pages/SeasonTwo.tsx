@@ -1,10 +1,11 @@
 import { usePrivy } from "@privy-io/react-auth";
-import { Box, Divider, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, Text } from "@chakra-ui/react";
 
 import { LogIn } from "../components/LogIn";
 import { RewardsButton } from "../components/RewardsButton";
 import { PeachListSeasonTwo } from "../components/PeachListSeasonTwo";
 import { TreeListSeasonTwo } from "../components/TreeListSeasonTwo";
+import { Link } from "react-router-dom";
 
 function SeasonTwo() {
   const { ready, authenticated, user } = usePrivy();
@@ -132,6 +133,37 @@ function SeasonTwo() {
         borderBottom="none"
         background="none"
       />
+
+      <Flex
+        w="100%"
+        pt={8}
+        pb={20}
+        px={20}
+        justify="flex-end"
+        gap="1rem"
+        wrap="wrap"
+      >
+        <Button
+          as={Link}
+          to="/season-two"
+          variant="outline"
+          fontFamily="heading"
+          fontSize="xl"
+          fontStyle="italic"
+          fontWeight="700"
+          border="1px"
+          borderColor="brand.green"
+          borderRadius="200px;"
+          color="brand.orange"
+          size="lg"
+          height="60px"
+          width="220px"
+          my="1rem"
+          _hover={{ bg: "transparent", color: "brand.white" }}
+        >
+          CURRENT SEASON
+        </Button>
+      </Flex>
     </>
   );
 }

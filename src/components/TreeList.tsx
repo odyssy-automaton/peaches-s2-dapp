@@ -6,6 +6,7 @@ import { TreeCard } from "./TreeCard";
 export const TreeList = ({ account }: { account: string }) => {
   const { accountNfts, isLoading } = useAccountNfts({
     accountAddress: account,
+    season: "two",
   });
 
   return (

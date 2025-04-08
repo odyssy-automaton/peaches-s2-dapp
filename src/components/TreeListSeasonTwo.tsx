@@ -22,7 +22,7 @@ export const TreeListSeasonTwo = ({ account }: { account: string }) => {
         >
           {accountNfts.balances.map((token: TreeNft) => {
             return (
-              <TreeCardSimple tree={token} key={token.tokenID} season="2" />
+              <TreeCardSimple tree={token} key={token.tokenID} season={2} />
             );
           })}
         </Flex>

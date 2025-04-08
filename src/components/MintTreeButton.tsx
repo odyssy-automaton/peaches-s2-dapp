@@ -21,7 +21,7 @@ import {
   useAccount,
 } from "wagmi";
 
-import erc721Abi from "../abis/ERC721.json";
+import erc721Abi from "../abis/TreeERC721.json";
 import {
   BLOCK_EXPLORER_URL,
   NFT_CONTRACT_ADDRESS,
@@ -74,8 +74,16 @@ export const MintTreeButton = ({
           TREE_NFT_MINT_DISCOUNT_PERC[TARGET_NETWORK]
         )
       : NFT_MINT_PRICE[TARGET_NETWORK];
+
+    console.log(
+      "NFT_MINT_PRICE[TARGET_NETWORK]",
+      NFT_MINT_PRICE[TARGET_NETWORK]
+    );
+    console.log("value", value);
+    console.log("getCritterId()", getCritterId());
+    console.log("trunkId", trunkId);
     writeContract({
-      address: NFT_CONTRACT_ADDRESS[TARGET_NETWORK],
+      address: TREE_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK],
       abi: erc721Abi,
       functionName: "mint",
       value,
@@ -93,7 +101,7 @@ export const MintTreeButton = ({
         )
       : TREE_NFT_MINT_PRICE_ERC20[TARGET_NETWORK];
     writeContract({
-      address: NFT_CONTRACT_ADDRESS[TARGET_NETWORK],
+      address: TREE_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK],
       abi: erc721Abi,
       functionName: "mintERC20",
       args: [trunkId, getCritterId(), amount],

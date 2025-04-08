@@ -5,6 +5,7 @@ export type TreeNft = {
     image?: string;
     name: string;
     description?: string;
+    status?: string;
   };
 };
 

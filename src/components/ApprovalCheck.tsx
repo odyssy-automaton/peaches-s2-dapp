@@ -33,7 +33,11 @@ export const ApprovalCheck = ({
     return (allowance as bigint) < amount;
   }, [amount, allowance, tokenAddress]);
 
-  console.log("needsApproval", needsApproval, allowance, amount);
+  console.log("tokenAddress", tokenAddress);
+  console.log("address", address);
+  console.log("spender", spender);
+
+  console.log("needsApproval", needsApproval, allowance);
 
   if (tokenAddress && needsApproval) {
     return (

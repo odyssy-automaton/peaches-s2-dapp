@@ -43,10 +43,10 @@ export const useAccountPeaches = ({
   season,
 }: {
   accountAddress: string;
-  season?: string;
+  season?: number;
 }) => {
   const seasonContractAddress =
-    season === "two"
+    season === 3
       ? PEACH_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK]
       : PEACH_NFT_CONTRACT_ADDRESS[TARGET_NETWORK];
   const { data, error, ...rest } = useQuery({

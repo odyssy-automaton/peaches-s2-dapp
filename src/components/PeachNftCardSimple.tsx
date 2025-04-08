@@ -12,11 +12,14 @@ export const PeachNftCardSimple = ({
   season,
 }: {
   peach: PeachNft;
-  season: string;
+  season: number;
 }) => {
   const { peachStatus, img } = usePeachStatus({
     tokenId: peach.tokenID,
+    season,
   });
+
+  console.log(img);
 
   return (
     <Flex direction="column" align="center" gap="1rem">
