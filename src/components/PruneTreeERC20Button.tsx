@@ -59,6 +59,7 @@ export const PruneTreeERC20Button = ({
         refetch={refetch}
         spender={PRUNE_CONTRACT_ADDRESS[TARGET_NETWORK]}
         amount={PRUNE_PRICE_ERC20[TARGET_NETWORK]}
+        tokenAddress={ERC20_PAYMENT_TOKEN[TARGET_NETWORK]}
       />
     );
   }

@@ -4,16 +4,16 @@ import waterIcon from "../assets/icon_water.png";
 import pruneIcon from "../assets/icon_prune.png";
 import sprayIcon from "../assets/icon_spray.png";
 import fertIcon from "../assets/icon_fert.png";
-import { fromWei } from "../utils/formatting";
+// import { fromWei } from "../utils/formatting";
 import {
   BOOST_POINTS,
-  FERT_PRICE,
-  FERT_PRICE_ERC20,
-  PRUNE_PRICE,
-  PRUNE_PRICE_ERC20,
-  SPRAY_PRICE,
-  SPRAY_PRICE_ERC20,
-  TARGET_NETWORK,
+  // FERT_PRICE,
+  // FERT_PRICE_ERC20,
+  // PRUNE_PRICE,
+  // PRUNE_PRICE_ERC20,
+  // SPRAY_PRICE,
+  // SPRAY_PRICE_ERC20,
+  // TARGET_NETWORK,
 } from "../utils/constants";
 
 type BoostData = {

@@ -23,22 +23,22 @@ import { useQueryClient } from "@tanstack/react-query";
 
 import {
   ERC20_PAYMENT_TOKEN,
-  PEACH_NFT_CONTRACT_ADDRESS,
+  // PEACH_NFT_CONTRACT_ADDRESS,
   RARIBLE_PREFIX,
-  RARIBLE_STAGE,
+  // RARIBLE_STAGE,
   TARGET_NETWORK,
 } from "../utils/constants";
 import peachAvatar from "../assets/peach-avatar-trans.png";
 
-import { useWallets } from "@privy-io/react-auth";
-import { createRaribleSdk } from "@rarible/sdk";
+// import { useWallets } from "@privy-io/react-auth";
+// import { createRaribleSdk } from "@rarible/sdk";
 // import { toCurrencyId, toItemId } from "@rarible/types";
 
 export const ListPeachButton = ({ tokenId }: { tokenId: string }) => {
   // const { isOpen, onOpen, onClose } = useDisclosure();
   const { isOpen, onClose } = useDisclosure();
 
-  const { wallets } = useWallets();
+  // const { wallets } = useWallets();
 
   const [isListing, setIsListing] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -82,15 +82,15 @@ export const ListPeachButton = ({ tokenId }: { tokenId: string }) => {
 
     try {
       setIsListing(true);
-      const wallet = wallets[0];
-      const provider = await wallet.getEthersProvider();
-      const signer = provider.getSigner();
+      // const wallet = wallets[0];
+      // const provider = await wallet.getEthersProvider();
+      // const signer = provider.getSigner();
 
-      const sdk = createRaribleSdk(signer, RARIBLE_STAGE, {
-        apiKey: import.meta.env.VITE_RARIBLE_KEY,
-      });
+      // const sdk = createRaribleSdk(signer, RARIBLE_STAGE, {
+      //   apiKey: import.meta.env.VITE_RARIBLE_KEY,
+      // });
 
-      const contractAddress = PEACH_NFT_CONTRACT_ADDRESS[TARGET_NETWORK];
+      // const contractAddress = PEACH_NFT_CONTRACT_ADDRESS[TARGET_NETWORK];
 
       const currencyId = `${RARIBLE_PREFIX}:${
         currency === "$DEGEN"
@@ -100,23 +100,25 @@ export const ListPeachButton = ({ tokenId }: { tokenId: string }) => {
 
       console.log("currencyId", currencyId);
 
-      const orderId = await sdk.order.sell({
-        // itemId: toItemId(`${RARIBLE_PREFIX}:${contractAddress}:${tokenId}`),
-        // @ts-expect-error react types
-        itemId: `${RARIBLE_PREFIX}:${contractAddress}:${tokenId}`,
-        amount: 1,
-        // currency: toCurrencyId(currencyId),
-        // @ts-expect-error react types
-        currency: currencyId,
-        price: price,
-      });
+      // const orderId = await sdk.order.sell({
+      //   // itemId: toItemId(`${RARIBLE_PREFIX}:${contractAddress}:${tokenId}`),
+      //   // @ts-expect-error react types
+      //   itemId: `${RARIBLE_PREFIX}:${contractAddress}:${tokenId}`,
+      //   amount: 1,
+      //   // currency: toCurrencyId(currencyId),
+      //   // @ts-expect-error react types
+      //   currency: currencyId,
+      //   price: price,
+      // });
 
-      console.log(`Successfully listed. Order ID: ${orderId}`);
+      // console.log(`Successfully listed. Order ID: ${orderId}`);
 
       setIsListing(false);
-      if (orderId) {
-        setIsConfirmed(true);
-      }
+
+      // if (orderId) {
+      //   setIsConfirmed(true);
+      // }
+      setIsConfirmed(false);
     } catch (err) {
       console.log("err", err);
       setIsListing(false);

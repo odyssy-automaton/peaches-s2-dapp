@@ -5,7 +5,6 @@ import { LogIn } from "../components/LogIn";
 import { TreeList } from "../components/TreeList";
 import { Link } from "react-router-dom";
 import { BoostContent } from "../components/BoostContent";
-import { PeachList } from "../components/PeachList";
 import { RewardsButton } from "../components/RewardsButton";
 
 function Farm() {

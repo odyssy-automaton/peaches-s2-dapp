@@ -22,6 +22,7 @@ export const ListingCard = ({
   // const { peachStatus, img, orders } = usePeachStatus({
   const { peachStatus, img } = usePeachStatus({
     tokenId,
+    season: 2,
   });
 
   // const isListed = orders && orders.length > 0;

@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Image, Link, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Link, Text } from "@chakra-ui/react";
 import { TreeNft } from "../utils/types";
 import {
   blockExplorerNftLink,
