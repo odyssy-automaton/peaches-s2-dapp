@@ -1,5 +1,4 @@
 import { Box, Flex, Heading, Image, Link, Text } from "@chakra-ui/react";
-import { TreeNft } from "../utils/types";
 import {
   blockExplorerNftLink,
   dhImagePath,
@@ -10,6 +9,7 @@ import { TreeStats } from "./TreeStats";
 import peachAvatar from "../assets/peach-avatar-trans.png";
 import { TreeActions } from "./TreeActions";
 import { useTreePoints } from "../hooks/useTreePoints";
+import { TreeNft } from "../utils/types";
 
 export const TreeCard = ({
   tree,

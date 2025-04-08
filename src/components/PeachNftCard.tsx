@@ -1,6 +1,5 @@
 // import { Link as RouterLink } from "react-router-dom";
 import { Box, Flex, Image, Link, Text } from "@chakra-ui/react";
-import { PeachNft } from "../utils/types";
 import {
   blockExplorerPeachNftLink,
   // getPriceText,
@@ -9,13 +8,14 @@ import {
 
 import { usePeachStatus } from "../hooks/usePeachStatus";
 import { PeachActions } from "./PeachActions";
+import { TokenBalance } from "@0xsequence/indexer";
 // import { CastLink } from "./CastLink";
 
 export const PeachNftCard = ({
   peach,
   account,
 }: {
-  peach: PeachNft;
+  peach: TokenBalance;
   account: string;
 }) => {
   // const { peachStatus, tokenState, img, orders } = usePeachStatus({
