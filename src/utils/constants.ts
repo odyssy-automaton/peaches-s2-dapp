@@ -27,7 +27,8 @@ export const NFT_CONTRACT_ADDRESS: Record<string, `0x${string}`> = {
 // season 3
 export const TREE_NFT_CONTRACT_ADDRESS_S3: Record<string, `0x${string}`> = {
   "0xaa36a7": "0x77Bb60A289cA50b5A90729ED727c2dAf0db97Ca0",
-  "0x2105": "0x9693C1f083ECF8D5d39af19d38E0e2377919564A",
+  "0x2105": "0x4BF1dbF84A9be841F2209E23Da22514a28F124C0",
+  // "0x2105": "0x9693c1f083ecf8d5d39af19d38e0e2377919564a",
 };
 
 export const NFT_MINT_PRICE: Record<string, bigint> = {
