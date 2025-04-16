@@ -37,9 +37,8 @@ export const HomeSectionOne = () => {
           Get Trees!
         </Text>
         <Text maxW="460px" mb="2rem">
-          Welcome to PΞACH Tycoon Season Tree! For this season, we are once
-          again inviting all humble farmers to try their hand at growing
-          peaches.
+          Welcome to PΞACH Tycoon Season 3! For this season, we are once again
+          inviting all humble farmers to try their hand at growing peaches.
         </Text>
         <Text maxW="460px" mb="2rem" fontWeight="700">
           Every tree NFT purchased is guaranteed to produce two (2) peach boxes
