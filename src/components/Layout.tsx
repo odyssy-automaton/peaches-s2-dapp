@@ -35,13 +35,14 @@ export const Layout = () => {
         px={8}
       >
         {!hasDiscount && (
-          <Text fontSize={{ base: "sm", sm: "md" }} py="1rem" fontWeight="700">
+          <Text fontSize={{ base: "xs", sm: "md" }} py="1rem" fontWeight="700">
             {SEASON_OPEN_TEXT}
           </Text>
         )}
         {hasDiscount && (
-          <Text fontSize={{ base: "sm", sm: "md" }} py="1rem" fontWeight="700">
-            As a 2024 Season tree holder you get a discount on{" "}
+          <Text fontSize={{ base: "xs", sm: "md" }} py="1rem" fontWeight="700">
+            Season 2024 NFTs are no longer redeemable for peaches, but as a 2024
+            tree holder you get a discount on{" "}
             <Link to="buy-trees" style={{ color: "#F5253D" }}>
               2025 Season trees!
             </Link>
