@@ -36,7 +36,9 @@ function BuyTrees() {
 
   return (
     <>
-      <RemainingTreeSupply />
+      <Box mt="4">
+        <RemainingTreeSupply />
+      </Box>
 
       <Box mb="2rem" textAlign="center">
         {/* <Heading size="xl">Tree Sales Have Ended</Heading> */}

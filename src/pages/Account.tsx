@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, useToast } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Text, useToast } from "@chakra-ui/react";
 import { usePrivy } from "@privy-io/react-auth";
 import { AccountAvatar } from "../components/AccountAvatar";
 import { LogIn } from "../components/LogIn";
@@ -48,13 +48,21 @@ function Account() {
               mb="1rem"
               fontSize="lg"
               fontWeight="700"
-              textDecoration="underline"
               color="brand.orange"
               direction="column"
               alignItems="flex-start"
             >
-              <Link to="/farm">Season 3 Farm</Link>
-              <Link to="/season-two">Season 2 Farm</Link>
+              <Link to="/farm">
+                <Text textDecoration="underline">2025 Season Farm</Text>
+              </Link>
+              <Link to="/season-two">
+                <Text textDecoration="underline">2024 Season Farm*</Text>
+              </Link>
+
+              <Text fontSize="xs" color="brand.orange">
+                *Season 2 NFTs are no longer redeemable for peaches. Season 2
+                farmers can buy discounted Season 3 trees to play again.
+              </Text>
             </Flex>
             <AccountAvatar
               address={user?.wallet.address}

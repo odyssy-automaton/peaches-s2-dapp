@@ -63,6 +63,16 @@ function SeasonTwo() {
         mb="3rem"
         justify="center"
       >
+        <Box backgroundColor="brand.green" p="5" borderRadius="20px" mb="3">
+          <Text fontWeight="700" fontSize="xl">
+            Season 2 NFTs are no longer redeemable for peaches. Season 2 farmers
+            can{" "}
+            <Link to="buy-trees" style={{ color: "#F5253D" }}>
+              buy discounted season 3 trees
+            </Link>{" "}
+            to play again.
+          </Text>
+        </Box>
         {ready && !authenticated && <LogIn />}
 
         {loggedIn && user?.wallet?.address && (

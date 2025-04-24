@@ -41,9 +41,9 @@ export const Layout = () => {
         )}
         {hasDiscount && (
           <Text fontSize={{ base: "sm", sm: "md" }} py="1rem" fontWeight="700">
-            As a season 2 tree holder you get a discount on{" "}
+            As a 2024 Season tree holder you get a discount on{" "}
             <Link to="buy-trees" style={{ color: "#F5253D" }}>
-              season 3 trees!
+              2025 Season trees!
             </Link>
           </Text>
         )}
