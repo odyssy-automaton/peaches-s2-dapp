@@ -10,8 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "0xsequence": "^1.9.11",
-    "@0xsequence/indexer": "^2.3.8",
+    "0xsequence": "^2.3.11",
+    "@0xsequence/indexer": "^2.3.11",
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",

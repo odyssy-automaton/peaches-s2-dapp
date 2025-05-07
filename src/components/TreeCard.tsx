@@ -22,6 +22,8 @@ export const TreeCard = ({
     tokenId: tree.tokenID,
   });
 
+  console.log("tree.tokenMetadata", tree.tokenMetadata);
+
   return (
     <Flex direction="column" align="center" gap="1rem">
       <Box

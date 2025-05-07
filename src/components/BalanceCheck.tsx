@@ -47,7 +47,7 @@ export const BalanceCheck = ({
   const hasTokenBalance = useMemo(() => {
     if (!tokenBalance) return false;
 
-    return tokenBalance > targetBalance;
+    return tokenBalance >= targetBalance;
   }, [tokenBalance, targetBalance]);
 
   const handleFunding = async () => {

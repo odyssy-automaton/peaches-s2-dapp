@@ -127,6 +127,8 @@ export const MintTreeButton = ({
 
   const isDisabled = isPending || !chain;
 
+  console.log("price", price);
+
   return (
     <>
       <BalanceCheck
