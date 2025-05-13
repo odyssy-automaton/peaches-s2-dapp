@@ -1,29 +1,27 @@
 import { useReadContract } from "wagmi";
-import {
-  TARGET_NETWORK,
-  TREE_NFT_CONTRACT_ADDRESS_S3,
-} from "../utils/constants";
+import { TARGET_NETWORK, NFT_CONTRACT_ADDRESS } from "../utils/constants";
 import TreeERC721ABI from "../abis/TreeERC721.json";
 
-export const useTreeMintPrice = () => {
-  const contractAddress = TREE_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK];
+type TreeMintPrice = {
+  erc20MintPrice: bigint | undefined;
+  nativeMintPrice: bigint | undefined;
+};
 
-  console.log("contractAddress", contractAddress);
-
-  const { data: nativeMintPrice } = useReadContract({
-    address: contractAddress,
-    abi: TreeERC721ABI,
-    functionName: "mintPrice",
-  });
+export const useTreeMintPrice = (): TreeMintPrice => {
+  const contractAddress = NFT_CONTRACT_ADDRESS[TARGET_NETWORK];
 
   const { data: erc20MintPrice } = useReadContract({
     address: contractAddress,
     abi: TreeERC721ABI,
     functionName: "erc20MintPrice",
-  });
+  }) as { data: bigint | undefined };
 
-  console.log("erc20MintPrice", erc20MintPrice);
-  console.log("nativeMintPrice", nativeMintPrice);
+  const { data: nativeMintPrice } = useReadContract({
+    address: contractAddress,
+    abi: TreeERC721ABI,
+    functionName: "mintPrice",
+  }) as { data: bigint | undefined };
+
   return {
     erc20MintPrice,
     nativeMintPrice,
