@@ -1,5 +1,8 @@
 import { useReadContract } from "wagmi";
-import { TARGET_NETWORK, NFT_CONTRACT_ADDRESS } from "../utils/constants";
+import {
+  TARGET_NETWORK,
+  TREE_NFT_CONTRACT_ADDRESS_S3,
+} from "../utils/constants";
 import TreeERC721ABI from "../abis/TreeERC721.json";
 
 type TreeMintPrice = {
@@ -8,7 +11,7 @@ type TreeMintPrice = {
 };
 
 export const useTreeMintPrice = (): TreeMintPrice => {
-  const contractAddress = NFT_CONTRACT_ADDRESS[TARGET_NETWORK];
+  const contractAddress = TREE_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK];
 
   const { data: erc20MintPrice } = useReadContract({
     address: contractAddress,

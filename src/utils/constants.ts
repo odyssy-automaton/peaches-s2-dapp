@@ -32,16 +32,6 @@ export const TREE_NFT_CONTRACT_ADDRESS_S3: Record<string, `0x${string}`> = {
   // "0x2105": "0x9693c1f083ecf8d5d39af19d38e0e2377919564a",
 };
 
-export const NFT_MINT_PRICE: Record<string, bigint> = {
-  "0xaa36a7": BigInt(6900000000000000),
-  "0x2105": BigInt(170000000000000000),
-};
-
-export const TREE_NFT_MINT_PRICE_ERC20: Record<string, bigint> = {
-  "0xaa36a7": BigInt(300000000),
-  "0x2105": BigInt(300000000),
-};
-
 export const TREE_NFT_MINT_DISCOUNT_PERC: Record<string, number> = {
   "0xaa36a7": 10,
   "0x2105": 10,
