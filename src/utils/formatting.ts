@@ -2,7 +2,6 @@ import { formatEther, formatUnits } from "viem";
 import {
   BLOCK_EXPLORER_URL,
   NFT_CONTRACT_ADDRESS,
-  NFT_MINT_PRICE,
   PEACH_NFT_CONTRACT_ADDRESS,
   TARGET_NETWORK,
 } from "./constants";
