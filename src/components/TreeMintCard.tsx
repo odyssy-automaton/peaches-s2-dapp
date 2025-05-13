@@ -8,11 +8,9 @@ import {
   Text,
 } from "@chakra-ui/react";
 import {
-  NFT_MINT_PRICE,
   NftTreeMeta,
   TARGET_NETWORK,
   TREE_NFT_MINT_DISCOUNT_PERC,
-  TREE_NFT_MINT_PRICE_ERC20,
 } from "../utils/constants";
 import { useAccountNfts } from "../hooks/useAccountNfts";
 import { fromUSDC, fromWei } from "../utils/formatting";
@@ -20,7 +18,7 @@ import { LogIn } from "./LogIn";
 import { discountPrice } from "../utils/price";
 import { useState } from "react";
 import { MintTreeButton } from "./MintTreeButton";
-// import { MintTreeButton } from "./MintTreeButton";
+import { useTreeMintPrice } from "../hooks/useTreeMintPrice";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const holdingCount = (name: string, nfts?: any[]) => {
@@ -57,6 +55,8 @@ export const TreeMintCard = ({
   hasDiscount?: boolean;
 }) => {
   const [currency, setCurrency] = useState<string>("eth");
+  const { erc20MintPrice, nativeMintPrice } = useTreeMintPrice();
+
   return (
     <Flex direction="column" align="center" gap="1rem">
       <Flex
@@ -105,11 +105,9 @@ export const TreeMintCard = ({
           {!hasDiscount && (
             <Heading size="md" color="brand.blue">
               {currency === "eth" &&
-                `${fromWei(NFT_MINT_PRICE[TARGET_NETWORK].toString())} ETH`}
+                `${fromWei(nativeMintPrice?.toString() || "0")} ETH`}
               {currency === "usdc" &&
-                `${fromUSDC(
-                  TREE_NFT_MINT_PRICE_ERC20[TARGET_NETWORK].toString()
-                )} USDC`}
+                `${fromUSDC(erc20MintPrice?.toString() || "0")} USDC`}
             </Heading>
           )}
 
@@ -119,7 +117,7 @@ export const TreeMintCard = ({
                 {currency === "eth" &&
                   `${fromWei(
                     discountPrice(
-                      NFT_MINT_PRICE[TARGET_NETWORK],
+                      nativeMintPrice || 0n,
                       TREE_NFT_MINT_DISCOUNT_PERC[TARGET_NETWORK]
                     ).toString()
                   )} ETH`}
@@ -127,7 +125,7 @@ export const TreeMintCard = ({
                 {currency === "usdc" &&
                   `${fromUSDC(
                     discountPrice(
-                      TREE_NFT_MINT_PRICE_ERC20[TARGET_NETWORK],
+                      erc20MintPrice || 0n,
                       TREE_NFT_MINT_DISCOUNT_PERC[TARGET_NETWORK]
                     ).toString()
                   )} USDC`}
@@ -135,12 +133,10 @@ export const TreeMintCard = ({
               <Heading size="md" color="brand.blue">
                 <s>
                   {currency === "eth" &&
-                    `${fromWei(NFT_MINT_PRICE[TARGET_NETWORK].toString())} ETH`}
+                    `${fromWei(nativeMintPrice?.toString() || "0")} ETH`}
 
                   {currency === "usdc" &&
-                    `${fromUSDC(
-                      TREE_NFT_MINT_PRICE_ERC20[TARGET_NETWORK].toString()
-                    )} USDC`}
+                    `${fromUSDC(erc20MintPrice?.toString() || "0")} USDC`}
                 </s>
               </Heading>
             </>
@@ -154,29 +150,6 @@ export const TreeMintCard = ({
             currency={currency}
             hasDiscount={hasDiscount}
           />
-
-          // <Button
-          //   variant="outline"
-          //   fontFamily="heading"
-          //   fontSize="xl"
-          //   fontStyle="italic"
-          //   fontWeight="700"
-          //   border="1px"
-          //   borderColor="brand.green"
-          //   borderRadius="200px;"
-          //   color="brand.orange"
-          //   size="lg"
-          //   height="60px"
-          //   width="220px"
-          //   my="1rem"
-          //   isDisabled={true}
-          //   _hover={{
-          //     bg: "transparent",
-          //     color: "brand.orange",
-          //   }}
-          // >
-          //   MINT
-          // </Button>
         )}
         {!account && (
           <>

@@ -24,10 +24,8 @@ import {
 import erc721Abi from "../abis/TreeERC721.json";
 import {
   BLOCK_EXPLORER_URL,
-  NFT_MINT_PRICE,
   CRITTER_COUNT_PLUS_ONE,
   TARGET_NETWORK,
-  TREE_NFT_MINT_PRICE_ERC20,
   TREE_NFT_MINT_DISCOUNT_PERC,
   TREE_ERC20_PAYMENT_TOKEN,
   TREE_NFT_CONTRACT_ADDRESS_S3,
@@ -36,6 +34,7 @@ import { discountPrice } from "../utils/price";
 import { BalanceCheck } from "./BalanceCheck";
 import { useMemo } from "react";
 import { ApprovalCheck } from "./ApprovalCheck";
+import { useTreeMintPrice } from "../hooks/useTreeMintPrice";
 
 const getCritterId = () => {
   return Math.floor(Math.random() * CRITTER_COUNT_PLUS_ONE);
@@ -56,6 +55,7 @@ export const MintTreeButton = ({
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { chain, address } = useAccount();
+  const { erc20MintPrice, nativeMintPrice } = useTreeMintPrice();
 
   const { data: hash, error, isPending, writeContract } = useWriteContract();
 
@@ -69,15 +69,12 @@ export const MintTreeButton = ({
 
     const value = hasDiscount
       ? discountPrice(
-          NFT_MINT_PRICE[TARGET_NETWORK],
+          nativeMintPrice || 0n,
           TREE_NFT_MINT_DISCOUNT_PERC[TARGET_NETWORK]
         )
-      : NFT_MINT_PRICE[TARGET_NETWORK];
+      : nativeMintPrice || 0n;
 
-    console.log(
-      "NFT_MINT_PRICE[TARGET_NETWORK]",
-      NFT_MINT_PRICE[TARGET_NETWORK]
-    );
+    console.log("nativeMintPrice", nativeMintPrice);
     console.log("value", value);
     console.log("getCritterId()", getCritterId());
     console.log("trunkId", trunkId);
@@ -95,10 +92,10 @@ export const MintTreeButton = ({
 
     const amount = hasDiscount
       ? discountPrice(
-          TREE_NFT_MINT_PRICE_ERC20[TARGET_NETWORK],
+          erc20MintPrice || 0n,
           TREE_NFT_MINT_DISCOUNT_PERC[TARGET_NETWORK]
         )
-      : TREE_NFT_MINT_PRICE_ERC20[TARGET_NETWORK];
+      : erc20MintPrice || 0n;
     writeContract({
       address: TREE_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK],
       abi: erc721Abi,
@@ -111,19 +108,19 @@ export const MintTreeButton = ({
     if (currency === "usdc") {
       return hasDiscount
         ? discountPrice(
-            TREE_NFT_MINT_PRICE_ERC20[TARGET_NETWORK],
+            erc20MintPrice || 0n,
             TREE_NFT_MINT_DISCOUNT_PERC[TARGET_NETWORK]
           )
-        : TREE_NFT_MINT_PRICE_ERC20[TARGET_NETWORK];
+        : erc20MintPrice || 0n;
     } else {
       return hasDiscount
         ? discountPrice(
-            NFT_MINT_PRICE[TARGET_NETWORK],
+            nativeMintPrice || 0n,
             TREE_NFT_MINT_DISCOUNT_PERC[TARGET_NETWORK]
           )
-        : NFT_MINT_PRICE[TARGET_NETWORK];
+        : nativeMintPrice || 0n;
     }
-  }, [currency, hasDiscount]);
+  }, [currency, hasDiscount, erc20MintPrice, nativeMintPrice]);
 
   const isDisabled = isPending || !chain;
 
@@ -134,7 +131,6 @@ export const MintTreeButton = ({
       <BalanceCheck
         address={address}
         targetBalance={price}
-        // targetBalance={99999480020000000000000000n}
         tokenAddress={
           currency === "usdc"
             ? TREE_ERC20_PAYMENT_TOKEN[TARGET_NETWORK]

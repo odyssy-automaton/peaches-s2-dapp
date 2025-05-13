@@ -4,11 +4,7 @@ import { useBalance, useChainId, useChains, useReadContract } from "wagmi";
 import erc20Abi from "../abis/ERC20.json";
 import { useFundWallet, usePrivy } from "@privy-io/react-auth";
 import { fromUSDC, fromWei } from "../utils/formatting";
-import {
-  NFT_MINT_PRICE,
-  TARGET_NETWORK,
-  TREE_NFT_MINT_PRICE_ERC20,
-} from "../utils/constants";
+import { useTreeMintPrice } from "../hooks/useTreeMintPrice";
 
 export const BalanceCheck = ({
   address,
@@ -26,6 +22,7 @@ export const BalanceCheck = ({
   const chainId = useChainId();
   const chains = useChains();
   const activeChain = chains.find((c) => c.id === chainId);
+  const { erc20MintPrice, nativeMintPrice } = useTreeMintPrice();
 
   const result = useBalance({
     address: address as `0x${string}`,
@@ -53,8 +50,8 @@ export const BalanceCheck = ({
   const handleFunding = async () => {
     if (user?.wallet?.address) {
       const amount = tokenAddress
-        ? fromUSDC(TREE_NFT_MINT_PRICE_ERC20[TARGET_NETWORK].toString())
-        : fromWei(NFT_MINT_PRICE[TARGET_NETWORK].toString());
+        ? fromUSDC(erc20MintPrice?.toString() || "0")
+        : fromWei(nativeMintPrice?.toString() || "0");
 
       console.log("amount", amount);
       await fundWallet(user.wallet.address, {
