@@ -8,7 +8,7 @@ import {
 import erc721Abi from "../abis/ERC721.json";
 import { fromBigNumber } from "../utils/formatting";
 
-const supply = 150;
+const supply = 100;
 
 export const RemainingTreeSupply = () => {
   const { data: totalSupply } = useReadContract({
@@ -17,12 +17,9 @@ export const RemainingTreeSupply = () => {
     functionName: "totalSupply",
   });
 
-  if (!totalSupply)
-    return (
-      <Box mb="2rem" textAlign="center">
-        <Heading size="lg">{supply} Trees Available</Heading>
-      </Box>
-    );
+  if (!totalSupply) {
+    return;
+  }
 
   const total = totalSupply as bigint;
   const count = fromBigNumber(BigInt(supply) - total);
