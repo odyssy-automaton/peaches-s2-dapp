@@ -31,11 +31,11 @@ import {
   BLOCK_EXPLORER_URL,
   BOOST_POINTS,
   FERT_CONTRACT_ADDRESS,
-  FERT_DISCOUNT_ADDRESS,
-  FERT_DISCOUNT_ERC20_PRICE,
-  FERT_DISCOUNT_PRICE,
-  FERT_PRICE,
-  FERT_PRICE_ERC20,
+  // FERT_DISCOUNT_ADDRESS,
+  // FERT_DISCOUNT_ERC20_PRICE,
+  // FERT_DISCOUNT_PRICE,
+  // FERT_PRICE,
+  // FERT_PRICE_ERC20,
   TARGET_NETWORK,
 } from "../utils/constants";
 import peachAvatar from "../assets/peach-avatar-trans.png";
@@ -47,10 +47,12 @@ import { usePrivy } from "@privy-io/react-auth";
 import { useTreePoints } from "../hooks/useTreePoints";
 import { FertTreeERC20Button } from "./FertTreeERC20Button";
 import { FERT_DESCRIPTION } from "./BoostContent";
+import { usePrices } from "../hooks/usePrices";
 
 export const FertTreeButton = ({ tokenId }: { tokenId: string }) => {
   // const { isOpen, onOpen, onClose } = useDisclosure();
   const { isOpen, onClose } = useDisclosure();
+  const { fertPrice, fertPriceErc20 } = usePrices();
 
   const { chain } = useAccount();
   const { user } = usePrivy();
@@ -63,13 +65,6 @@ export const FertTreeButton = ({ tokenId }: { tokenId: string }) => {
   const result = useBalance({
     address: user?.wallet?.address as `0x${string}`,
   });
-
-  const { data: discountBalance } = useReadContract({
-    address: FERT_DISCOUNT_ADDRESS[TARGET_NETWORK] as `0x${string}`,
-    abi: erc20Abi,
-    functionName: "balanceOf",
-    args: [user?.wallet?.address as `0x${string}`],
-  }) as { data: bigint };
 
   const {
     data: hash,
@@ -104,19 +99,7 @@ export const FertTreeButton = ({ tokenId }: { tokenId: string }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
-  // const handleConfirm = () => {
-  //   onOpen();
-  // };
-
-  const hasDiscount = discountBalance > 0;
-  const ethBuyPrice = hasDiscount
-    ? FERT_DISCOUNT_PRICE[TARGET_NETWORK]
-    : FERT_PRICE[TARGET_NETWORK];
-  const erc20BuyPrice = hasDiscount
-    ? FERT_DISCOUNT_ERC20_PRICE[TARGET_NETWORK]
-    : FERT_PRICE_ERC20[TARGET_NETWORK];
-  const hasBalance = ethBuyPrice < BigInt(result?.data?.value || 0);
-
+  const hasBalance = fertPrice < BigInt(result?.data?.value || 0);
   const isDisabled = isPending || !chain || !hasBalance;
 
   const handleFert = async () => {
@@ -124,7 +107,7 @@ export const FertTreeButton = ({ tokenId }: { tokenId: string }) => {
       address: FERT_CONTRACT_ADDRESS[TARGET_NETWORK],
       abi: fertAbi,
       functionName: "fertilize",
-      value: ethBuyPrice,
+      value: fertPrice,
       args: [tokenId],
     });
   };
@@ -134,7 +117,7 @@ export const FertTreeButton = ({ tokenId }: { tokenId: string }) => {
       address: FERT_CONTRACT_ADDRESS[TARGET_NETWORK],
       abi: fertAbi,
       functionName: "fertilizeERC20",
-      args: [tokenId, erc20BuyPrice],
+      args: [tokenId, fertPriceErc20],
     });
   };
 
@@ -216,42 +199,13 @@ export const FertTreeButton = ({ tokenId }: { tokenId: string }) => {
               {!hash && (
                 <>
                   <Flex direction="column" justify="center" align="center">
-                    {hasDiscount && (
-                      <Text
-                        fontSize="sm"
-                        color="brand.red"
-                        fontWeight="700"
-                        mb="1rem"
-                      >
-                        You Got the Season 1 Peach Holder Discount!
-                      </Text>
-                    )}
                     <Text fontSize="sm" fontWeight="700" color="brand.blue">
                       Cost
                     </Text>
-                    {hasDiscount && (
-                      <>
-                        <Heading size="md" color="brand.blue">
-                          <s>
-                            {`${fromWei(
-                              FERT_PRICE[TARGET_NETWORK].toString()
-                            )} BASE ETH`}
-                          </s>
-                        </Heading>
-                        <Heading size="md" color="brand.red">
-                          {`${fromWei(
-                            FERT_DISCOUNT_PRICE[TARGET_NETWORK].toString()
-                          )} BASE ETH`}
-                        </Heading>
-                      </>
-                    )}
-                    {!hasDiscount && (
-                      <Heading size="md" color="brand.blue">
-                        {`${fromWei(
-                          FERT_PRICE[TARGET_NETWORK].toString()
-                        )} BASE ETH`}
-                      </Heading>
-                    )}
+
+                    <Heading size="md" color="brand.blue">
+                      {`${fromWei(fertPrice.toString())} BASE ETH`}
+                    </Heading>
                   </Flex>
 
                   <Button
@@ -283,36 +237,17 @@ export const FertTreeButton = ({ tokenId }: { tokenId: string }) => {
                     <Text fontSize="sm" fontWeight="700" color="brand.blue">
                       Cost
                     </Text>
-                    {hasDiscount && (
-                      <>
-                        <Heading size="md" color="brand.blue">
-                          <s>
-                            {`${fromWei(
-                              FERT_PRICE_ERC20[TARGET_NETWORK].toString()
-                            )} $DEGEN`}
-                          </s>
-                        </Heading>
-                        <Heading size="md" color="brand.red">
-                          {`${fromWei(
-                            FERT_DISCOUNT_ERC20_PRICE[TARGET_NETWORK].toString()
-                          )} $DEGEN`}
-                        </Heading>
-                      </>
-                    )}
-                    {!hasDiscount && (
-                      <Heading size="md" color="brand.blue">
-                        {`${fromWei(
-                          FERT_PRICE_ERC20[TARGET_NETWORK].toString()
-                        )} $DEGEN`}
-                      </Heading>
-                    )}
+
+                    <Heading size="md" color="brand.blue">
+                      {`${fromWei(fertPriceErc20.toString())} USDC`}
+                    </Heading>
                   </Flex>
 
                   <FertTreeERC20Button
                     address={user?.wallet?.address}
                     handleFertERC20={handleFertERC20}
                     isDisabled={isDisabled}
-                    erc20BuyPrice={erc20BuyPrice}
+                    erc20BuyPrice={fertPriceErc20}
                   />
                 </>
               )}

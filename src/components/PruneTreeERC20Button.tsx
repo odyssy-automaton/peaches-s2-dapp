@@ -3,12 +3,12 @@ import { useReadContract, useAccount } from "wagmi";
 import {
   ERC20_PAYMENT_TOKEN,
   TARGET_NETWORK,
-  PRUNE_PRICE_ERC20,
   PRUNE_CONTRACT_ADDRESS,
 } from "../utils/constants";
 
 import erc20Abi from "../abis/ERC20.json";
 import { ApproveERC20 } from "./ApproveERC20Button";
+import { PRUNE_PRICE_ERC20 } from "../hooks/usePrices";
 
 const buttonText = (hasBalance: boolean, hasAllowance: boolean) => {
   if (!hasBalance) {

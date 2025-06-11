@@ -45,8 +45,10 @@ export const TREE_ERC20_PAYMENT_TOKEN: Record<string, string> = {
 // boosts;
 
 export const ERC20_PAYMENT_TOKEN: Record<string, string> = {
+  // "0xaa36a7": "0x53c8156592A64E949A4736c6D3309002fa0b2Aba",
+  // "0x2105": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
   "0xaa36a7": "0x53c8156592A64E949A4736c6D3309002fa0b2Aba",
-  "0x2105": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+  "0x2105": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
 };
 
 export const PRUNE_CONTRACT_ADDRESS: Record<string, `0x${string}`> = {
@@ -54,59 +56,29 @@ export const PRUNE_CONTRACT_ADDRESS: Record<string, `0x${string}`> = {
   "0x2105": "0xEEcAAe1d9061f0ae1813e41A47179e06844ac0Ec",
 };
 
-export const PRUNE_PRICE: Record<string, bigint> = {
-  "0xaa36a7": BigInt(1000000000000000),
-  "0x2105": BigInt(22000000000000000),
-};
-
-export const PRUNE_PRICE_ERC20: Record<string, bigint> = {
-  "0xaa36a7": BigInt(10000000000000000),
-  "0x2105": BigInt(5200000000000000000000),
-};
-
 export const FERT_CONTRACT_ADDRESS: Record<string, `0x${string}`> = {
   "0xaa36a7": "0xAd8cA82737779b12858b303563B4Ab61099e14b8",
   "0x2105": "0x70B0A88cB071B8258aeD255370e1e2F8F1725A93",
 };
 
-export const FERT_PRICE: Record<string, bigint> = {
-  "0xaa36a7": BigInt(1000000000000000),
-  "0x2105": BigInt(35000000000000000),
-};
+// export const FERT_DISCOUNT_ADDRESS: Record<string, `0x${string}`> = {
+//   "0xaa36a7": "0x8FAE2f5B1eD1a73ee7c96703AeaCc735Fbe82Ed0",
+//   "0x2105": "0xe68E3B3Ee0ce43d55fedCB625D48af4601693a04",
+// };
 
-export const FERT_DISCOUNT_ADDRESS: Record<string, `0x${string}`> = {
-  "0xaa36a7": "0x8FAE2f5B1eD1a73ee7c96703AeaCc735Fbe82Ed0",
-  "0x2105": "0xe68E3B3Ee0ce43d55fedCB625D48af4601693a04",
-};
+// export const FERT_DISCOUNT_PRICE: Record<string, bigint> = {
+//   "0xaa36a7": BigInt(900000000000000),
+//   "0x2105": BigInt(26250000000000000),
+// };
 
-export const FERT_PRICE_ERC20: Record<string, bigint> = {
-  "0xaa36a7": BigInt(1000000000000000),
-  "0x2105": BigInt(5000000000000000000000),
-};
-
-export const FERT_DISCOUNT_PRICE: Record<string, bigint> = {
-  "0xaa36a7": BigInt(900000000000000),
-  "0x2105": BigInt(26250000000000000),
-};
-
-export const FERT_DISCOUNT_ERC20_PRICE: Record<string, bigint> = {
-  "0xaa36a7": BigInt(900000000000000),
-  "0x2105": BigInt(3750000000000000000000),
-};
+// export const FERT_DISCOUNT_ERC20_PRICE: Record<string, bigint> = {
+//   "0xaa36a7": BigInt(900000000000000),
+//   "0x2105": BigInt(3750000000000000000000),
+// };
 
 export const SPRAY_CONTRACT_ADDRESS: Record<string, `0x${string}`> = {
   "0xaa36a7": "0xe709a9C0412393C3C3a6906b052A57cf86b1Cc81",
   "0x2105": "0x0E8bB0BA9413b39701Bf6F84A068511FdAd3d84D",
-};
-
-export const SPRAY_PRICE: Record<string, bigint> = {
-  "0xaa36a7": BigInt(1000000000000000),
-  "0x2105": BigInt(11000000000000000),
-};
-
-export const SPRAY_PRICE_ERC20: Record<string, bigint> = {
-  "0xaa36a7": BigInt(1000000000000000),
-  "0x2105": BigInt(2040000000000000000000),
 };
 
 export const SPRAYS_PER_TOKEN = 2;

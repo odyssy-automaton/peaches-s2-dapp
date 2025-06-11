@@ -18,7 +18,7 @@ import { LogIn } from "./LogIn";
 import { discountPrice } from "../utils/price";
 import { useState } from "react";
 import { MintTreeButton } from "./MintTreeButton";
-import { useTreeMintPrice } from "../hooks/useTreeMintPrice";
+import { usePrices } from "../hooks/usePrices";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const holdingCount = (name: string, nfts?: any[]) => {
@@ -55,7 +55,7 @@ export const TreeMintCard = ({
   hasDiscount?: boolean;
 }) => {
   const [currency, setCurrency] = useState<string>("eth");
-  const { erc20MintPrice, nativeMintPrice } = useTreeMintPrice();
+  const { erc20MintPrice, nativeMintPrice } = usePrices();
 
   return (
     <Flex direction="column" align="center" gap="1rem">
