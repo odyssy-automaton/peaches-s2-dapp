@@ -22,6 +22,7 @@ import {
   useBalance,
 } from "wagmi";
 import { useQueryClient } from "@tanstack/react-query";
+import { PiCheckFatFill } from "react-icons/pi";
 
 import prunAbi from "../abis/Prune.json";
 import {
@@ -38,20 +39,27 @@ import { useEffect } from "react";
 import { PruneTreeERC20Button } from "./PruneTreeERC20Button";
 import { usePrivy } from "@privy-io/react-auth";
 import { useTreePoints } from "../hooks/useTreePoints";
-import { PRUNE_PRICE, PRUNE_PRICE_ERC20 } from "../hooks/usePrices";
+import { formatUnits } from "viem";
+import { usePrices } from "../hooks/usePrices";
 
 const PRUNE_SHORT_DESCRIPTION =
   "Pruning is a critical practice for maintaining the health and productivity of your trees. You can only prune once before your trees go into spring blossom, so don’t delay! Every pruned tree will earn an additional peach box and 75 points towards the Farmer’s Pot.";
 
-export const PruneTreeButton = ({ tokenId }: { tokenId: string }) => {
-  // const { isOpen, onOpen, onClose } = useDisclosure();
-  const { isOpen, onClose } = useDisclosure();
+export const PruneTreeButton = ({
+  tokenId,
+  hasPrune,
+}: {
+  tokenId: string;
+  hasPrune?: boolean;
+}) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { chain } = useAccount();
   const { user } = usePrivy();
   const { refetch } = useTreePoints({
     tokenId: tokenId,
   });
+  const { prunePrice, prunePriceErc20 } = usePrices();
 
   const queryClient = useQueryClient();
 
@@ -79,16 +87,16 @@ export const PruneTreeButton = ({ tokenId }: { tokenId: string }) => {
     }
   }, [isConfirmed, queryClient, tokenId, refetch]);
 
-  // const handleConfirm = () => {
-  //   onOpen();
-  // };
+  const handleConfirm = () => {
+    onOpen();
+  };
 
   const handlePrune = async () => {
     writeContract({
       address: PRUNE_CONTRACT_ADDRESS[TARGET_NETWORK],
       abi: prunAbi,
       functionName: "prune",
-      value: PRUNE_PRICE[TARGET_NETWORK],
+      value: prunePrice,
       args: [tokenId],
     });
   };
@@ -98,14 +106,14 @@ export const PruneTreeButton = ({ tokenId }: { tokenId: string }) => {
       address: PRUNE_CONTRACT_ADDRESS[TARGET_NETWORK],
       abi: prunAbi,
       functionName: "pruneERC20",
-      args: [tokenId, PRUNE_PRICE_ERC20[TARGET_NETWORK]],
+      args: [tokenId, prunePriceErc20],
     });
   };
 
-  const hasBalance =
-    PRUNE_PRICE[TARGET_NETWORK] < BigInt(result?.data?.value || 0);
+  const hasBalance = prunePrice < BigInt(result?.data?.value || 0);
 
-  const isDisabled = isPending || !chain || !hasBalance;
+  const isDisabled = isPending || !chain || hasPrune;
+
   return (
     <>
       <Button
@@ -115,24 +123,28 @@ export const PruneTreeButton = ({ tokenId }: { tokenId: string }) => {
         fontStyle="italic"
         fontWeight="700"
         border="1px"
-        borderColor="brand.green"
+        borderColor="brand.blue"
         borderRadius="200px;"
-        color="brand.green"
+        color="brand.blue"
         size="lg"
         height="60px"
         width="220px"
         my=".5rem"
-        disabled={true}
+        disabled={isDisabled}
         _hover={{
           bg: "transparent",
-          color: "brand.green",
-          cursor: "not-allowed",
+          color: "brand.blue",
+          cursor: isDisabled ? "not-allowed" : "pointer",
         }}
-        // onClick={handleConfirm}
-        opacity="30%"
+        onClick={handleConfirm}
       >
         <Image src={pruneIcon} w="44px" mr=".5rem" />
         PRUNE
+        {hasPrune && (
+          <Text ml=".25rem">
+            <PiCheckFatFill />
+          </Text>
+        )}
       </Button>
 
       <Modal
@@ -190,9 +202,7 @@ export const PruneTreeButton = ({ tokenId }: { tokenId: string }) => {
                       Cost
                     </Text>
                     <Heading size="md" color="brand.blue">
-                      {`${fromWei(
-                        PRUNE_PRICE[TARGET_NETWORK].toString()
-                      )} BASE ETH`}
+                      {`${fromWei(prunePrice.toString())} BASE ETH`}
                     </Heading>
                   </Flex>
 
@@ -226,9 +236,7 @@ export const PruneTreeButton = ({ tokenId }: { tokenId: string }) => {
                       Cost
                     </Text>
                     <Heading size="md" color="brand.blue">
-                      {`${fromWei(
-                        PRUNE_PRICE_ERC20[TARGET_NETWORK].toString()
-                      )} $DEGEN`}
+                      {`${formatUnits(prunePriceErc20, 6)} USDC`}
                     </Heading>
                   </Flex>
 

@@ -20,22 +20,16 @@ import {
   type BaseError,
   useAccount,
   useBalance,
-  useReadContract,
 } from "wagmi";
 import { useQueryClient } from "@tanstack/react-query";
+import { PiCheckFatFill } from "react-icons/pi";
 
 import fertAbi from "../abis/Fert.json";
-import erc20Abi from "../abis/ERC20.json";
 
 import {
   BLOCK_EXPLORER_URL,
   BOOST_POINTS,
   FERT_CONTRACT_ADDRESS,
-  // FERT_DISCOUNT_ADDRESS,
-  // FERT_DISCOUNT_ERC20_PRICE,
-  // FERT_DISCOUNT_PRICE,
-  // FERT_PRICE,
-  // FERT_PRICE_ERC20,
   TARGET_NETWORK,
 } from "../utils/constants";
 import peachAvatar from "../assets/peach-avatar-trans.png";
@@ -48,10 +42,16 @@ import { useTreePoints } from "../hooks/useTreePoints";
 import { FertTreeERC20Button } from "./FertTreeERC20Button";
 import { FERT_DESCRIPTION } from "./BoostContent";
 import { usePrices } from "../hooks/usePrices";
+import { formatUnits } from "viem";
 
-export const FertTreeButton = ({ tokenId }: { tokenId: string }) => {
-  // const { isOpen, onOpen, onClose } = useDisclosure();
-  const { isOpen, onClose } = useDisclosure();
+export const FertTreeButton = ({
+  tokenId,
+  hasFert,
+}: {
+  tokenId: string;
+  hasFert?: boolean;
+}) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const { fertPrice, fertPriceErc20 } = usePrices();
 
   const { chain } = useAccount();
@@ -99,8 +99,9 @@ export const FertTreeButton = ({ tokenId }: { tokenId: string }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
-  const hasBalance = fertPrice < BigInt(result?.data?.value || 0);
-  const isDisabled = isPending || !chain || !hasBalance;
+  const handleConfirm = () => {
+    onOpen();
+  };
 
   const handleFert = async () => {
     writeContract({
@@ -121,6 +122,9 @@ export const FertTreeButton = ({ tokenId }: { tokenId: string }) => {
     });
   };
 
+  const hasBalance = fertPrice < BigInt(result?.data?.value || 0);
+  const isDisabled = isPending || !chain || hasFert;
+
   return (
     <>
       <Button
@@ -137,16 +141,21 @@ export const FertTreeButton = ({ tokenId }: { tokenId: string }) => {
         height="60px"
         width="220px"
         my=".5rem"
-        disabled={true}
-        opacity="30%"
+        disabled={isDisabled}
         _hover={{
           bg: "transparent",
           color: "brand.orange",
+          cursor: isDisabled ? "not-allowed" : "pointer",
         }}
-        // onClick={handleConfirm}
+        onClick={handleConfirm}
       >
         <Image src={fertIcon} w="44px" mr=".5rem" />
         FERTILIZE
+        {hasFert && (
+          <Text ml=".25rem">
+            <PiCheckFatFill />
+          </Text>
+        )}
       </Button>
       <Modal
         isOpen={isOpen}
@@ -239,7 +248,7 @@ export const FertTreeButton = ({ tokenId }: { tokenId: string }) => {
                     </Text>
 
                     <Heading size="md" color="brand.blue">
-                      {`${fromWei(fertPriceErc20.toString())} USDC`}
+                      {`${formatUnits(fertPriceErc20, 6)} USDC`}
                     </Heading>
                   </Flex>
 

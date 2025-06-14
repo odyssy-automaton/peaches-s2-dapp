@@ -6,35 +6,33 @@ import {
 import TreeERC721ABI from "../abis/TreeERC721.json";
 
 export const PRUNE_PRICE: Record<string, bigint> = {
-  "0xaa36a7": BigInt(1000000000000000),
-  // "0x2105": BigInt(22000000000000000),
-  "0x2105": BigInt(20000000000000000),
+  "0xaa36a7": BigInt(18000000000000000),
+  "0x2105": BigInt(25000000000000000),
 };
 
 export const PRUNE_PRICE_ERC20: Record<string, bigint> = {
-  "0xaa36a7": BigInt(10000000000000000),
-  "0x2105": BigInt(5200000000000000000000),
+  "0xaa36a7": BigInt(18000000000000000),
+  "0x2105": BigInt(75000000),
 };
 
 export const FERT_PRICE: Record<string, bigint> = {
-  "0xaa36a7": BigInt(1000000000000000),
-  // "0x2105": BigInt(35000000000000000),
-  "0x2105": BigInt(20000000000000000),
+  "0xaa36a7": BigInt(25000000000000000),
+  "0x2105": BigInt(25000000000000000),
 };
 
 export const FERT_PRICE_ERC20: Record<string, bigint> = {
-  "0xaa36a7": BigInt(1000000000000000),
-  "0x2105": BigInt(5000000000000000000000),
+  "0xaa36a7": BigInt(25000000000000000),
+  "0x2105": BigInt(75000000),
 };
 
 export const SPRAY_PRICE: Record<string, bigint> = {
-  "0xaa36a7": BigInt(1000000000000000),
-  "0x2105": BigInt(11000000000000000),
+  "0xaa36a7": BigInt(10000000000000000),
+  "0x2105": BigInt(10000000000000000),
 };
 
 export const SPRAY_PRICE_ERC20: Record<string, bigint> = {
-  "0xaa36a7": BigInt(1000000000000000),
-  "0x2105": BigInt(2040000000000000000000),
+  "0xaa36a7": BigInt(10000000000000000),
+  "0x2105": BigInt(30000000),
 };
 
 type TreeMintPrice = {

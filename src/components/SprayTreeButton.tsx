@@ -29,8 +29,6 @@ import {
   BLOCK_EXPLORER_URL,
   BOOST_POINTS,
   SPRAY_CONTRACT_ADDRESS,
-  SPRAY_PRICE,
-  SPRAY_PRICE_ERC20,
   TARGET_NETWORK,
 } from "../utils/constants";
 import peachAvatar from "../assets/peach-avatar-trans.png";
@@ -43,6 +41,8 @@ import { useTreePoints } from "../hooks/useTreePoints";
 import { SprayTreeERC20Button } from "./SprayTreeERC20Button";
 import { SPRAY_DESCRIPTION } from "./BoostContent";
 import { PiCheckFatFill } from "react-icons/pi";
+import { SPRAY_PRICE, SPRAY_PRICE_ERC20 } from "../hooks/usePrices";
+import { formatUnits } from "viem";
 
 export const SprayTreeButton = ({
   tokenId,
@@ -106,7 +106,7 @@ export const SprayTreeButton = ({
   const hasBalance =
     SPRAY_PRICE[TARGET_NETWORK] < BigInt(result?.data?.value || 0);
 
-  const isDisabled = isPending || !chain || !hasBalance;
+  const isDisabled = isPending || !chain || !hasBalance || !canSpray;
 
   const handleSpray = async () => {
     writeContract({
@@ -143,10 +143,11 @@ export const SprayTreeButton = ({
         height="60px"
         width="220px"
         my=".5rem"
-        disabled={false}
+        disabled={isDisabled}
         _hover={{
           bg: "transparent",
           color: "brand.green",
+          cursor: isDisabled ? "not-allowed" : "pointer",
         }}
         onClick={handleConfirm}
       >
@@ -251,9 +252,10 @@ export const SprayTreeButton = ({
                     </Text>
 
                     <Heading size="md" color="brand.blue">
-                      {`${fromWei(
-                        SPRAY_PRICE_ERC20[TARGET_NETWORK].toString()
-                      )} $DEGEN`}
+                      {`${formatUnits(
+                        SPRAY_PRICE_ERC20[TARGET_NETWORK],
+                        6
+                      )} USDC`}
                     </Heading>
                   </Flex>
 

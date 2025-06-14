@@ -4,22 +4,22 @@ import {
   ERC20_PAYMENT_TOKEN,
   TARGET_NETWORK,
   FERT_CONTRACT_ADDRESS,
-  FERT_PRICE_ERC20,
 } from "../utils/constants";
 
 import erc20Abi from "../abis/ERC20.json";
 import { ApproveERC20 } from "./ApproveERC20Button";
+import { FERT_PRICE_ERC20 } from "../hooks/usePrices";
 
 const buttonText = (hasBalance: boolean, hasAllowance: boolean) => {
   if (!hasBalance) {
-    return "NEED MORE $DEGEN";
+    return "NEED MORE USDC";
   }
 
   if (!hasAllowance) {
-    return "APPROVE $DEGEN";
+    return "APPROVE USDC";
   }
 
-  return "PURCHASE WITH $DEGEN";
+  return "PURCHASE WITH USDC";
 };
 
 export const FertTreeERC20Button = ({
@@ -29,7 +29,7 @@ export const FertTreeERC20Button = ({
   handleFertERC20,
 }: {
   address?: string;
-  isDisabled: boolean;
+  isDisabled?: boolean;
   erc20BuyPrice: bigint;
   handleFertERC20: React.MouseEventHandler<HTMLButtonElement>;
 }) => {

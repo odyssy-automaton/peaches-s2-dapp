@@ -93,7 +93,7 @@ export const ListPeachButton = ({ tokenId }: { tokenId: string }) => {
       // const contractAddress = PEACH_NFT_CONTRACT_ADDRESS[TARGET_NETWORK];
 
       const currencyId = `${RARIBLE_PREFIX}:${
-        currency === "$DEGEN"
+        currency === "USDC"
           ? ERC20_PAYMENT_TOKEN[TARGET_NETWORK]
           : "0x0000000000000000000000000000000000000000"
       }`;
@@ -212,7 +212,7 @@ export const ListPeachButton = ({ tokenId }: { tokenId: string }) => {
                       onChange={handleCurrencyChange}
                     >
                       <option value="ETH">ETH</option>
-                      <option value="$DEGEN">$DEGEN</option>
+                      <option value="USDC">USDC</option>
                     </Select>
                   </InputRightAddon>
                 </InputGroup>

@@ -45,40 +45,23 @@ export const TREE_ERC20_PAYMENT_TOKEN: Record<string, string> = {
 // boosts;
 
 export const ERC20_PAYMENT_TOKEN: Record<string, string> = {
-  // "0xaa36a7": "0x53c8156592A64E949A4736c6D3309002fa0b2Aba",
-  // "0x2105": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
   "0xaa36a7": "0x53c8156592A64E949A4736c6D3309002fa0b2Aba",
   "0x2105": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
 };
 
 export const PRUNE_CONTRACT_ADDRESS: Record<string, `0x${string}`> = {
-  "0xaa36a7": "0xE26f5ef42636155b8299A67063450792537d71EB",
-  "0x2105": "0xEEcAAe1d9061f0ae1813e41A47179e06844ac0Ec",
+  "0xaa36a7": "0x0E8bB0BA9413b39701Bf6F84A068511FdAd3d84D",
+  "0x2105": "0x3C444C4D587091697fb1424269C09bb7a099Ce70",
 };
 
 export const FERT_CONTRACT_ADDRESS: Record<string, `0x${string}`> = {
-  "0xaa36a7": "0xAd8cA82737779b12858b303563B4Ab61099e14b8",
-  "0x2105": "0x70B0A88cB071B8258aeD255370e1e2F8F1725A93",
+  "0xaa36a7": "0x6Baa91AEd7707933462F3A658A72D69f01144134",
+  "0x2105": "0x40175A3488Cf5ac199Cb6D81DCAc8Fa7F0A993Da",
 };
 
-// export const FERT_DISCOUNT_ADDRESS: Record<string, `0x${string}`> = {
-//   "0xaa36a7": "0x8FAE2f5B1eD1a73ee7c96703AeaCc735Fbe82Ed0",
-//   "0x2105": "0xe68E3B3Ee0ce43d55fedCB625D48af4601693a04",
-// };
-
-// export const FERT_DISCOUNT_PRICE: Record<string, bigint> = {
-//   "0xaa36a7": BigInt(900000000000000),
-//   "0x2105": BigInt(26250000000000000),
-// };
-
-// export const FERT_DISCOUNT_ERC20_PRICE: Record<string, bigint> = {
-//   "0xaa36a7": BigInt(900000000000000),
-//   "0x2105": BigInt(3750000000000000000000),
-// };
-
 export const SPRAY_CONTRACT_ADDRESS: Record<string, `0x${string}`> = {
-  "0xaa36a7": "0xe709a9C0412393C3C3a6906b052A57cf86b1Cc81",
-  "0x2105": "0x0E8bB0BA9413b39701Bf6F84A068511FdAd3d84D",
+  "0xaa36a7": "0x23c5188a524bd8C387fDCA22de9aA6451F227Ce1",
+  "0x2105": "0xEA2Bdda968047CaaE862eEcD71B63D15e79Ab5eB",
 };
 
 export const SPRAYS_PER_TOKEN = 2;
@@ -150,9 +133,9 @@ export const TREE_NFT_DATA: NftTreeMeta[] = [
 ];
 
 export const BOOST_POINTS = {
-  PRUNE: 75,
+  PRUNE: 50,
   WATERING: 1,
-  FERT: 100,
+  FERT: 75,
   SPRAY: 33,
 };
 
@@ -160,6 +143,7 @@ export const BOOST_BONUS = {
   PRUNE: 1,
   FERT: 1,
   SPRAY: 1,
+  MAX: 1,
 };
 
 export const WATERING_MESSAGE =

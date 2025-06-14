@@ -87,7 +87,7 @@ export const frameUrl = (tokenId: string) => {
 };
 
 export const getPriceText = (tokenType: string): string => {
-  if (tokenType === "ERC20") return "$DEGEN";
+  if (tokenType === "ERC20") return "USDC";
 
   return tokenType;
 };

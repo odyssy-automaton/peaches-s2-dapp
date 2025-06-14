@@ -8,18 +8,18 @@ import {
 
 import erc20Abi from "../abis/ERC20.json";
 import { ApproveERC20 } from "./ApproveERC20Button";
-import { PRUNE_PRICE_ERC20 } from "../hooks/usePrices";
+import { usePrices } from "../hooks/usePrices";
 
 const buttonText = (hasBalance: boolean, hasAllowance: boolean) => {
   if (!hasBalance) {
-    return "NEED MORE $DEGEN";
+    return "NEED MORE USDC";
   }
 
   if (!hasAllowance) {
-    return "APPROVE $DEGEN";
+    return "APPROVE USDC";
   }
 
-  return "PURCHASE WITH $DEGEN";
+  return "PURCHASE WITH USDC";
 };
 
 export const PruneTreeERC20Button = ({
@@ -28,10 +28,11 @@ export const PruneTreeERC20Button = ({
   handlePruneERC20,
 }: {
   address?: string;
-  isDisabled: boolean;
+  isDisabled?: boolean;
   handlePruneERC20: React.MouseEventHandler<HTMLButtonElement>;
 }) => {
   const { chain } = useAccount();
+  const { prunePriceErc20 } = usePrices();
 
   const { data: balance } = useReadContract({
     address: ERC20_PAYMENT_TOKEN[TARGET_NETWORK] as `0x${string}`,
@@ -47,9 +48,8 @@ export const PruneTreeERC20Button = ({
     args: [address, PRUNE_CONTRACT_ADDRESS[TARGET_NETWORK]],
   });
 
-  const hasBalance = PRUNE_PRICE_ERC20[TARGET_NETWORK] < balance;
-  const hasAllowance =
-    PRUNE_PRICE_ERC20[TARGET_NETWORK] <= (allowance as bigint);
+  const hasBalance = prunePriceErc20 < balance;
+  const hasAllowance = prunePriceErc20 <= (allowance as bigint);
 
   if (!address) return null;
 
@@ -58,7 +58,7 @@ export const PruneTreeERC20Button = ({
       <ApproveERC20
         refetch={refetch}
         spender={PRUNE_CONTRACT_ADDRESS[TARGET_NETWORK]}
-        amount={PRUNE_PRICE_ERC20[TARGET_NETWORK]}
+        amount={prunePriceErc20}
         tokenAddress={ERC20_PAYMENT_TOKEN[TARGET_NETWORK]}
       />
     );

@@ -2,7 +2,6 @@ import { Flex, Heading, Text, Image, SimpleGrid } from "@chakra-ui/react";
 
 import { LabelBadge, PeachCard } from "./SharedLayout";
 
-import waterIcon from "../assets/icon_water.png";
 import pruneIcon from "../assets/icon_prune.png";
 import sprayIcon from "../assets/icon_spray.png";
 import fertIcon from "../assets/icon_fert.png";
