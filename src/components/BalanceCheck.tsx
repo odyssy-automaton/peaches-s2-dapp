@@ -4,7 +4,7 @@ import { useBalance, useChainId, useChains, useReadContract } from "wagmi";
 import erc20Abi from "../abis/ERC20.json";
 import { useFundWallet, usePrivy } from "@privy-io/react-auth";
 import { fromUSDC, fromWei } from "../utils/formatting";
-import { useTreeMintPrice } from "../hooks/useTreeMintPrice";
+import { usePrices } from "../hooks/usePrices";
 
 export const BalanceCheck = ({
   address,
@@ -22,7 +22,7 @@ export const BalanceCheck = ({
   const chainId = useChainId();
   const chains = useChains();
   const activeChain = chains.find((c) => c.id === chainId);
-  const { erc20MintPrice, nativeMintPrice } = useTreeMintPrice();
+  const { erc20MintPrice, nativeMintPrice } = usePrices();
 
   const result = useBalance({
     address: address as `0x${string}`,

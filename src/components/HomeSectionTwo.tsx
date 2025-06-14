@@ -2,7 +2,6 @@ import { Flex, Heading, Text, Image, SimpleGrid } from "@chakra-ui/react";
 
 import { LabelBadge, PeachCard } from "./SharedLayout";
 
-import waterIcon from "../assets/icon_water.png";
 import pruneIcon from "../assets/icon_prune.png";
 import sprayIcon from "../assets/icon_spray.png";
 import fertIcon from "../assets/icon_fert.png";
@@ -27,12 +26,12 @@ export const HomeSectionTwo = () => {
         <Flex gap="1rem" align="center" mb="1rem">
           <Heading color="brand.orange">2.</Heading>
           <LabelBadge
-            bg="brand.orange"
+            bg="brand.green"
             color="brand.black"
             size={{ base: "xs", md: "md" }}
             lineHeight={{ base: "2", md: "1.75" }}
           >
-            • Boost Sales Coming Soon •
+            • Boost Sales Open •
           </LabelBadge>
         </Flex>
         <Text
@@ -48,9 +47,9 @@ export const HomeSectionTwo = () => {
         </Text>
         <Text maxW="500px" textAlign={{ base: "left", md: "right" }} mb="2rem">
           Nurture your trees from winter dormancy through spring blossom until
-          harvest season in late summer. Water, prune, fertilize and protect
-          your trees from pests in order to earn additional peach boxes. You are
-          in control of how many peaches you produce.
+          harvest season in late summer. Prune, fertilize and protect your trees
+          from pests in order to earn additional peach boxes. You are in control
+          of how many peaches you produce.
           <br />
           <br />
           In addition, a portion of all transactions will be added to the
@@ -59,15 +58,6 @@ export const HomeSectionTwo = () => {
         </Text>
       </Flex>
       <SimpleGrid columns={2} spacing="1rem" mb="1rem">
-        <PeachCard
-          w={{ base: "148ppx", md: "192px" }}
-          h={{ base: "148ppx", md: "192px" }}
-        >
-          <Image src={waterIcon} />
-          <Text textAlign="center" fontSize="xs">
-            water
-          </Text>
-        </PeachCard>
         <PeachCard
           w={{ base: "148ppx", md: "192px" }}
           h={{ base: "148ppx", md: "192px" }}

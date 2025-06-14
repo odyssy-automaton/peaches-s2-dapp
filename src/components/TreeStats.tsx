@@ -4,27 +4,22 @@ import { PiCheckFatFill } from "react-icons/pi";
 import { useTreePoints } from "../hooks/useTreePoints";
 import { TreeNft } from "../utils/types";
 
-import waterIcon from "../assets/icon_water.png";
 import pruneIcon from "../assets/icon_prune.png";
 import sprayIcon from "../assets/icon_spray.png";
 import fertIcon from "../assets/icon_fert.png";
 import { SPRAYS_PER_TOKEN } from "../utils/constants";
 
 export const TreeStats = ({ tree }: { tree: TreeNft }) => {
-  const { totalPoints, prune, sprays, waterings, fert, isFetched } =
-    useTreePoints({
-      tokenId: tree.tokenID,
-    });
+  const { totalPoints, prune, sprays, fert, isFetched } = useTreePoints({
+    tokenId: tree.tokenID,
+  });
 
   return (
     <Flex direction="column" align="center" gap=".75rem">
       <Heading size="lg" mb=".5rem">
         {totalPoints}
       </Heading>
-      <Box textAlign="center">
-        <Image src={waterIcon} />
-        <Text fontSize="xs">{waterings}</Text>
-      </Box>
+
       <Flex
         direction="column"
         alignItems="center"

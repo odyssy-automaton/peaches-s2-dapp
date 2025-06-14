@@ -22,8 +22,6 @@ export const TreeCard = ({
     tokenId: tree.tokenID,
   });
 
-  console.log("tree.tokenMetadata", tree.tokenMetadata);
-
   return (
     <Flex direction="column" align="center" gap="1rem">
       <Box
@@ -46,8 +44,13 @@ export const TreeCard = ({
             </Flex>
 
             {tree.tokenMetadata?.status === "REFRESHING" && (
-              <Text fontSize="xl" textAlign="center" color="brand.blue">
-                Tree Data is Refreshing, check back soon
+              <Text
+                fontSize="xs"
+                fontWeight="700"
+                textAlign="center"
+                color="brand.blue"
+              >
+                Tree image data is refreshing...
               </Text>
             )}
             <Image mb=".5rem" src={dhImagePath(tree.tokenMetadata?.image)} />
