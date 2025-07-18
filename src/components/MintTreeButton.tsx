@@ -34,7 +34,7 @@ import { discountPrice } from "../utils/price";
 import { BalanceCheck } from "./BalanceCheck";
 import { useMemo } from "react";
 import { ApprovalCheck } from "./ApprovalCheck";
-import { useTreeMintPrice } from "../hooks/useTreeMintPrice";
+import { usePrices } from "../hooks/usePrices";
 
 const getCritterId = () => {
   return Math.floor(Math.random() * CRITTER_COUNT_PLUS_ONE);
@@ -55,7 +55,7 @@ export const MintTreeButton = ({
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { chain, address } = useAccount();
-  const { erc20MintPrice, nativeMintPrice } = useTreeMintPrice();
+  const { erc20MintPrice, nativeMintPrice } = usePrices();
 
   const { data: hash, error, isPending, writeContract } = useWriteContract();
 

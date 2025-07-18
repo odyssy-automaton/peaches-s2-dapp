@@ -3,23 +3,23 @@ import { useReadContract, useAccount } from "wagmi";
 import {
   ERC20_PAYMENT_TOKEN,
   TARGET_NETWORK,
-  SPRAY_PRICE_ERC20,
   SPRAY_CONTRACT_ADDRESS,
 } from "../utils/constants";
 
 import erc20Abi from "../abis/ERC20.json";
 import { ApproveERC20 } from "./ApproveERC20Button";
+import { SPRAY_PRICE_ERC20 } from "../hooks/usePrices";
 
 const buttonText = (hasBalance: boolean, hasAllowance: boolean) => {
   if (!hasBalance) {
-    return "NEED MORE $DEGEN";
+    return "NEED MORE USDC";
   }
 
   if (!hasAllowance) {
-    return "APPROVE $DEGEN";
+    return "APPROVE USDC";
   }
 
-  return "PURCHASE WITH $DEGEN";
+  return "PURCHASE WITH USDC";
 };
 
 export const SprayTreeERC20Button = ({

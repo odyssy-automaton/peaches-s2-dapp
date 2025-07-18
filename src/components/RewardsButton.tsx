@@ -100,8 +100,8 @@ export const RewardsButton = () => {
                 You can view your loot token balance in the DAO profile and then
                 click 'Rage Quit' from the profile menu and follow the
                 instructions to exchange the loot tokens for your share of the
-                Base ETH, $DEGEN (and various s**t coins airdropped to the DAO,
-                if you want them).
+                Base ETH, USDC (and various s**t coins airdropped to the DAO, if
+                you want them).
               </Text>
               <Button
                 as={Link}

@@ -9,8 +9,6 @@ export const TreeList = ({ account }: { account: string }) => {
     season: "two",
   });
 
-  console.log("accountNfts", accountNfts);
-
   return (
     <Box mb="5rem">
       {isLoading && <Spinner />}
