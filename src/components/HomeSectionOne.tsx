@@ -16,14 +16,14 @@ export const HomeSectionOne = () => {
         <Flex gap="1rem" align="center">
           <Heading color="brand.orange">1.</Heading>
           <LabelBadge
-            bg="brand.green"
+            bg="brand.red"
             color="brand.black"
             size="md"
             style={{
               lineHeight: "1.75",
             }}
           >
-            • Tree Sales Open •
+            • Tree Sales Closed •
           </LabelBadge>
         </Flex>
         <Text

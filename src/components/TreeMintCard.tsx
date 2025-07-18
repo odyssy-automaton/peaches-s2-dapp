@@ -142,7 +142,7 @@ export const TreeMintCard = ({
             </>
           )}
         </Box>
-        {account && (
+        {/* {account && (
           <MintTreeButton
             trunkId={tree.value}
             name={tree.name}
@@ -156,7 +156,7 @@ export const TreeMintCard = ({
             <Text>Login to Mint</Text>
             <LogIn />
           </>
-        )}
+        )} */}
       </Flex>
       {account && <AccountNftCount account={account} name={tree.name} />}
     </Flex>
