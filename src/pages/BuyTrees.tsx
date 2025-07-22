@@ -6,10 +6,11 @@ import {
   TREE_NFT_DATA,
 } from "../utils/constants";
 import { TreeMintCard } from "../components/TreeMintCard";
-import { Box, Divider, Flex, Text } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { Box, Button, Divider, Flex, Heading, Text } from "@chakra-ui/react";
 // import { RemainingTreeSupply } from "../components/RemainingTreeSupply";
 // import { BoostContent } from "../components/BoostContent";
-import { RemainingTreeSupply } from "../components/RemainingTreeSupply";
+// import { RemainingTreeSupply } from "../components/RemainingTreeSupply";
 import { useReadContract } from "wagmi";
 
 import erc721Abi from "../abis/ERC721.json";
@@ -27,8 +28,34 @@ function BuyTrees() {
 
   return (
     <>
-      <Box mt="4">
-        <RemainingTreeSupply />
+      <Box mt="4" textAlign="center">
+        {/* <RemainingTreeSupply /> */}
+        <Heading size="lg">Tree Sales Have Closed for the 2025 Season</Heading>
+
+        <Button
+          as={Link}
+          to="/market"
+          variant="outline"
+          fontFamily="Helsinki"
+          fontSize="2xl"
+          border="2px"
+          borderColor="brand.orange"
+          borderRadius="200px;"
+          color="brand.red"
+          size="lg"
+          height="72px"
+          mt="4"
+          w="200px"
+          _hover={{
+            color: "brand.white",
+          }}
+          _focus={{
+            bg: "brand.black",
+          }}
+          bg="brand.black"
+        >
+          GET PEACHES
+        </Button>
       </Box>
 
       <Box mb="2rem" textAlign="center">

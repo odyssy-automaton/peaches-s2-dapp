@@ -7,7 +7,7 @@ import {
 import { TreeStats } from "./TreeStats";
 
 import peachAvatar from "../assets/peach-avatar-trans.png";
-import { TreeActions } from "./TreeActions";
+// import { TreeActions } from "./TreeActions";
 import { useTreePoints } from "../hooks/useTreePoints";
 import { TreeNft } from "../utils/types";
 
@@ -21,6 +21,8 @@ export const TreeCard = ({
   const { peachBoxes } = useTreePoints({
     tokenId: tree.tokenID,
   });
+
+  console.log("account", account);
 
   return (
     <Flex direction="column" align="center" gap="1rem">
@@ -58,7 +60,7 @@ export const TreeCard = ({
             <Text fontSize="sm" mb="1rem" fontWeight="700">
               {tree.tokenMetadata?.description}
             </Text>
-            <TreeActions tokenId={tree.tokenID} account={account} />
+            {/* <TreeActions tokenId={tree.tokenID} account={account} /> */}
             <Box
               w="100%"
               textAlign="center"
