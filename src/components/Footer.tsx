@@ -7,6 +7,7 @@ import { SiFarcaster } from "react-icons/si";
 import FooterLogo from "../assets/Footer-Logo.png";
 import {
   BLOCK_EXPLORER_URL,
+  PEACH_NFT_CONTRACT_ADDRESS_S3,
   TARGET_NETWORK,
   TREE_NFT_CONTRACT_ADDRESS_S3,
 } from "../utils/constants";
@@ -35,15 +36,15 @@ export const Footer = () => {
                 <BsTelegram />
               </Link>
             </Flex>
-            {/* <Link
-              href={`${BLOCK_EXPLORER_URL[TARGET_NETWORK]}address/${PEACH_NFT_CONTRACT_ADDRESS[TARGET_NETWORK]}`}
+            <Link
+              href={`${BLOCK_EXPLORER_URL[TARGET_NETWORK]}address/${PEACH_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK]}`}
               isExternal
             >
               <Heading color="brand.black" size="md">
                 {" "}
                 BaseScan Peaches
               </Heading>
-            </Link> */}
+            </Link>
             <Link
               href={`${BLOCK_EXPLORER_URL[TARGET_NETWORK]}address/${TREE_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK]}`}
               isExternal
