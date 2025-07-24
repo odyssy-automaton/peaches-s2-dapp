@@ -72,7 +72,7 @@ export const SPRAYS_PER_TOKEN = 2;
 
 export const PEACH_NFT_CONTRACT_ADDRESS_S3: Record<string, `0x${string}`> = {
   "0xaa36a7": "0x272e274F882d803b7DeE480611cC7C787f0F76cA",
-  "0x2105": "0x5eAE1344f40f25b827782AfF0B3651b2DCD2259E",
+  "0x2105": "0x212161a7ad0AC779cCc569A9C305CBc53ad3960d",
 };
 
 export const PEACH_IMG_IPFS_HASH_S3: Record<number, string> = {
