@@ -20,14 +20,14 @@ import {
   type BaseError,
   useAccount,
 } from "wagmi";
-import { createRaribleSdk } from "@rarible/sdk";
+// import { createRaribleSdk } from "@rarible/sdk";
 
 import peachNftAbi from "../abis/PeachERC712.json";
 import {
   BLOCK_EXPLORER_URL,
-  PEACH_NFT_CONTRACT_ADDRESS,
-  RARIBLE_PREFIX,
-  RARIBLE_STAGE,
+  PEACH_NFT_CONTRACT_ADDRESS_S3,
+  // RARIBLE_PREFIX,
+  // RARIBLE_STAGE,
   TARGET_NETWORK,
 } from "../utils/constants";
 import { useEffect } from "react";
@@ -67,18 +67,18 @@ export const UnboxButton = ({
         queryKey: [`accountPeaches-${account}`],
       });
 
-      const sdk = createRaribleSdk(undefined, RARIBLE_STAGE, {
-        apiKey: import.meta.env.VITE_RARIBLE_KEY,
-      });
+      // const sdk = createRaribleSdk(undefined, RARIBLE_STAGE, {
+      //   apiKey: import.meta.env.VITE_RARIBLE_KEY,
+      // });
 
-      const refreshRes = await sdk.apis.item.resetItemMeta({
-        // itemId: toItemId(
-        //   `${RARIBLE_PREFIX}:${PEACH_NFT_CONTRACT_ADDRESS[TARGET_NETWORK]}:${tokenId}`
-        // ),
-        itemId: `${RARIBLE_PREFIX}:${PEACH_NFT_CONTRACT_ADDRESS[TARGET_NETWORK]}:${tokenId}`,
-      });
+      // const refreshRes = await sdk.apis.item.resetItemMeta({
+      //   // itemId: toItemId(
+      //   //   `${RARIBLE_PREFIX}:${PEACH_NFT_CONTRACT_ADDRESS[TARGET_NETWORK]}:${tokenId}`
+      //   // ),
+      //   itemId: `${RARIBLE_PREFIX}:${PEACH_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK]}:${tokenId}`,
+      // });
 
-      console.log("refreshRes", refreshRes);
+      // console.log("refreshRes", refreshRes);
     };
     if (isConfirmed) {
       console.log("INVALIDATING/REFETCH");
@@ -90,7 +90,7 @@ export const UnboxButton = ({
   const handleUnbox = async () => {
     onOpen();
     writeContract({
-      address: PEACH_NFT_CONTRACT_ADDRESS[TARGET_NETWORK],
+      address: PEACH_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK],
       abi: peachNftAbi,
       functionName: "unbox",
       args: [tokenId],
@@ -164,21 +164,14 @@ export const UnboxButton = ({
               )}
 
               {isConfirmed && (
-                <RouterLink to="/farm">
-                  <Button
-                    variant="outline"
-                    fontFamily="Helsinki"
-                    fontSize="2xl"
-                    border="1px"
-                    borderColor="brand.green"
-                    borderRadius="200px;"
-                    color="brand.orange"
-                    size="lg"
-                    height="72px"
-                  >
-                    Checkout Your Unboxed Peach
-                  </Button>
-                </RouterLink>
+                <>
+                  <Text fontSize="3xl" color="brand.orange" fontWeight="700">
+                    Success!
+                  </Text>
+                  <Text fontSize="lg" color="brand.orange" fontWeight="700">
+                    Your peach art will reveal soon
+                  </Text>
+                </>
               )}
 
               {error && (

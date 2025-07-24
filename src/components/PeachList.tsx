@@ -7,7 +7,7 @@ import { PeachNft } from "../utils/types";
 export const PeachList = ({ account }: { account: string }) => {
   const { accountNfts, isLoading } = useAccountPeaches({
     accountAddress: account,
-    season: 2,
+    season: 3,
   });
 
   return (
@@ -28,6 +28,7 @@ export const PeachList = ({ account }: { account: string }) => {
                 peach={token}
                 key={token.tokenID}
                 account={account}
+                season={3}
               />
             );
           })}

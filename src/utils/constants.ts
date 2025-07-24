@@ -68,10 +68,20 @@ export const SPRAYS_PER_TOKEN = 2;
 
 // peaches;
 
+// season 3
+
 export const PEACH_NFT_CONTRACT_ADDRESS_S3: Record<string, `0x${string}`> = {
-  "0xaa36a7": "0xC0552Fd7131D8cC74b77dDaF8E43C006A31adCdA",
+  "0xaa36a7": "0x272e274F882d803b7DeE480611cC7C787f0F76cA",
   "0x2105": "0x5eAE1344f40f25b827782AfF0B3651b2DCD2259E",
 };
+
+export const PEACH_IMG_IPFS_HASH_S3: Record<number, string> = {
+  0: "bafybeic4slfyeb2xhsycyvf7r5jayqjspuio4r4n6dd67gx3olcks6x424",
+  1: "bafybeibuc5ajgpibgswryehnpf5zptflx6dbqlt6gugpnfrmqtatjbxgpu",
+  2: "bafybeidv3zpizhzzj3myewjideu4sr7x2awhe76pkvrpi3eonoqx7cwiny",
+};
+
+// season 2
 
 export const PEACH_NFT_CONTRACT_ADDRESS: Record<string, `0x${string}`> = {
   "0xaa36a7": "0xC0552Fd7131D8cC74b77dDaF8E43C006A31adCdA",

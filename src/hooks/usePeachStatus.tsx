@@ -5,6 +5,7 @@ import {
   ALCHEMY_RPC,
   CHAIN_OBJ,
   PEACH_IMG_IPFS_HASH,
+  PEACH_IMG_IPFS_HASH_S3,
   PEACH_NFT_CONTRACT_ADDRESS,
   PEACH_NFT_CONTRACT_ADDRESS_S3,
   // RARIBLE_PREFIX,
@@ -18,9 +19,11 @@ import { dhImagePathFromIpfs, getPeachStatus } from "../utils/formatting";
 
 const fetchPeachStatus = async ({
   tokenId,
+  season,
   peachAddress,
 }: {
   tokenId: string;
+  season: number;
   peachAddress: string;
 }) => {
   if (!tokenId || !peachAddress) {
@@ -39,7 +42,10 @@ const fetchPeachStatus = async ({
     args: [tokenId],
   })) as number;
 
-  const imgIpfs = PEACH_IMG_IPFS_HASH[tokenState];
+  const imgIpfs =
+    season === 3
+      ? PEACH_IMG_IPFS_HASH_S3[tokenState]
+      : PEACH_IMG_IPFS_HASH[tokenState];
 
   // const sdk = createRaribleSdk(undefined, RARIBLE_STAGE, {
   //   apiKey: import.meta.env.VITE_RARIBLE_KEY,
@@ -71,10 +77,11 @@ export const usePeachStatus = ({
   season: number;
 }) => {
   const { data, error, ...rest } = useQuery({
-    queryKey: [`peachStatus-${tokenId}=${season}`],
+    queryKey: [`peachStatus-${tokenId}-${season}`],
     queryFn: () =>
       fetchPeachStatus({
         tokenId,
+        season,
         peachAddress:
           season === 3
             ? PEACH_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK]

@@ -14,14 +14,16 @@ import { PeachNft } from "../utils/types";
 export const PeachNftCard = ({
   peach,
   account,
+  season,
 }: {
   peach: PeachNft;
   account: string;
+  season: number;
 }) => {
   // const { peachStatus, tokenState, img, orders } = usePeachStatus({
   const { peachStatus, tokenState, img } = usePeachStatus({
     tokenId: peach.tokenID,
-    season: 2,
+    season: season,
   });
 
   // const isListed = orders && orders.length > 0;
