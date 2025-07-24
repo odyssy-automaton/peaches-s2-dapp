@@ -2,14 +2,14 @@ import { useQuery } from "@tanstack/react-query";
 import { createRaribleSdk } from "@rarible/sdk";
 import type { Items, Item } from "@rarible/api-client";
 import {
-  PEACH_NFT_CONTRACT_ADDRESS,
+  PEACH_NFT_CONTRACT_ADDRESS_S3,
   RARIBLE_PREFIX,
   RARIBLE_STAGE,
   TARGET_NETWORK,
 } from "../utils/constants";
 
 const fetchPeachCollection = async () => {
-  const contractAddress = PEACH_NFT_CONTRACT_ADDRESS[TARGET_NETWORK];
+  const contractAddress = PEACH_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK];
 
   const sdk = createRaribleSdk(undefined, RARIBLE_STAGE, {
     apiKey: import.meta.env.VITE_RARIBLE_KEY,

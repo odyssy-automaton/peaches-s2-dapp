@@ -17,13 +17,14 @@ import {
 } from "@chakra-ui/react";
 import { useQueryClient } from "@tanstack/react-query";
 
-// import { RARIBLE_STAGE } from "../utils/constants";
+import { RARIBLE_STAGE } from "../utils/constants";
 import peachAvatar from "../assets/peach-avatar-trans.png";
 
-// import { useWallets } from "@privy-io/react-auth";
-// import { createRaribleSdk } from "@rarible/sdk";
+import { useWallets } from "@privy-io/react-auth";
+import { createRaribleSdk } from "@rarible/sdk";
 // import { toOrderId } from "@rarible/types";
 import { useWaitForTransactionReceipt } from "wagmi";
+import { ethers } from "ethers";
 
 export const BuyPeachButton = ({
   tokenId,
@@ -35,7 +36,7 @@ export const BuyPeachButton = ({
   price: string;
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  // const { wallets } = useWallets();
+  const { wallets } = useWallets();
 
   const [isListing, setIsListing] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -69,24 +70,26 @@ export const BuyPeachButton = ({
     console.log("orderId", orderId);
     try {
       setIsListing(true);
-      // const wallet = wallets[0];
-      // const provider = await wallet.getEthereumProvider();
-      // const signer = provider.getSigner();
+      const wallet = wallets[0];
+      const provider = await wallet.getEthereumProvider();
+      const ethersProvider = new ethers.providers.Web3Provider(provider);
 
-      // const sdk = createRaribleSdk(signer, RARIBLE_STAGE, {
-      //   apiKey: import.meta.env.VITE_RARIBLE_KEY,
-      // });
+      const signer = ethersProvider.getSigner();
 
-      // const tx = await sdk.order.buy({
-      //   // orderId: toOrderId(orderId),
-      //   // @ts-expect-error react types
-      //   orderId: orderId,
-      //   amount: 1,
-      // });
+      const sdk = createRaribleSdk(signer, RARIBLE_STAGE, {
+        apiKey: import.meta.env.VITE_RARIBLE_KEY,
+      });
 
-      // console.log("tx", tx);
+      const tx = await sdk.order.buy({
+        // orderId: toOrderId(orderId),
+        // @ts-expect-error react types
+        orderId: orderId,
+        amount: 1,
+      });
 
-      // setHash(tx.transaction.tx.hash);
+      console.log("tx", tx);
+
+      setHash(tx.transaction.tx.hash);
       setHash("0x0");
       setIsListing(false);
     } catch (err) {

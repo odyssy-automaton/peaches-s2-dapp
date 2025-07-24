@@ -1,18 +1,16 @@
-// import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import {
   Box,
   Divider,
   Flex,
   Heading,
-  // Select,
+  Select,
   Text,
   Image,
-  Button,
 } from "@chakra-ui/react";
 import styled from "styled-components";
-// import { usePeachCollection } from "../hooks/usePeachCollection";
-// import type { Item } from "@rarible/api-client";
-// import { ListingList } from "../components/ListingList";
+import type { Item } from "@rarible/api-client";
+import { ListingList } from "../components/ListingList";
 
 import PeachCrate from "../assets/Crate.png";
 import PeachUnredeemed from "../assets/10-peach-trans.png";
@@ -20,7 +18,7 @@ import PeachRedeemed from "../assets/10-bite-trans.png";
 
 import Arrow1 from "../assets/Arrow1.png";
 import { brandColors } from "../theme";
-import { Link } from "react-router-dom";
+import { usePeachCollection } from "../hooks/usePeachCollection";
 
 const BoxCard = styled(Box)`
   width: 300px;
@@ -36,38 +34,40 @@ const BoxCard = styled(Box)`
 `;
 
 function Marketplace() {
-  // const { items } = usePeachCollection();
+  const { items } = usePeachCollection();
 
-  // const [sort, setSort] = useState("new");
-  // const [itemList, setItemList] = useState<Item[] | undefined>();
+  const [sort, setSort] = useState("new");
+  const [itemList, setItemList] = useState<Item[] | undefined>();
 
-  // useEffect(() => {
-  //   if (items) {
-  //     if (sort === "low") {
-  //       setItemList(
-  //         items.sort((a, b) => {
-  //           return (
-  //             Number(a.bestSellOrder?.makePriceUsd || 0) -
-  //             Number(b.bestSellOrder?.makePriceUsd || 0)
-  //           );
-  //         })
-  //       );
-  //     } else if (sort === "high") {
-  //       setItemList(
-  //         items.sort((a, b) => {
-  //           return (
-  //             Number(b.bestSellOrder?.makePriceUsd || 0) -
-  //             Number(a.bestSellOrder?.makePriceUsd || 0)
-  //           );
-  //         })
-  //       );
-  //     } else {
-  //       setItemList(items);
-  //     }
-  //   }
-  // }, [sort, items]);
+  useEffect(() => {
+    if (items) {
+      if (sort === "low") {
+        setItemList(
+          items.sort((a, b) => {
+            return (
+              Number(a.bestSellOrder?.makePriceUsd || 0) -
+              Number(b.bestSellOrder?.makePriceUsd || 0)
+            );
+          })
+        );
+      } else if (sort === "high") {
+        setItemList(
+          items.sort((a, b) => {
+            return (
+              Number(b.bestSellOrder?.makePriceUsd || 0) -
+              Number(a.bestSellOrder?.makePriceUsd || 0)
+            );
+          })
+        );
+      } else {
+        setItemList(items);
+      }
+    }
+  }, [sort, items]);
 
-  // const handleSortChange = (event) => setSort(event.target.value);
+  const handleSortChange = (event: {
+    target: { value: SetStateAction<string> };
+  }) => setSort(event.target.value);
 
   return (
     <>
@@ -181,7 +181,7 @@ function Marketplace() {
           background="none"
         />
       </Flex>
-      {/* <Flex mt={5} ml={3} mb={8}>
+      <Flex mt={5} ml={3} mb={8}>
         <Box width="10vw" />
         <Box width="17vw">
           <Select
@@ -196,7 +196,6 @@ function Marketplace() {
             <option value="high">Price (High to Low)</option>
           </Select>
         </Box>
-    
       </Flex>
 
       <Flex
@@ -208,50 +207,6 @@ function Marketplace() {
         mb="3rem"
       >
         {itemList && <ListingList listings={itemList} />}
-      </Flex> */}
-      <Flex
-        direction="column"
-        gap="1rem"
-        align="center"
-        justify="center"
-        w="100%"
-        textAlign="center"
-        // backgroundColor="brand.green"
-        px={8}
-        my={8}
-      >
-        <Text fontSize="2xl" pt="1rem" fontWeight="700">
-          The 2025 Peach Market will Open in August!
-        </Text>
-        <Text fontSize="2xl" fontWeight="700">
-          Buy a tree to become a farmer and earn peach boxes.
-        </Text>
-        <Button
-          as={Link}
-          to="/buy-trees"
-          variant="outline"
-          fontFamily="heading"
-          fontSize="2xl"
-          fontStyle="italic"
-          fontWeight="700"
-          border="2px"
-          borderColor="brand.green"
-          borderRadius="200px;"
-          color="brand.orange"
-          size="lg"
-          height="72px"
-          mt="1rem"
-          w={{ base: "223px", md: "320px" }}
-          _hover={{
-            transform: "translate(0px, -10px)",
-            color: "brand.white",
-          }}
-          _focus={{ transform: "translate(0px, 0px)", bg: "brand.black" }}
-          bg="#1f1f1f"
-          transform="translate(0px, -12px)"
-        >
-          BUY TREE
-        </Button>
       </Flex>
     </>
   );

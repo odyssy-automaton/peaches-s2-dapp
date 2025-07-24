@@ -17,13 +17,14 @@ import {
 } from "@chakra-ui/react";
 import { useQueryClient } from "@tanstack/react-query";
 
-// import { RARIBLE_STAGE } from "../utils/constants";
+import { RARIBLE_STAGE } from "../utils/constants";
 import peachAvatar from "../assets/peach-avatar-trans.png";
 
-// import { useWallets } from "@privy-io/react-auth";
-// import { createRaribleSdk } from "@rarible/sdk";
-// import { toOrderId } from "@rarible/types";
+import { useWallets } from "@privy-io/react-auth";
+import { createRaribleSdk } from "@rarible/sdk";
+import { toOrderId } from "@rarible/types";
 import { useWaitForTransactionReceipt } from "wagmi";
+import { ethers } from "ethers";
 
 export const UnListPeachButton = ({
   tokenId,
@@ -33,9 +34,8 @@ export const UnListPeachButton = ({
   orderId: string;
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  // const { isOpen, onClose } = useDisclosure();
 
-  // const { wallets } = useWallets();
+  const { wallets } = useWallets();
 
   const [isListing, setIsListing] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -69,23 +69,24 @@ export const UnListPeachButton = ({
     console.log("orderId", orderId);
     try {
       setIsListing(true);
-      // const wallet = wallets[0];
-      // const provider = await wallet.getEthersProvider();
-      // const signer = provider.getSigner();
+      const wallet = wallets[0];
+      const provider = await wallet.getEthereumProvider();
+      const ethersProvider = new ethers.providers.Web3Provider(provider);
+      const signer = ethersProvider.getSigner();
 
-      // const sdk = createRaribleSdk(signer, RARIBLE_STAGE, {
-      //   apiKey: import.meta.env.VITE_RARIBLE_KEY,
-      // });
+      const sdk = createRaribleSdk(signer, RARIBLE_STAGE, {
+        apiKey: import.meta.env.VITE_RARIBLE_KEY,
+      });
 
-      // const cancelled = await sdk.order.cancel({
-      //   // orderId: toOrderId(orderId),
-      //   // @ts-expect-error react types
-      //   orderId: orderId,
-      // });
+      const cancelled = await sdk.order.cancel({
+        // orderId: toOrderId(orderId),
+        // @ts-expect-error react types
+        orderId: orderId,
+      });
 
-      // console.log("cancelled", cancelled);
+      console.log("cancelled", cancelled);
 
-      // setHash(cancelled.transaction.tx.hash);
+      setHash(cancelled.transaction.tx.hash);
       setHash(undefined);
 
       setIsListing(false);
@@ -207,7 +208,7 @@ export const UnListPeachButton = ({
 
               {isError && (
                 <Text fontSize="sm" color="brand.red">
-                  Error Listing Peach NFT
+                  Error Unlisting Peach NFT
                 </Text>
               )}
             </Flex>

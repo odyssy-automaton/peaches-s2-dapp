@@ -1,29 +1,29 @@
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { NavBar } from "./NavBar";
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { Footer } from "./Footer";
-import {
-  NFT_CONTRACT_ADDRESS,
-  SEASON_OPEN_TEXT,
-  TARGET_NETWORK,
-} from "../utils/constants";
-import { usePrivy } from "@privy-io/react-auth";
-import { useReadContract } from "wagmi";
-import erc721Abi from "../abis/ERC721.json";
+// import {
+//   NFT_CONTRACT_ADDRESS,
+//   SEASON_OPEN_TEXT,
+//   TARGET_NETWORK,
+// } from "../utils/constants";
+// import { usePrivy } from "@privy-io/react-auth";
+// import { useReadContract } from "wagmi";
+// import erc721Abi from "../abis/ERC721.json";
 
 export const Layout = () => {
-  const { user } = usePrivy();
+  // const { user } = usePrivy();
 
-  const { data: discountBalance } = useReadContract({
-    address: NFT_CONTRACT_ADDRESS[TARGET_NETWORK] as `0x${string}`,
-    abi: erc721Abi,
-    functionName: "balanceOf",
-    args: [user?.wallet?.address as `0x${string}`],
-  }) as { data: bigint };
-  const hasDiscount = discountBalance > 0;
+  // const { data: discountBalance } = useReadContract({
+  //   address: NFT_CONTRACT_ADDRESS[TARGET_NETWORK] as `0x${string}`,
+  //   abi: erc721Abi,
+  //   functionName: "balanceOf",
+  //   args: [user?.wallet?.address as `0x${string}`],
+  // }) as { data: bigint };
+  // const hasDiscount = discountBalance > 0;
   return (
     <>
-      <Flex
+      {/* <Flex
         as="nav"
         align="center"
         justify="center"
@@ -33,8 +33,8 @@ export const Layout = () => {
         position="fixed"
         zIndex={10}
         px={8}
-      >
-        {!hasDiscount && (
+      > */}
+      {/* {!hasDiscount && (
           <Text fontSize={{ base: "xs", sm: "md" }} py="1rem" fontWeight="700">
             {SEASON_OPEN_TEXT}
           </Text>
@@ -47,8 +47,8 @@ export const Layout = () => {
               2025 Season trees!
             </Link>
           </Text>
-        )}
-      </Flex>
+        )} */}
+      {/* </Flex> */}
       <NavBar />
       <Box pt="180px">
         <Outlet />

@@ -17,7 +17,7 @@ export const ListingList = ({ listings }: { listings: Item[] }) => {
             <Heading color="brand.orange">Market Is Almost Open</Heading>
             <Heading color="brand.orange">Check back soon</Heading>
             <Link
-              href="https://rarible.com/collection/base/0x5eae1344f40f25b827782aff0b3651b2dcd2259e/items"
+              href="https://rarible.com/collection/base/0x212161a7ad0ac779ccc569a9c305cbc53ad3960d/items"
               isExternal
             >
               <Text color="brand.blue">

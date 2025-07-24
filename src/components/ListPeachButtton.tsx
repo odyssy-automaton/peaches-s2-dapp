@@ -23,22 +23,22 @@ import { useQueryClient } from "@tanstack/react-query";
 
 import {
   ERC20_PAYMENT_TOKEN,
-  // PEACH_NFT_CONTRACT_ADDRESS,
+  PEACH_NFT_CONTRACT_ADDRESS_S3,
   RARIBLE_PREFIX,
-  // RARIBLE_STAGE,
+  RARIBLE_STAGE,
   TARGET_NETWORK,
 } from "../utils/constants";
 import peachAvatar from "../assets/peach-avatar-trans.png";
 
-// import { useWallets } from "@privy-io/react-auth";
-// import { createRaribleSdk } from "@rarible/sdk";
+import { useWallets } from "@privy-io/react-auth";
+import { createRaribleSdk } from "@rarible/sdk";
 // import { toCurrencyId, toItemId } from "@rarible/types";
+import { ethers } from "ethers";
 
 export const ListPeachButton = ({ tokenId }: { tokenId: string }) => {
-  // const { isOpen, onOpen, onClose } = useDisclosure();
-  const { isOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-  // const { wallets } = useWallets();
+  const { wallets } = useWallets();
 
   const [isListing, setIsListing] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -67,9 +67,9 @@ export const ListPeachButton = ({ tokenId }: { tokenId: string }) => {
   // @ts-expect-error react types
   const handleCurrencyChange = (event) => setCurrency(event.target.value);
 
-  // const handleConfirm = () => {
-  //   onOpen();
-  // };
+  const handleConfirm = () => {
+    onOpen();
+  };
 
   const isDisabled =
     // @ts-expect-error react types
@@ -82,15 +82,17 @@ export const ListPeachButton = ({ tokenId }: { tokenId: string }) => {
 
     try {
       setIsListing(true);
-      // const wallet = wallets[0];
-      // const provider = await wallet.getEthersProvider();
-      // const signer = provider.getSigner();
+      const wallet = wallets[0];
+      const provider = await wallet.getEthereumProvider();
+      const ethersProvider = new ethers.providers.Web3Provider(provider);
 
-      // const sdk = createRaribleSdk(signer, RARIBLE_STAGE, {
-      //   apiKey: import.meta.env.VITE_RARIBLE_KEY,
-      // });
+      const signer = ethersProvider.getSigner();
 
-      // const contractAddress = PEACH_NFT_CONTRACT_ADDRESS[TARGET_NETWORK];
+      const sdk = createRaribleSdk(signer, RARIBLE_STAGE, {
+        apiKey: import.meta.env.VITE_RARIBLE_KEY,
+      });
+
+      const contractAddress = PEACH_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK];
 
       const currencyId = `${RARIBLE_PREFIX}:${
         currency === "USDC"
@@ -100,25 +102,26 @@ export const ListPeachButton = ({ tokenId }: { tokenId: string }) => {
 
       console.log("currencyId", currencyId);
 
-      // const orderId = await sdk.order.sell({
-      //   // itemId: toItemId(`${RARIBLE_PREFIX}:${contractAddress}:${tokenId}`),
-      //   // @ts-expect-error react types
-      //   itemId: `${RARIBLE_PREFIX}:${contractAddress}:${tokenId}`,
-      //   amount: 1,
-      //   // currency: toCurrencyId(currencyId),
-      //   // @ts-expect-error react types
-      //   currency: currencyId,
-      //   price: price,
-      // });
+      const orderId = await sdk.order.sell({
+        // itemId: toItemId(`${RARIBLE_PREFIX}:${contractAddress}:${tokenId}`),
+        // @ts-expect-error react types
+        itemId: `${RARIBLE_PREFIX}:${contractAddress}:${tokenId}`,
+        amount: 1,
+        // currency: toCurrencyId(currencyId),
+        // @ts-expect-error react types
+        currency: currencyId,
+        price: price,
+      });
 
-      // console.log(`Successfully listed. Order ID: ${orderId}`);
+      console.log(`Successfully listed. Order ID: ${orderId}`);
 
       setIsListing(false);
 
-      // if (orderId) {
-      //   setIsConfirmed(true);
-      // }
-      setIsConfirmed(false);
+      if (orderId) {
+        setIsConfirmed(true);
+      } else {
+        setIsConfirmed(false);
+      }
     } catch (err) {
       console.log("err", err);
       setIsListing(false);
@@ -128,7 +131,7 @@ export const ListPeachButton = ({ tokenId }: { tokenId: string }) => {
 
   return (
     <>
-      {/* <Button
+      <Button
         variant="outline"
         fontFamily="heading"
         fontSize="xl"
@@ -151,7 +154,7 @@ export const ListPeachButton = ({ tokenId }: { tokenId: string }) => {
         // opacity="30%"
       >
         LIST FOR SALE
-      </Button> */}
+      </Button>
       {/* <Text
         fontSize="xs"
         color="brand.green"
@@ -184,6 +187,10 @@ export const ListPeachButton = ({ tokenId }: { tokenId: string }) => {
             >
               <Text fontSize="sm">
                 Put this peach NFT up for sale in the Peach Market.
+              </Text>
+              <Text fontSize="sm">
+                You will need to sign two transaction and allow Rarible to
+                transfer your NFT if sold.
               </Text>
               <Image src={peachAvatar} w="32px" />
 
