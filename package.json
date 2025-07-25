@@ -34,7 +34,8 @@
     "styled-components": "^6.1.8",
     "tslib": "2.3.1",
     "viem": "^2.21.44",
-    "wagmi": "^2.12.29"
+    "wagmi": "^2.12.29",
+    "web3": "^4.16.0"
   },
   "devDependencies": {
     "@rarible/types": "~0.10.0-alpha.22",
