@@ -22,7 +22,7 @@ import peachAvatar from "../assets/peach-avatar-trans.png";
 
 import { useWallets } from "@privy-io/react-auth";
 import { createRaribleSdk } from "@rarible/sdk";
-import { toOrderId } from "@rarible/types";
+// import { toOrderId } from "@rarible/types";
 import { useWaitForTransactionReceipt } from "wagmi";
 import { ethers } from "ethers";
 

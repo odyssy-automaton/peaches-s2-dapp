@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { NavBar } from "./NavBar";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { Footer } from "./Footer";
 // import {
 //   NFT_CONTRACT_ADDRESS,

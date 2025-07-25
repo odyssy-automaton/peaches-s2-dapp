@@ -19,14 +19,14 @@ import {
   type BaseError,
   useAccount,
 } from "wagmi";
-// import { createRaribleSdk } from "@rarible/sdk";
+import { createRaribleSdk } from "@rarible/sdk";
 
 import peachNftAbi from "../abis/PeachERC712.json";
 import {
   BLOCK_EXPLORER_URL,
   PEACH_NFT_CONTRACT_ADDRESS_S3,
-  // RARIBLE_PREFIX,
-  // RARIBLE_STAGE,
+  RARIBLE_PREFIX,
+  RARIBLE_STAGE,
   TARGET_NETWORK,
 } from "../utils/constants";
 import { useEffect } from "react";
@@ -66,18 +66,18 @@ export const UnboxButton = ({
         queryKey: [`accountPeaches-${account}`],
       });
 
-      // const sdk = createRaribleSdk(undefined, RARIBLE_STAGE, {
-      //   apiKey: import.meta.env.VITE_RARIBLE_KEY,
-      // });
+      const sdk = createRaribleSdk(undefined, RARIBLE_STAGE, {
+        apiKey: import.meta.env.VITE_RARIBLE_KEY,
+      });
 
-      // const refreshRes = await sdk.apis.item.resetItemMeta({
-      //   // itemId: toItemId(
-      //   //   `${RARIBLE_PREFIX}:${PEACH_NFT_CONTRACT_ADDRESS[TARGET_NETWORK]}:${tokenId}`
-      //   // ),
-      //   itemId: `${RARIBLE_PREFIX}:${PEACH_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK]}:${tokenId}`,
-      // });
+      const refreshRes = await sdk.apis.item.resetItemMeta({
+        // itemId: toItemId(
+        //   `${RARIBLE_PREFIX}:${PEACH_NFT_CONTRACT_ADDRESS[TARGET_NETWORK]}:${tokenId}`
+        // ),
+        itemId: `${RARIBLE_PREFIX}:${PEACH_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK]}:${tokenId}`,
+      });
 
-      // console.log("refreshRes", refreshRes);
+      console.log("refreshRes", refreshRes);
     };
     if (isConfirmed) {
       console.log("INVALIDATING/REFETCH");
