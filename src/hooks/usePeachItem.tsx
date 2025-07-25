@@ -16,6 +16,8 @@ const fetchItem = async ({ tokenId }: { tokenId: string }) => {
     apiKey: import.meta.env.VITE_RARIBLE_KEY,
   });
 
+  console.log("fetchItem sdk", sdk);
+
   console.log("fetch", tokenId);
   const item = (await sdk.apis.item.getItemById({
     // itemId: toItemId(`${RARIBLE_PREFIX}:${contractAddress}:${tokenId}`),

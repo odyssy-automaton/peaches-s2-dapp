@@ -15,6 +15,8 @@ const fetchPeachCollection = async () => {
     apiKey: import.meta.env.VITE_RARIBLE_KEY,
   });
 
+  console.log("fetchPeachCollection sdk", sdk);
+
   // ETHEREUM:${token}:${tokenId}
   const items = (await sdk.apis.item.getItemsByCollection({
     collection: `${RARIBLE_PREFIX}:${contractAddress}`,
