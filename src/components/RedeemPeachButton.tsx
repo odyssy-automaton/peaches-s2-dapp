@@ -25,7 +25,7 @@ import { useQueryClient } from "@tanstack/react-query";
 
 import {
   BLOCK_EXPLORER_URL,
-  PEACH_NFT_CONTRACT_ADDRESS,
+  PEACH_NFT_CONTRACT_ADDRESS_S3,
   RARIBLE_PREFIX,
   RARIBLE_STAGE,
   TARGET_NETWORK,
@@ -34,6 +34,8 @@ import peachNftAbi from "../abis/PeachERC712.json";
 
 import { dhImagePath } from "../utils/formatting";
 import { createRaribleSdk } from "@rarible/sdk";
+import { usePeachStatus } from "../hooks/usePeachStatus";
+import { useAccountPeaches } from "../hooks/useAccountPeaches";
 
 export const RedeemPeachButton = ({
   tokenId,
@@ -46,6 +48,14 @@ export const RedeemPeachButton = ({
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { chain } = useAccount();
+  const { refetch: statusRefetch } = usePeachStatus({
+    tokenId,
+    season: 3,
+  });
+  const { refetch: peachRefetch } = useAccountPeaches({
+    accountAddress: account,
+    season: 3,
+  });
   const { data: hash, error, isPending, writeContract } = useWriteContract();
   const { isLoading: isConfirming, isSuccess: isConfirmed } =
     useWaitForTransactionReceipt({
@@ -67,14 +77,17 @@ export const RedeemPeachButton = ({
       });
 
       await sdk.apis.item.resetItemMeta({
-        itemId: `${RARIBLE_PREFIX}:${PEACH_NFT_CONTRACT_ADDRESS[TARGET_NETWORK]}:${tokenId}`,
+        itemId: `${RARIBLE_PREFIX}:${PEACH_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK]}:${tokenId}`,
       });
+
+      statusRefetch();
+      peachRefetch();
     };
     if (isConfirmed) {
       console.log("INVALIDATING/REFETCH");
       reset();
     }
-  }, [isConfirmed, queryClient, tokenId, account]);
+  }, [isConfirmed, queryClient, tokenId, account, peachRefetch, statusRefetch]);
 
   const handleConfirm = () => {
     onOpen();
@@ -82,7 +95,7 @@ export const RedeemPeachButton = ({
 
   const handleRedeem = async () => {
     writeContract({
-      address: PEACH_NFT_CONTRACT_ADDRESS[TARGET_NETWORK],
+      address: PEACH_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK],
       abi: peachNftAbi,
       functionName: "redeem",
       args: [tokenId],

@@ -32,6 +32,8 @@ import {
 import { useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { dhImagePath } from "../utils/formatting";
+import { usePeachStatus } from "../hooks/usePeachStatus";
+import { useAccountPeaches } from "../hooks/useAccountPeaches";
 // import { toItemId } from "@rarible/types";
 
 // refetch and invalidate
@@ -47,7 +49,14 @@ export const UnboxButton = ({
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { chain } = useAccount();
-
+  const { refetch: statusRefetch } = usePeachStatus({
+    tokenId,
+    season: 3,
+  });
+  const { refetch: peachRefetch } = useAccountPeaches({
+    accountAddress: account,
+    season: 3,
+  });
   const { data: hash, error, isPending, writeContract } = useWriteContract();
 
   const queryClient = useQueryClient();
@@ -77,6 +86,8 @@ export const UnboxButton = ({
         itemId: `${RARIBLE_PREFIX}:${PEACH_NFT_CONTRACT_ADDRESS_S3[TARGET_NETWORK]}:${tokenId}`,
       });
 
+      statusRefetch();
+      peachRefetch();
       console.log("refreshRes", refreshRes);
     };
     if (isConfirmed) {

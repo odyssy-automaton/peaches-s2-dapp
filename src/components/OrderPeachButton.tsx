@@ -34,6 +34,7 @@ export const OrderPeachButton = ({
   const {
     isError: isCheckoutFetchError,
     error: checkoutFetchError,
+    isPending,
     order,
   } = useCheckout({
     tokenId: Number(tokenId),
@@ -44,8 +45,7 @@ export const OrderPeachButton = ({
     onOpen();
   };
 
-  // const isDisabled = !chain || isPending;
-  const isDisabled = !chain;
+  const isDisabled = !chain || isPending;
 
   if (isCheckoutFetchError) {
     console.log("checkout error", checkoutFetchError);

@@ -11,7 +11,7 @@ export const useCheckout = ({
   account: string | undefined;
 }) => {
   const { data, error, ...rest } = useQuery({
-    queryKey: [`$get-checkout-${tokenId}`, { tokenId }],
+    queryKey: [`get-checkout-${tokenId}`, { tokenId }],
     queryFn: async () => {
       const cachedCheckoutString = localStorage.getItem(
         `peachCheckout${tokenId}`
