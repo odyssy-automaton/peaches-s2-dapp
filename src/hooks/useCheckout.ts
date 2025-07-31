@@ -14,7 +14,7 @@ export const useCheckout = ({
     queryKey: [`get-checkout-${tokenId}`, { tokenId }],
     queryFn: async () => {
       const cachedCheckoutString = localStorage.getItem(
-        `peachCheckout${tokenId}`
+        `peachCheckoutS3${tokenId}`
       );
       let checkoutId;
 
@@ -34,7 +34,7 @@ export const useCheckout = ({
       });
 
       localStorage.setItem(
-        `peachCheckout${tokenId}`,
+        `peachCheckoutS3${tokenId}`,
         JSON.stringify(checkoutRes)
       );
 
