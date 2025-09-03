@@ -1,30 +1,30 @@
-import { usePrivy } from "@privy-io/react-auth";
+// import { usePrivy } from "@privy-io/react-auth";
 import {
-  NFT_CONTRACT_ADDRESS,
+  // NFT_CONTRACT_ADDRESS,
   NftTreeMeta,
-  TARGET_NETWORK,
+  // TARGET_NETWORK,
   TREE_NFT_DATA,
 } from "../utils/constants";
-import { TreeMintCard } from "../components/TreeMintCard";
-import { Link } from "react-router-dom";
-import { Box, Button, Divider, Flex, Heading, Text } from "@chakra-ui/react";
+// import { TreeMintCard } from "../components/TreeMintCard";
+// import { Link } from "react-router-dom";
+import { Box, Divider, Flex, Heading, Image } from "@chakra-ui/react";
 // import { RemainingTreeSupply } from "../components/RemainingTreeSupply";
 // import { BoostContent } from "../components/BoostContent";
 // import { RemainingTreeSupply } from "../components/RemainingTreeSupply";
-import { useReadContract } from "wagmi";
+// import { useReadContract } from "wagmi";
 
-import erc721Abi from "../abis/ERC721.json";
+// import erc721Abi from "../abis/ERC721.json";
 
 function BuyTrees() {
-  const { user } = usePrivy();
+  // const { user } = usePrivy();
 
-  const { data: discountBalance } = useReadContract({
-    address: NFT_CONTRACT_ADDRESS[TARGET_NETWORK] as `0x${string}`,
-    abi: erc721Abi,
-    functionName: "balanceOf",
-    args: [user?.wallet?.address as `0x${string}`],
-  }) as { data: bigint };
-  const hasDiscount = discountBalance > 0;
+  // const { data: discountBalance } = useReadContract({
+  //   address: NFT_CONTRACT_ADDRESS[TARGET_NETWORK] as `0x${string}`,
+  //   abi: erc721Abi,
+  //   functionName: "balanceOf",
+  //   args: [user?.wallet?.address as `0x${string}`],
+  // }) as { data: bigint };
+  // const hasDiscount = discountBalance > 0;
 
   return (
     <>
@@ -32,7 +32,7 @@ function BuyTrees() {
         {/* <RemainingTreeSupply /> */}
         <Heading size="lg">Tree Sales Have Closed for the 2025 Season</Heading>
 
-        <Button
+        {/* <Button
           as={Link}
           to="/market"
           variant="outline"
@@ -55,7 +55,7 @@ function BuyTrees() {
           bg="brand.black"
         >
           GET PEACHES
-        </Button>
+        </Button> */}
       </Box>
 
       <Box mb="2rem" textAlign="center">
@@ -71,23 +71,35 @@ function BuyTrees() {
       >
         {TREE_NFT_DATA.map((tree: NftTreeMeta) => {
           return (
-            <TreeMintCard
-              tree={tree}
-              key={tree.name}
-              account={user?.wallet?.address}
-              hasDiscount={hasDiscount}
-            />
+            <Flex direction="column" align="center" gap="1rem">
+              <Flex
+                direction="column"
+                align="center"
+                w={{ base: "320px" }}
+                bg="brand.gray"
+                borderRadius="20px"
+                p="29px 36px"
+              >
+                <Image src={tree.img} />
+                <Box
+                  w="100%"
+                  textAlign="center"
+                  borderBottom="1px dotted black"
+                  paddingBottom="2rem"
+                ></Box>
+              </Flex>
+            </Flex>
           );
         })}
       </Flex>
 
-      <Box mb={20} textAlign="center" px="5rem">
+      {/* <Box mb={20} textAlign="center" px="5rem">
         <Text fontSize="md">
           3% of tree sales will be added to the ‘Farmer’s Pot’. The better you
           farm, the more points you earn and a larger percentage of the pot you
           can win!
         </Text>
-      </Box>
+      </Box> */}
 
       <Flex
         w="full"

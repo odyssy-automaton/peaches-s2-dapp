@@ -1,13 +1,5 @@
-import { Link } from "react-router-dom";
-import {
-  Box,
-  Button,
-  Divider,
-  Flex,
-  Heading,
-  Image,
-  Text,
-} from "@chakra-ui/react";
+// import { Link } from "react-router-dom";
+import { Box, Divider, Flex, Heading, Image, Text } from "@chakra-ui/react";
 
 import HomePeach from "../assets/Home-Peach.png";
 import HomeTree from "../assets/Home-Tree.png";
@@ -148,7 +140,7 @@ function Home() {
               </Text>
 
               <Box w="full" position="relative" mt="12px">
-                <Button
+                {/* <Button
                   as={Link}
                   to="/market"
                   variant="outline"
@@ -183,7 +175,7 @@ function Home() {
                   border="2px"
                   borderColor="brand.orange"
                   borderRadius="200px;"
-                ></Box>
+                ></Box> */}
               </Box>
             </Flex>
             <Image

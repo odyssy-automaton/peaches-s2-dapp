@@ -18,12 +18,12 @@ export const HomeSectionThree = () => {
         <Flex gap="1rem" align="center" mb="1rem">
           <Heading color="brand.orange">3.</Heading>
           <LabelBadge
-            bg="brand.orange"
+            bg="brand.red"
             color="brand.black"
             size={{ base: "xs", md: "md" }}
             lineHeight={{ sm: "2", md: "1.75" }}
           >
-            • PEACH SEASON OPENS IN AUGUST •
+            • PEACH SEASON CLOSED •
           </LabelBadge>
         </Flex>
         <Text

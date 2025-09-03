@@ -1,13 +1,5 @@
-import { SetStateAction, useEffect, useState } from "react";
-import {
-  Box,
-  Divider,
-  Flex,
-  Heading,
-  Select,
-  Text,
-  Image,
-} from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { Box, Flex, Heading, Text, Image } from "@chakra-ui/react";
 import styled from "styled-components";
 import type { Item } from "@rarible/api-client";
 import { ListingList } from "../components/ListingList";
@@ -36,7 +28,7 @@ const BoxCard = styled(Box)`
 function Marketplace() {
   const { items } = usePeachCollection();
 
-  const [sort, setSort] = useState("new");
+  const [sort] = useState("new");
   const [itemList, setItemList] = useState<Item[] | undefined>();
 
   useEffect(() => {
@@ -65,9 +57,9 @@ function Marketplace() {
     }
   }, [sort, items]);
 
-  const handleSortChange = (event: {
-    target: { value: SetStateAction<string> };
-  }) => setSort(event.target.value);
+  // const handleSortChange = (event: {
+  //   target: { value: SetStateAction<string> };
+  // }) => setSort(event.target.value);
 
   return (
     <>
@@ -146,7 +138,7 @@ function Marketplace() {
           they arrive fresh.
         </Text>
       </Box>
-      <Flex
+      {/* <Flex
         w="full"
         border="none"
         direction="row"
@@ -180,8 +172,8 @@ function Marketplace() {
           borderBottom="none"
           background="none"
         />
-      </Flex>
-      <Flex mt={5} ml={3} mb={8}>
+      </Flex> */}
+      {/* <Flex mt={5} ml={3} mb={8}>
         <Box width="10vw" />
         <Box width="17vw">
           <Select
@@ -196,7 +188,7 @@ function Marketplace() {
             <option value="high">Price (High to Low)</option>
           </Select>
         </Box>
-      </Flex>
+      </Flex> */}
 
       <Flex
         w="100%"

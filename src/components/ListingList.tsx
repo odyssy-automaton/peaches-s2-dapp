@@ -1,8 +1,9 @@
-import { Flex, Box, Heading, Link, Text } from "@chakra-ui/react";
+import { Flex, Box, Heading } from "@chakra-ui/react";
 import type { Item } from "@rarible/api-client";
-import { ListingCard } from "./ListingCard";
+// import { ListingCard } from "./ListingCard";
 
 export const ListingList = ({ listings }: { listings: Item[] }) => {
+  console.log("listings", listings);
   return (
     <Box mb="5rem">
       <Flex
@@ -12,7 +13,10 @@ export const ListingList = ({ listings }: { listings: Item[] }) => {
         align="center"
         justify="center"
       >
-        {listings.length < 1 && (
+        <Flex gap="1rem" direction="column" align="center" justify="center">
+          <Heading color="brand.orange">Market Closed for the Season</Heading>
+        </Flex>
+        {/* {listings.length < 1 && (
           <Flex gap="1rem" direction="column" align="center" justify="center">
             <Heading color="brand.orange">Market Is Almost Open</Heading>
             <Heading color="brand.orange">Check back soon</Heading>
@@ -34,7 +38,7 @@ export const ListingList = ({ listings }: { listings: Item[] }) => {
               key={item.tokenId}
             />
           );
-        })}
+        })} */}
       </Flex>
     </Box>
   );

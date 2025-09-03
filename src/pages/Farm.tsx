@@ -1,11 +1,12 @@
 import { usePrivy } from "@privy-io/react-auth";
-import { Button, Divider, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, Text } from "@chakra-ui/react";
 
 import { LogIn } from "../components/LogIn";
 import { TreeList } from "../components/TreeList";
 import { Link } from "react-router-dom";
 import { BoostContent } from "../components/BoostContent";
 import { PeachList } from "../components/PeachList";
+// import { TreeCardSimple } from "../components/TreeCardSimple";
 // import { RewardsButton } from "../components/RewardsButton";
 
 function Farm() {
@@ -65,6 +66,13 @@ function Farm() {
         justify="center"
       >
         {ready && !authenticated && <LogIn />}
+
+        <Box backgroundColor="brand.orange" p="5" borderRadius="20px" mb="3">
+          <Text fontWeight="700" fontSize="xl">
+            The Peach Season 3 has ended. NFTs are no longer redeemable for
+            peaches.
+          </Text>
+        </Box>
 
         {loggedIn && user?.wallet?.address && (
           <PeachList account={user.wallet.address} />

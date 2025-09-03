@@ -1,8 +1,9 @@
 import { Flex, Spinner, Box, Button, Heading } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useAccountPeaches } from "../hooks/useAccountPeaches";
-import { PeachNftCard } from "./PeachNftCard";
+// import { PeachNftCard } from "./PeachNftCard";
 import { PeachNft } from "../utils/types";
+import { PeachNftCardSimple } from "./PeachNftCardSimple";
 
 export const PeachList = ({ account }: { account: string }) => {
   const { accountNfts, isLoading } = useAccountPeaches({
@@ -24,10 +25,16 @@ export const PeachList = ({ account }: { account: string }) => {
         >
           {accountNfts.map((token: PeachNft) => {
             return (
-              <PeachNftCard
+              // <PeachNftCard
+              //   peach={token}
+              //   key={token.tokenID}
+              //   account={account}
+              //   season={3}
+              // />
+
+              <PeachNftCardSimple
                 peach={token}
                 key={token.tokenID}
-                account={account}
                 season={3}
               />
             );
